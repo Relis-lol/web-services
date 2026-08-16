@@ -1,0 +1,35 @@
+# ==========================================================================
+# .gitignore
+# Wichtigster Punkt: In dieses Repository gehören KEINE Zugangsdaten.
+# Alles hier ist öffentlich lesbar, auch in der Git-Historie.
+# ==========================================================================
+
+# Zugangsdaten / Umgebungsvariablen — niemals committen
+.env
+.env.*
+*.pem
+*.key
+secrets.json
+config.local.js
+
+# Betriebssystem
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+$RECYCLE.BIN/
+
+# Editoren
+.vscode/
+.idea/
+*.swp
+*~
+
+# Werkzeuge / Berichte
+node_modules/
+.cache/
+lighthouse-report.*
+*.log
+
+# Bild-Originale (die optimierten Fassungen gehören ins Repo)
+assets/projects/_raw/

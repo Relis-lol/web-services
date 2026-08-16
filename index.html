@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     SEO / Metadaten
+     TODO vor dem Launch: Die URLs zeigen derzeit auf das Backup-Repository
+     (relis-lol.github.io/digitalservice-backup). Das ist NICHT der spätere
+     Hosting-Ort — vor dem Launch auf die echte Domain umstellen, auch in
+     impressum.html, datenschutz.html, robots.txt und sitemap.xml.
+     ============================================================ -->
+<title>Websites &amp; digitale Lösungen — individuell entwickelt</title>
+<meta name="description" content="Wir entwickeln moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – von der Landingpage bis zu APIs, Datenbanken und laufender technischer Betreuung.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://relis-lol.github.io/digitalservice-backup/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://relis-lol.github.io/digitalservice-backup/">
+<meta property="og:title" content="Websites &amp; digitale Lösungen — individuell entwickelt">
+<meta property="og:description" content="Moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – inklusive laufender technischer Betreuung.">
+<!-- TODO: Eigenes OpenGraph-Bild (1200x630 px) hinterlegen. -->
+<meta property="og:image" content="https://relis-lol.github.io/digitalservice-backup/assets/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Websites und digitale Lösungen">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Websites &amp; digitale Lösungen — individuell entwickelt">
+<meta name="twitter:description" content="Moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen.">
+<meta name="twitter:image" content="https://relis-lol.github.io/digitalservice-backup/assets/images/og-image.png">
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32"><!-- Fallback für ältere Browser -->
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body data-title-key="meta.title" data-desc-key="meta.description">
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Zum Inhalt springen</a>
+
+<!-- ==================================================================
+     HINTERGRUND-GRAFIK — vom technischen Riss zur fertigen Website
+     ------------------------------------------------------------------
+     WICHTIG ZUM VERSTÄNDNIS:
+     Das sind KEINE mehreren Bilder, die abwechselnd eingeblendet werden.
+     Es ist EIN Browserfenster mit EINER Website darin. Jedes Element
+     behält seine Position über den gesamten Scrollweg und verwandelt
+     sich an Ort und Stelle:
+
+       Raster + Bemaßung
+         -> ein Lichtpunkt zeichnet die Umrisse nach
+         -> Flächen füllen sich, Ecken runden sich
+         -> Inhalte erscheinen (Logo, Navigation, Text, Bild, Karten)
+         -> am Ende steht eine vollständige Website
+
+     Gesteuert wird alles über eine einzige Zahl: --p (0 = Anfang der
+     Seite, 1 = Ende). Die Zeitfenster stehen in css/styles.css,
+     Abschnitt 15 — dort lässt sich das Tempo ändern, ohne dieses SVG
+     anzufassen.
+
+     Rein dekorativ: aria-hidden, nicht anklickbar, liegt hinter allem.
+     Deckkraft über --art-opacity. Siehe Warnhinweis im README.
+     ================================================================== -->
+<div class="bg-art" id="bg-art" aria-hidden="true">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">
+
+    <defs>
+      <pattern id="artGrid" width="45" height="45" patternUnits="userSpaceOnUse">
+        <path d="M45 0H0v45" fill="none" stroke="var(--art-line)" stroke-width="1" stroke-opacity=".24"/>
+      </pattern>
+      <marker id="artArrow" viewBox="0 0 10 10" refX="9" refY="5"
+              markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0l10 5-10 5z" fill="var(--art-line)"/>
+      </marker>
+      <radialGradient id="artOrb" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="var(--art-line)" stop-opacity=".5"/>
+        <stop offset="1" stop-color="var(--art-line)" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <!-- ========== ZULETZT: weicher Grund hinter allem ================ -->
+    <g class="art-soft">
+      <circle cx="1080" cy="330" r="330" fill="url(#artOrb)"/>
+      <circle cx="300" cy="700" r="260" fill="url(#artOrb)"/>
+    </g>
+
+    <!-- ========== ZUERST: Millimeterraster ========================== -->
+    <rect class="art-grid" width="1440" height="900" fill="url(#artGrid)"/>
+
+    <!-- ========== ZUERST: Konstruktions- und Anrisslinien =========== -->
+    <g class="art-construct" fill="none" stroke="var(--art-line)"
+       stroke-width="1" stroke-opacity=".22" stroke-dasharray="3 7">
+      <path d="M0 108h1440M0 180h1440M0 472h1440M0 520h1440M0 720h1440M0 760h1440"/>
+      <path d="M120 0v900M160 0v900M700 0v900M1280 0v900M1320 0v900M516 0v900M898 0v900"/>
+      <path d="M700 222l580 250M1280 222L700 472"/>
+    </g>
+
+    <!-- ========== ZUERST: Bemaßung ================================== -->
+    <g class="art-dim" fill="none" stroke="var(--art-line)"
+       stroke-width="1.2" stroke-opacity=".5">
+      <path d="M160 500h380" marker-start="url(#artArrow)" marker-end="url(#artArrow)"/>
+      <path d="M160 488v24M540 488v24"/>
+      <path d="M700 500h580" marker-start="url(#artArrow)" marker-end="url(#artArrow)"/>
+      <path d="M700 488v24M1280 488v24"/>
+      <path d="M1352 222v250" marker-start="url(#artArrow)" marker-end="url(#artArrow)"/>
+      <path d="M1340 222h24M1340 472h24"/>
+      <path d="M120 34h1200" marker-start="url(#artArrow)" marker-end="url(#artArrow)"/>
+      <path d="M120 22v24M1320 22v24"/>
+      <circle cx="990" cy="347" r="86"/>
+      <circle cx="990" cy="347" r="43" stroke-dasharray="5 6"/>
+      <path d="M888 347h204M990 245v204"/>
+    </g>
+
+    <g class="art-dim" fill="var(--art-line)" fill-opacity=".55"
+       font-family="ui-monospace, Consolas, monospace" font-size="13">
+      <text x="330" y="528">380</text>
+      <text x="970" y="528">580</text>
+      <text x="1370" y="352">250</text>
+      <text x="700" y="24">1200</text>
+      <text x="1006" y="322">R 86</text>
+      <text x="126" y="52">00</text>
+      <text x="166" y="214">01</text>
+      <text x="706" y="214">02</text>
+      <text x="166" y="512">03</text>
+      <text x="522" y="512">04</text>
+      <text x="904" y="512">05</text>
+    </g>
+
+    <!-- ========== ENTWURFSUMRISSE (verschwinden) ====================
+         Auch die reinen Layout-Bereiche, die es in der fertigen Seite
+         nicht mehr als sichtbaren Kasten gibt.                        -->
+    <g class="art-dashed art-round" fill="none" stroke="var(--art-line)"
+       stroke-width="1.4" stroke-opacity=".55" stroke-dasharray="10 7">
+      <rect x="160" y="222" width="380" height="250"/>
+      <rect x="160" y="128" width="1120" height="52"/>
+      <rect x="160" y="760" width="1120" height="76"/>
+    </g>
+
+    <!-- ========== DER LICHTPUNKT ====================================
+         Läuft die Umrisse entlang und zieht die feste Linie hinter
+         sich her. Zwei Striche übereinander: ein breiter, weicher
+         Schein und ein schmaler, heller Kern.
+
+         pathLength="100" normiert jeden Umriss auf 100 Einheiten —
+         dadurch laufen alle Rahmen im Gleichschritt, unabhängig davon,
+         wie groß sie tatsächlich sind.                                -->
+    <g class="art-spark" fill="none" stroke="var(--art-line)"
+       stroke-width="7" stroke-opacity=".3" stroke-linecap="round">
+      <rect x="120" y="56" width="1200" height="800" pathLength="100"/>
+      <rect x="700" y="222" width="580" height="250" pathLength="100"/>
+      <rect x="160" y="520" width="356" height="200" pathLength="100"/>
+      <rect x="542" y="520" width="356" height="200" pathLength="100"/>
+      <rect x="924" y="520" width="356" height="200" pathLength="100"/>
+    </g>
+    <g class="art-spark" fill="none" stroke="var(--art-line)"
+       stroke-width="1.8" stroke-opacity="1" stroke-linecap="round">
+      <rect x="120" y="56" width="1200" height="800" pathLength="100"/>
+      <rect x="700" y="222" width="580" height="250" pathLength="100"/>
+      <rect x="160" y="520" width="356" height="200" pathLength="100"/>
+      <rect x="542" y="520" width="356" height="200" pathLength="100"/>
+      <rect x="924" y="520" width="356" height="200" pathLength="100"/>
+    </g>
+
+    <!-- ========== DIE FESTE LINIE ===================================
+         Zeichnet sich hinter dem Lichtpunkt her auf (stroke-dashoffset
+         in css/styles.css). Nur die Rahmen, die es in der fertigen
+         Website wirklich gibt.                                        -->
+    <g class="art-draw art-round" fill="none" stroke="var(--art-line)"
+       stroke-width="1.5" stroke-opacity=".5">
+      <rect x="120" y="56" width="1200" height="800" pathLength="100"/>
+      <rect x="700" y="222" width="580" height="250" pathLength="100"/>
+      <rect x="160" y="520" width="356" height="200" pathLength="100"/>
+      <rect x="542" y="520" width="356" height="200" pathLength="100"/>
+      <rect x="924" y="520" width="356" height="200" pathLength="100"/>
+    </g>
+
+    <!-- ========== DIE FLÄCHEN ======================================= -->
+    <g class="art-fill art-round">
+      <rect x="120" y="56" width="1200" height="800" fill="var(--art-line)" fill-opacity=".05"/>
+      <rect x="700" y="222" width="580" height="250" fill="var(--art-line)" fill-opacity=".16"/>
+      <rect x="160" y="520" width="356" height="200" fill="var(--art-line)" fill-opacity=".12"/>
+      <rect x="542" y="520" width="356" height="200" fill="var(--art-line)" fill-opacity=".12"/>
+      <rect x="924" y="520" width="356" height="200" fill="var(--art-line)" fill-opacity=".12"/>
+    </g>
+
+    <!-- ========== BROWSERFENSTER ====================================
+         Das Detail, das aus abstrakten Kästen eine Website macht.     -->
+    <g class="art-chrome" fill="var(--art-line)">
+      <path d="M120 108h1200" stroke="var(--art-line)" stroke-opacity=".4" stroke-width="1.5"/>
+      <g fill-opacity=".35">
+        <circle cx="154" cy="82" r="7"/>
+        <circle cx="178" cy="82" r="7"/>
+        <circle cx="202" cy="82" r="7"/>
+      </g>
+      <rect x="240" y="70" width="420" height="24" rx="12" fill-opacity=".14"/>
+      <rect x="256" y="79" width="150" height="6" rx="3" fill-opacity=".3"/>
+    </g>
+
+    <!-- ========== DIE FERTIGE WEBSITE ===============================
+         Logo, Navigation, Schaltfläche, Überschrift, Fließtext, Bild
+         mit Motiv, drei Karten mit Symbol und Textzeilen, Fußzeile
+         mit Spalten. Verschiedene Deckkraften erzeugen die Hierarchie,
+         die eine echte Seite ausmacht.                                -->
+    <g class="art-content" fill="var(--art-line)">
+
+      <!-- Kopfzeile: Logo, Wortmarke, drei Menüpunkte, Schaltfläche -->
+      <rect x="160" y="139" width="30" height="30" rx="9" fill-opacity=".5"/>
+      <rect x="200" y="147" width="86" height="14" rx="7" fill-opacity=".42"/>
+      <g fill-opacity=".26">
+        <rect x="852" y="149" width="66" height="11" rx="5.5"/>
+        <rect x="936" y="149" width="54" height="11" rx="5.5"/>
+        <rect x="1008" y="149" width="60" height="11" rx="5.5"/>
+      </g>
+      <rect x="1150" y="139" width="130" height="31" rx="15.5" fill-opacity=".5"/>
+
+      <!-- Hero: Auszeichner, zwei Überschriftzeilen, Text, zwei Knöpfe -->
+      <rect x="160" y="238" width="104" height="10" rx="5" fill-opacity=".5"/>
+      <g fill-opacity=".36">
+        <rect x="160" y="268" width="368" height="25" rx="7"/>
+        <rect x="160" y="305" width="268" height="25" rx="7"/>
+      </g>
+      <g fill-opacity=".2">
+        <rect x="160" y="352" width="356" height="12" rx="6"/>
+        <rect x="160" y="376" width="300" height="12" rx="6"/>
+        <rect x="160" y="400" width="222" height="12" rx="6"/>
+      </g>
+      <rect x="160" y="430" width="152" height="42" rx="21" fill-opacity=".48"/>
+      <rect x="328" y="430" width="132" height="42" rx="21" fill-opacity="0"
+            stroke="var(--art-line)" stroke-opacity=".38" stroke-width="1.5"/>
+
+      <!-- Bildbereich mit Motiv: Sonne und Bergzug -->
+      <g class="art-photo">
+        <circle cx="850" cy="300" r="26" fill-opacity=".34"/>
+        <path d="M700 472l160-150 96 90 74-64 250 124v0z" fill-opacity=".26"/>
+        <path d="M700 472l232-116 348 116z" fill-opacity=".36"/>
+      </g>
+
+      <!-- Drei Karten: Symbol, Titel, zwei Textzeilen, Weiterlink -->
+      <g fill-opacity=".42">
+        <rect x="188" y="548" width="42" height="42" rx="12"/>
+        <rect x="570" y="548" width="42" height="42" rx="12"/>
+        <rect x="952" y="548" width="42" height="42" rx="12"/>
+      </g>
+      <g fill-opacity=".3">
+        <rect x="188" y="612" width="176" height="16" rx="8"/>
+        <rect x="570" y="612" width="176" height="16" rx="8"/>
+        <rect x="952" y="612" width="176" height="16" rx="8"/>
+      </g>
+      <g fill-opacity=".17">
+        <rect x="188" y="644" width="290" height="10" rx="5"/>
+        <rect x="188" y="666" width="232" height="10" rx="5"/>
+        <rect x="570" y="644" width="290" height="10" rx="5"/>
+        <rect x="570" y="666" width="232" height="10" rx="5"/>
+        <rect x="952" y="644" width="290" height="10" rx="5"/>
+        <rect x="952" y="666" width="232" height="10" rx="5"/>
+      </g>
+      <g fill-opacity=".34">
+        <rect x="188" y="694" width="72" height="9" rx="4.5"/>
+        <rect x="570" y="694" width="72" height="9" rx="4.5"/>
+        <rect x="952" y="694" width="72" height="9" rx="4.5"/>
+      </g>
+
+      <!-- Fußzeile: Trennlinie, Wortmarke, drei Linkspalten -->
+      <path d="M160 760h1120" stroke="var(--art-line)" stroke-opacity=".3" stroke-width="1.5"/>
+      <rect x="160" y="784" width="24" height="24" rx="7" fill-opacity=".4"/>
+      <rect x="192" y="790" width="76" height="12" rx="6" fill-opacity=".3"/>
+      <g fill-opacity=".16">
+        <rect x="880" y="784" width="86" height="9" rx="4.5"/>
+        <rect x="880" y="802" width="66" height="9" rx="4.5"/>
+        <rect x="880" y="820" width="74" height="9" rx="4.5"/>
+        <rect x="1020" y="784" width="86" height="9" rx="4.5"/>
+        <rect x="1020" y="802" width="66" height="9" rx="4.5"/>
+        <rect x="1020" y="820" width="74" height="9" rx="4.5"/>
+        <rect x="1160" y="784" width="86" height="9" rx="4.5"/>
+        <rect x="1160" y="802" width="66" height="9" rx="4.5"/>
+        <rect x="1160" y="820" width="74" height="9" rx="4.5"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- ==================================================================
+     HEADER / NAVIGATION
+     ================================================================== -->
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+
+    <a class="brand" href="#top" aria-label="Startseite">
+      <span class="brand-mark" aria-hidden="true" data-site="initials">SN</span>
+      <span class="brand-name" data-site="name">Studio Name</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Hauptnavigation" data-i18n-attr="aria-label:a11y.mainNav">
+      <ul>
+        <li><a href="#top" data-i18n="nav.home">Start</a></li>
+        <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
+        <li><a href="#support" data-i18n="nav.support">Wartung</a></li>
+        <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
+        <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
+        <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-tools">
+      <!-- Sprachumschalter -->
+      <div class="lang-switch" role="group" aria-label="Sprache wählen" data-i18n-attr="aria-label:a11y.langGroup">
+        <button type="button" class="lang-btn" data-lang="de" aria-pressed="true" lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+
+      <!-- Farbschema -->
+      <button type="button" class="icon-btn" id="theme-toggle"
+              aria-label="Farbschema wechseln"
+              data-i18n-attr="aria-label:a11y.theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2 12h2.6M19.4 12H22M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/>
+        </svg>
+      </button>
+
+      <!-- Mobiles Menü -->
+      <button type="button" class="icon-btn nav-toggle" id="nav-toggle"
+              aria-expanded="false" aria-controls="nav-mobile"
+              aria-label="Menü öffnen"
+              data-i18n-attr="aria-label:a11y.menu">
+        <svg class="icon icon-burger" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+        <svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile Navigation" hidden
+       data-i18n-attr="aria-label:a11y.mobileNav">
+    <ul class="container">
+      <li><a href="#top" data-i18n="nav.home">Start</a></li>
+      <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
+      <li><a href="#support" data-i18n="nav.support">Wartung &amp; Support</a></li>
+      <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
+      <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
+      <li><a href="#preise" data-i18n="nav.pricing">Kalkulation</a></li>
+      <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ================================================================
+       HERO
+       ================================================================ -->
+  <section class="hero" id="top">
+    <div class="container">
+      <p class="eyebrow reveal" data-i18n="hero.eyebrow">Kleines Team. Direkter Ansprechpartner.</p>
+
+      <h1 class="hero-title reveal" data-i18n="hero.title">
+        Websites und digitale Lösungen, die tatsächlich funktionieren.
+      </h1>
+
+      <p class="hero-sub reveal" data-i18n="hero.sub">
+        Wir entwickeln moderne Websites, kleinere Webanwendungen und individuelle
+        digitale Lösungen – von der ersten Landingpage bis zu APIs, Datenbanken
+        und laufender technischer Betreuung.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="#kontakt" data-i18n="hero.cta1">Projekt anfragen</a>
+        <a class="btn btn-ghost" href="#projekte" data-i18n="hero.cta2">Unsere Arbeiten</a>
+      </div>
+
+      <ul class="trust-row reveal" aria-label="Arbeitsweise" data-i18n-attr="aria-label:a11y.trust">
+        <li data-i18n="hero.trust1">Responsive umgesetzt</li>
+        <li data-i18n="hero.trust2">Auf Performance optimiert</li>
+        <li data-i18n="hero.trust3">Individuell entwickelt</li>
+        <li data-i18n="hero.trust4">Direkter Ansprechpartner</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       LEISTUNGEN
+       ================================================================ -->
+  <section class="section" id="leistungen" aria-labelledby="leistungen-h">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-kicker" data-i18n="services.kicker">Leistungen</p>
+        <h2 id="leistungen-h" data-i18n="services.title">Was wir umsetzen</h2>
+        <p class="section-lead" data-i18n="services.lead">
+          Drei Bereiche, die ineinandergreifen. Was davon sinnvoll ist, klären wir
+          vorher gemeinsam – nicht alles ergibt für jedes Projekt Sinn.
+        </p>
+      </header>
+
+      <div class="grid grid-3">
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <rect x="3" y="4" width="18" height="15" rx="2.5"/>
+              <path d="M3 8.5h18M6.5 6.2h.01M9 6.2h.01"/>
+            </svg>
+          </div>
+          <h3 data-i18n="services.web.title">Websites &amp; Landingpages</h3>
+          <p data-i18n="services.web.text">
+            Der Kern unserer Arbeit: Seiten, die schnell laden, auf jedem Gerät
+            funktionieren und die man später auch pflegen kann.
+          </p>
+          <ul class="check-list">
+            <li data-i18n="services.web.i1">Individuelle Firmenwebsites</li>
+            <li data-i18n="services.web.i2">Landingpages und Produktseiten</li>
+            <li data-i18n="services.web.i3">Portfolios und Projektseiten</li>
+            <li data-i18n="services.web.i4">Bestehende Websites modernisieren</li>
+            <li data-i18n="services.web.i5">Bilder, Videos und andere Medien einbinden</li>
+            <li data-i18n="services.web.i6">Kontaktformulare und Newsletter-Anbindung</li>
+            <li data-i18n="services.web.i7">Karten- und Standortintegration</li>
+            <li data-i18n="services.web.i8">Verknüpfung mit Social-Media-Profilen</li>
+            <li data-i18n="services.web.i9">Technische SEO-Grundlagen</li>
+            <li data-i18n="services.web.i10">Performanceoptimierung</li>
+          </ul>
+          <p class="card-note" data-i18n="services.web.note">
+            Hinweis: Wir legen die technischen SEO-Grundlagen. Laufende
+            SEO- oder Werbekampagnen betreuen wir nicht.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M8.5 8.5L5 12l3.5 3.5M15.5 8.5L19 12l-3.5 3.5M13.5 5.5l-3 13"/>
+            </svg>
+          </div>
+          <h3 data-i18n="services.func.title">Individuelle Web-Funktionen</h3>
+          <p data-i18n="services.func.text">
+            Wenn eine reine Website nicht ausreicht: Funktionen, die zu Ihrem
+            Ablauf passen statt umgekehrt.
+          </p>
+          <ul class="check-list">
+            <li data-i18n="services.func.i1">Login- und Accountbereiche</li>
+            <li data-i18n="services.func.i2">Benutzerverwaltung und Rollen</li>
+            <li data-i18n="services.func.i3">Kleinere Datenbanken</li>
+            <li data-i18n="services.func.i4">Individuelle APIs</li>
+            <li data-i18n="services.func.i5">Anbindung externer APIs</li>
+            <li data-i18n="services.func.i6">Dashboards und Auswertungen</li>
+            <li data-i18n="services.func.i7">Kleine interne Tools</li>
+            <li data-i18n="services.func.i8">Formulare und Workflows</li>
+            <li data-i18n="services.func.i9">Datenverarbeitung und Automatisierungen</li>
+          </ul>
+          <p class="card-note" data-i18n="services.func.note">
+            Funktionsumfang und technische Architektur prüfen wir pro Projekt.
+            Große Unternehmenssysteme gehören ausdrücklich nicht dazu.
+          </p>
+        </article>
+
+        <article class="card card-accent reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <rect x="4" y="7" width="16" height="12" rx="3"/>
+              <path d="M12 7V4M8.5 12.5h.01M15.5 12.5h.01M9.5 15.8h5"/>
+            </svg>
+          </div>
+          <p class="card-tag" data-i18n="services.ai.tag">Individualleistung</p>
+          <h3 data-i18n="services.ai.title">AI &amp; Automation</h3>
+          <p data-i18n="services.ai.text">
+            AI-gestützte Unterstützung im Support – aufgebaut auf Ihren eigenen
+            FAQs, Dokumentationen oder internen Informationen.
+          </p>
+          <ul class="check-list">
+            <li data-i18n="services.ai.i1">Chat-Assistent auf der Website</li>
+            <li data-i18n="services.ai.i2">FAQ-Assistent</li>
+            <li data-i18n="services.ai.i3">Vorsortierung eingehender Anfragen</li>
+            <li data-i18n="services.ai.i4">Interne Wissensassistenten</li>
+            <li data-i18n="services.ai.i5">AI-Integrationen über APIs</li>
+          </ul>
+          <p class="card-note" data-i18n="services.ai.note">
+            Solche Lösungen kalkulieren wir immer einzeln – abhängig von
+            Datenmenge, Anforderungen, Modell- bzw. API-Kosten und Infrastruktur.
+            Ein Assistent unterstützt Ihren Support, er ersetzt ihn nicht.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       WARTUNG & SUPPORT
+       ================================================================ -->
+  <section class="section section-alt" id="support" aria-labelledby="support-h">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-kicker" data-i18n="support.kicker">Wartung &amp; technischer Support</p>
+        <h2 id="support-h" data-i18n="support.title">Laufende Betreuung, klar abgegrenzt</h2>
+        <p class="section-lead" data-i18n="support.lead">
+          Auch nach der Übergabe bleibt jemand erreichbar. Umfang und
+          Verantwortlichkeiten legen wir vorher schriftlich fest – damit klar
+          ist, was wir übernehmen und was nicht.
+        </p>
+      </header>
+
+      <div class="grid grid-3">
+
+        <article class="card card-compact reveal">
+          <h3 data-i18n="support.site.title">Websitepflege</h3>
+          <ul class="dash-list">
+            <li data-i18n="support.site.i1">Texte und Bilder aktualisieren</li>
+            <li data-i18n="support.site.i2">Kleinere Designänderungen</li>
+            <li data-i18n="support.site.i3">Neue Inhalte einpflegen</li>
+            <li data-i18n="support.site.i4">Technische Updates</li>
+            <li data-i18n="support.site.i5">Fehlerbehebung</li>
+          </ul>
+        </article>
+
+        <article class="card card-compact reveal">
+          <h3 data-i18n="support.acc.title">Account- &amp; Systempflege</h3>
+          <ul class="dash-list">
+            <li data-i18n="support.acc.i1">Benutzeraccounts anlegen und pflegen</li>
+            <li data-i18n="support.acc.i2">Berechtigungen anpassen</li>
+            <li data-i18n="support.acc.i3">Kleinere administrative Aufgaben</li>
+            <li data-i18n="support.acc.i4">Technische Konfigurationen</li>
+          </ul>
+        </article>
+
+        <article class="card card-compact reveal">
+          <h3 data-i18n="support.db.title">Datenbankpflege</h3>
+          <ul class="dash-list">
+            <li data-i18n="support.db.i1">Kleinere Datenbankarbeiten</li>
+            <li data-i18n="support.db.i2">Backups einrichten und prüfen</li>
+            <li data-i18n="support.db.i3">Datenbereinigung</li>
+            <li data-i18n="support.db.i4">Einfache Migrationen</li>
+            <li data-i18n="support.db.i5">Überwachung</li>
+          </ul>
+        </article>
+
+        <article class="card card-compact reveal">
+          <h3 data-i18n="support.srv.title">Serverpflege</h3>
+          <ul class="dash-list">
+            <li data-i18n="support.srv.i1">Grundlegende Linux-Serverpflege</li>
+            <li data-i18n="support.srv.i2">Updates einspielen</li>
+            <li data-i18n="support.srv.i3">Deployment-Unterstützung</li>
+            <li data-i18n="support.srv.i4">Dienste prüfen, Backups, Basis-Monitoring</li>
+            <li data-i18n="support.srv.i5">Kleinere Docker-Umgebungen</li>
+          </ul>
+          <p class="card-note" data-i18n="support.srv.note">
+            Wir bieten kein rund um die Uhr betreutes Hosting an. Reaktionszeiten
+            vereinbaren wir individuell.
+          </p>
+        </article>
+
+        <article class="card card-compact reveal">
+          <h3 data-i18n="support.mail.title">E-Mail &amp; DNS</h3>
+          <ul class="dash-list">
+            <li data-i18n="support.mail.i1">Business-Mail einrichten</li>
+            <li data-i18n="support.mail.i2">DNS-Konfiguration</li>
+            <li data-i18n="support.mail.i3">Weiterleitungen und Mailboxen</li>
+            <li data-i18n="support.mail.i4">Unterstützung bei SPF, DKIM und DMARC</li>
+            <li data-i18n="support.mail.i5">Technische Fehleranalyse</li>
+          </ul>
+        </article>
+
+        <article class="card card-compact reveal">
+          <h3 data-i18n="support.social.title">Social-Media-Support</h3>
+          <ul class="dash-list">
+            <li data-i18n="support.social.i1">Technische Einrichtung und Verknüpfung</li>
+            <li data-i18n="support.social.i2">Content-Einbindung auf der Website</li>
+            <li data-i18n="support.social.i3">Profil- und Linkstruktur</li>
+            <li data-i18n="support.social.i4">Veröffentlichung vorbereiteter Inhalte</li>
+            <li data-i18n="support.social.i5">Kleinere Unterstützung bei Inhalten</li>
+          </ul>
+          <p class="card-note" data-i18n="support.social.note">
+            Das ist technische Unterstützung, keine Marketingbetreuung. Wir
+            versprechen keine Reichweiten oder Wachstumszahlen.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       PROJEKTE
+       ================================================================ -->
+  <section class="section" id="projekte" aria-labelledby="projekte-h">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-kicker" data-i18n="projects.kicker">Projekte</p>
+        <h2 id="projekte-h" data-i18n="projects.title">Ausgewählte Arbeiten</h2>
+        <p class="section-lead" data-i18n="projects.lead">
+          Eine kleine Auswahl statt einer langen Liste.
+        </p>
+      </header>
+
+      <!-- Karten werden aus js/projects.js erzeugt. -->
+      <div class="grid grid-3 projects-grid" id="projects-grid"></div>
+
+      <noscript>
+        <p class="notice">
+          Die Projektübersicht benötigt JavaScript. Schreiben Sie uns gern direkt
+          über das Kontaktformular – wir schicken Ihnen Referenzen zu.
+        </p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ABLAUF
+       ================================================================ -->
+  <section class="section section-alt" id="ablauf" aria-labelledby="ablauf-h">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-kicker" data-i18n="process.kicker">Ablauf</p>
+        <h2 id="ablauf-h" data-i18n="process.title">In vier Schritten zum Ergebnis</h2>
+      </header>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">01</span>
+          <h3 data-i18n="process.s1.title">Anfrage</h3>
+          <p data-i18n="process.s1.text">
+            Sie beschreiben Ihr Vorhaben in ein paar Stichpunkten. Unverbindlich.
+          </p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">02</span>
+          <h3 data-i18n="process.s2.title">Abstimmung</h3>
+          <p data-i18n="process.s2.text">
+            Wir klären Umfang, technische Anforderungen und offene Fragen.
+          </p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">03</span>
+          <h3 data-i18n="process.s3.title">Angebot &amp; Umsetzung</h3>
+          <p data-i18n="process.s3.text">
+            Nach klarer Definition erhalten Sie ein Angebot. Danach setzen wir um.
+          </p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">04</span>
+          <h3 data-i18n="process.s4.title">Übergabe &amp; Support</h3>
+          <p data-i18n="process.s4.text">
+            Nach Fertigstellung übergeben wir. Auf Wunsch betreuen wir weiter.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       KALKULATION
+       ================================================================ -->
+  <section class="section" id="preise" aria-labelledby="preise-h">
+    <div class="container">
+      <div class="pricing-panel reveal">
+        <div class="pricing-main">
+          <p class="section-kicker" data-i18n="pricing.kicker">Preise</p>
+          <h2 id="preise-h" data-i18n="pricing.title">Individuelle Projektkalkulation</h2>
+          <p data-i18n="pricing.text">
+            Jedes Projekt hat andere Anforderungen. Deshalb kalkulieren wir
+            Leistungen nach Umfang, Funktionen und technischem Aufwand. Eine
+            Anfrage ist unverbindlich und kostet nichts.
+          </p>
+          <div class="pricing-actions">
+            <a class="btn btn-primary" href="#kontakt" data-i18n="pricing.cta1">Projekt beschreiben</a>
+            <a class="btn btn-ghost" href="#kontakt" data-i18n="pricing.cta2">Kurze Anfrage senden</a>
+          </div>
+          <p class="card-note" data-i18n="pricing.note">
+            Der zweite Weg eignet sich für kleinere Wartungs- oder
+            Änderungsarbeiten.
+          </p>
+        </div>
+
+        <div class="pricing-aside">
+          <h3 data-i18n="pricing.needTitle">Für ein Angebot hilft uns</h3>
+          <ul class="check-list">
+            <li data-i18n="pricing.n1">Art des Projekts</li>
+            <li data-i18n="pricing.n2">Gewünschte Funktionen</li>
+            <li data-i18n="pricing.n3">Bestehende Website, falls vorhanden</li>
+            <li data-i18n="pricing.n4">Ungefährer Umfang</li>
+            <li data-i18n="pricing.n5">Besondere Anforderungen</li>
+            <li data-i18n="pricing.n6">Gewünschter Zeitraum</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       KONTAKT
+       ================================================================ -->
+  <section class="section section-alt" id="kontakt" aria-labelledby="kontakt-h">
+    <div class="container contact-layout">
+
+      <div class="contact-intro reveal">
+        <p class="section-kicker" data-i18n="contact.kicker">Kontakt</p>
+        <h2 id="kontakt-h" data-i18n="contact.title">Erzählen Sie uns kurz von Ihrem Projekt</h2>
+        <p data-i18n="contact.text">
+          Ein paar Stichpunkte reichen für den Anfang. Wir melden uns mit
+          Rückfragen oder einer ersten Einschätzung.
+        </p>
+
+        <!-- Kontaktdaten: werden aus js/config.js gefüllt.
+             Nicht konfigurierte Angaben werden gar nicht angezeigt. -->
+        <ul class="contact-details" id="contact-details"></ul>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+
+        <!-- Sichtbarer Hinweis, solange kein Endpunkt konfiguriert ist.
+             Wird von js/main.js ein-/ausgeblendet. -->
+        <p class="notice notice-warn" id="form-demo-notice" hidden data-i18n="contact.demo">
+          Demo-Modus: Es ist noch kein Versand-Endpunkt konfiguriert. Das
+          Formular prüft Ihre Eingaben, sendet aber nichts.
+        </p>
+
+        <form class="contact-form" id="contact-form" novalidate>
+
+          <!-- Honeypot: für Menschen unsichtbar, für einfache Bots attraktiv.
+               Kein Ersatz für serverseitigen Spamschutz. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website-url">Bitte dieses Feld leer lassen</label>
+            <input type="text" id="website-url" name="website-url" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="f-name"><span data-i18n="form.name">Name</span> <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="f-name" name="name" required maxlength="100"
+                   autocomplete="name" aria-describedby="err-name">
+            <p class="field-error" id="err-name" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-email"><span data-i18n="form.email">E-Mail</span> <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="f-email" name="email" required maxlength="150"
+                   autocomplete="email" aria-describedby="err-email">
+            <p class="field-error" id="err-email" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-company"><span data-i18n="form.company">Unternehmen</span> <span class="opt" data-i18n="form.optional">(optional)</span></label>
+            <input type="text" id="f-company" name="company" maxlength="120"
+                   autocomplete="organization" aria-describedby="err-company">
+            <p class="field-error" id="err-company" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-topic"><span data-i18n="form.topic">Was benötigen Sie?</span> <span class="req" aria-hidden="true">*</span></label>
+            <select id="f-topic" name="topic" required aria-describedby="err-topic">
+              <option value="" data-i18n="form.topic.placeholder">Bitte auswählen</option>
+              <option value="neue-website" data-i18n="form.topic.o1">Neue Website</option>
+              <option value="website-ueberarbeiten" data-i18n="form.topic.o2">Bestehende Website überarbeiten</option>
+              <option value="web-funktion" data-i18n="form.topic.o3">Individuelle Web-Funktion</option>
+              <option value="datenbank-api" data-i18n="form.topic.o4">Datenbank / API</option>
+              <option value="ai-support" data-i18n="form.topic.o5">AI Customer Support</option>
+              <option value="websitepflege" data-i18n="form.topic.o6">Websitepflege</option>
+              <option value="server" data-i18n="form.topic.o7">Server / technische Betreuung</option>
+              <option value="email-dns" data-i18n="form.topic.o8">E-Mail / DNS</option>
+              <option value="social" data-i18n="form.topic.o9">Social-Media-Support</option>
+              <option value="sonstiges" data-i18n="form.topic.o10">Sonstiges</option>
+            </select>
+            <p class="field-error" id="err-topic" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-website"><span data-i18n="form.website">Bestehende Website</span> <span class="opt" data-i18n="form.optional">(optional)</span></label>
+            <input type="url" id="f-website" name="existing_website" maxlength="200"
+                   inputmode="url" placeholder="https://"
+                   aria-describedby="err-website">
+            <p class="field-error" id="err-website" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-budget"><span data-i18n="form.budget">Budgetrahmen</span> <span class="opt" data-i18n="form.optional">(optional)</span></label>
+            <select id="f-budget" name="budget">
+              <option value="offen" data-i18n="form.budget.o1">Noch offen</option>
+              <option value="klein" data-i18n="form.budget.o2">Kleines Projekt</option>
+              <option value="mittel" data-i18n="form.budget.o3">Mittleres Projekt</option>
+              <option value="gross" data-i18n="form.budget.o4">Größeres individuelles Projekt</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-message"><span data-i18n="form.message">Projektbeschreibung</span> <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="f-message" name="message" rows="6" required maxlength="2000"
+                      aria-describedby="hint-message err-message"></textarea>
+            <p class="field-hint" id="hint-message">
+              <span data-i18n="form.message.hint">Ein paar Stichpunkte reichen für die erste Anfrage.</span>
+              <span class="counter" id="message-counter" aria-hidden="true">0 / 2000</span>
+            </p>
+            <p class="field-error" id="err-message" role="alert" hidden></p>
+          </div>
+
+          <div class="field field-check">
+            <input type="checkbox" id="f-privacy" name="privacy" required aria-describedby="err-privacy">
+            <label for="f-privacy">
+              <span data-i18n="form.privacy">Ich habe die Datenschutzhinweise gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.</span>
+              <a href="datenschutz.html" data-i18n="form.privacyLink">Datenschutzhinweise</a>
+            </label>
+            <p class="field-error" id="err-privacy" role="alert" hidden></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="form-submit" data-i18n="form.submit">
+            Anfrage senden
+          </button>
+
+          <!-- Statusmeldung, für Screenreader angekündigt -->
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================================================================
+     FOOTER
+     ================================================================== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true" data-site="initials">SN</span>
+        <span class="brand-name" data-site="name">Studio Name</span>
+      </a>
+      <p class="footer-desc" data-i18n="footer.desc">
+        Websites, individuelle Web-Funktionen und laufende technische Betreuung
+        für kleine und mittelgroße Auftraggeber.
+      </p>
+      <ul class="social-list" id="social-list"></ul>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer-Navigation" data-i18n-attr="aria-label:a11y.footerNav">
+      <h2 data-i18n="footer.navTitle">Navigation</h2>
+      <ul>
+        <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
+        <li><a href="#support" data-i18n="nav.support">Wartung &amp; Support</a></li>
+        <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
+        <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
+        <li><a href="#preise" data-i18n="nav.pricing">Kalkulation</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h2 data-i18n="footer.contactTitle">Kontakt</h2>
+      <ul class="footer-contact" id="footer-contact"></ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 data-i18n="footer.legalTitle">Rechtliches</h2>
+      <ul>
+        <li><a href="impressum.html" data-i18n="footer.imprint">Impressum</a></li>
+        <li><a href="datenschutz.html" data-i18n="footer.privacy">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p><span data-site="name">Studio Name</span> &middot; <span id="footer-year">2026</span></p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

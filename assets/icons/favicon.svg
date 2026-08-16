@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Logo">
+  <!-- Platzhalter-Favicon. Neutrales Zeichen ohne Firmenbezug.
+       TODO: Vor dem Launch durch das echte Logo ersetzen
+             (gleicher Dateiname, dann sind keine HTML-Änderungen nötig). -->
+  <style>
+    .bg { fill: #12161c; }
+    .fg { fill: none; stroke: #ffffff; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #eef1f5; }
+      .fg { stroke: #0e1116; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <path class="fg" d="M25 22 16 32l9 10M39 22l9 10-9 10M35 17l-6 30"/>
+</svg>

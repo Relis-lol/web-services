@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml
+  TODO vor dem Launch:
+    1. Die Platzhalter-Domain durch die echte Domain ersetzen.
+    2. <lastmod> auf das Datum der letzten inhaltlichen Änderung setzen.
+    3. Neue Unterseiten hier ergänzen.
+  Die Rechtsseiten stehen bewusst nicht in der Sitemap (noindex).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://relis-lol.github.io/digitalservice-backup/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

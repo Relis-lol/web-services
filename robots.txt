@@ -1,0 +1,14 @@
+# robots.txt
+# TODO: Vor dem Launch durch die echte Domain ersetzen
+#       (auch in sitemap.xml und in den canonical-Links der drei HTML-Dateien).
+#       Die aktuelle Adresse zeigt auf das Backup-Repository und ist NICHT
+#       der spaetere Hosting-Ort.
+
+User-agent: *
+Allow: /
+
+# Rechtsseiten sind erreichbar, gehören aber nicht in den Suchindex.
+# Die Steuerung erfolgt zusätzlich über <meta name="robots" content="noindex">
+# in den Seiten selbst — das ist die verlässlichere Variante.
+
+Sitemap: https://relis-lol.github.io/digitalservice-backup/sitemap.xml
