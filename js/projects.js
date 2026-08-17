@@ -30,23 +30,30 @@
 const PROJECTS = [
   {
     id: 'wivoko',
-    title: 'WIVOKO — Fashion-Marke',
-    title_en: 'WIVOKO — fashion brand',
-    category: 'Marken- & Produktseite',
-    category_en: 'Brand & product site',
+    title: 'WIVOKO — Fashion-Charm-Marke',
+    title_en: 'WIVOKO — fashion charm brand',
+    category: 'Marken- & Produktpräsentation',
+    category_en: 'Brand & product presentation',
     description:
-      'Produktseite für eine Fashion-Marke mit Sitz in Korea und internationalem ' +
-      'Verkauf. Vier Sprachfassungen, durchgehend auf das Smartphone ausgelegt und ' +
-      'darauf optimiert, Produktbilder schnell und in voller Qualität auszuliefern.',
+      'Markenauftritt für ein modulares Fashion-Charm-System: ein etwa 15 cm großer ' +
+      'Charakter, der sich über austauschbare Haare, Kleidung und Accessoires immer ' +
+      'neu stylen lässt. Neun Unterseiten in vier Sprachen für den englischen und ' +
+      'asiatischen Markt, vorgerendert ausgeliefert und mit durchgehend ' +
+      'komprimierten Produktbildern.',
     description_en:
-      'Product site for a fashion brand based in Korea selling internationally. ' +
-      'Four language versions, built mobile-first and tuned to deliver product ' +
-      'imagery quickly and at full quality.',
-    tech: ['Next.js', 'Vier Sprachen', 'Mobile First', 'Bildoptimierung', 'Basis-SEO'],
+      'Brand presence for a modular fashion charm system: a character roughly 15 cm ' +
+      'tall that can be restyled through interchangeable hair, clothing and ' +
+      'accessories. Nine subpages across four languages for the English-speaking and ' +
+      'Asian markets, served pre-rendered with fully compressed product imagery.',
+    tech: ['Next.js', 'Vorgerendert (SSG)', 'Vier Sprachen (EN/KO/JA/ZH)',
+           'WebP-Bilder', 'Cloudflare', 'Responsive'],
     // TODO: Echten Screenshot ergänzen (16:10, .webp, unter 250 KB).
     image: 'assets/projects/placeholder.svg',
     imageWidth: 1600,
     imageHeight: 1000,
+    // Geprüft am 2026-08-16: Die Apex-Domain leitet auf /en weiter (307).
+    // Bewusst ohne "www" und ohne Sprachpfad — so landet jeder Besucher
+    // automatisch in der für ihn passenden Sprachfassung.
     url: 'https://wivoko.com/',
     detailUrl: null,
     placeholder: false
