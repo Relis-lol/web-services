@@ -9,6 +9,9 @@ Zweisprachig (Deutsch/Englisch) mit Browser-Spracherkennung und Umschalter,
 optionalem Dark Mode und einem Kontaktformular, das bewusst noch nichts
 versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 
+> **Zum Livegang: [LAUNCH.md](LAUNCH.md)** — zwei Felder ausfüllen, einen
+> Schalter umlegen. Mehr ist es nicht.
+
 ---
 
 ## Inhalt
@@ -49,6 +52,9 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 │   ├── images/           og-image.png (Social-Vorschaubild)
 │   ├── projects/         Projekt-Screenshots
 │   └── icons/            favicon.svg, apple-touch-icon.png
+├── scripts/
+│   └── domain-setzen.py  stellt alle Adressen auf einmal um
+├── LAUNCH.md             >> Anleitung fürs Schalten <<
 ├── robots.txt
 ├── sitemap.xml
 ├── .nojekyll             verhindert die Jekyll-Verarbeitung auf GitHub Pages
@@ -88,22 +94,24 @@ npx serve .
 
 ## Auf GitHub Pages veröffentlichen
 
-1. Neues Repository auf GitHub anlegen.
-2. Den Inhalt dieses Ordners hineinlegen und pushen:
+Der Code liegt bereits in zwei Repositories:
+
+| Repository | Rolle |
+|---|---|
+| `Relis-lol/web-services` | öffentlich, künftiger Hosting-Ort |
+| `Relis-lol/digitalservice-backup` | privat, reine Sicherung |
+
+Änderungen in beide schieben:
 
 ```bash
-git init
-git add .
-git commit -m "Website: erste Version"
-git branch -M main
-git remote add origin https://github.com/Relis-lol/digitalservice-backup.git
-git push -u origin main
+git push origin main && git push backup main
 ```
 
-3. Im Repository: **Settings → Pages → Build and deployment → Source: „Deploy
-   from a branch"**, Branch `main`, Ordner `/ (root)`, speichern.
-4. Nach ein bis zwei Minuten ist die Seite unter
-   `https://USERNAME.github.io/REPOSITORY/` erreichbar.
+Zum Schalten im Repository `web-services`: **Settings → Pages → Build and
+deployment → Source: „Deploy from a branch"**, Branch `main`, Ordner
+`/ (root)`, speichern. Nach ein bis zwei Minuten läuft die Seite unter
+`https://relis-lol.github.io/web-services/` — die URLs im Projekt zeigen
+bereits dorthin.
 
 > **Achtung:** Wird ein Repository, das über GitHub Pages läuft, nachträglich
 > auf privat gestellt, verschwindet die Seite. Sie kommt erst zurück, wenn man
@@ -117,13 +125,16 @@ git push -u origin main
 1. Beim Domain-Anbieter DNS-Einträge setzen:
    - **Apex-Domain** (`beispiel.de`) → vier `A`-Records auf
      `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - **Subdomain** (`www.beispiel.de`) → ein `CNAME` auf `USERNAME.github.io`
+   - **Subdomain** (`www.beispiel.de`) → ein `CNAME` auf `relis-lol.github.io`
 2. In **Settings → Pages → Custom domain** die Domain eintragen. GitHub legt
    dabei automatisch eine `CNAME`-Datei im Repository an.
 3. **„Enforce HTTPS"** aktivieren, sobald das Zertifikat ausgestellt ist
    (dauert in der Regel wenige Minuten bis Stunden).
-4. Danach im Projekt alle Platzhalter-URLs ersetzen — siehe
-   [SEO-Daten ändern](#seo-daten-ändern).
+4. Danach alle Adressen im Projekt auf einmal umstellen:
+
+```bash
+python scripts/domain-setzen.py https://beispiel.de/
+```
 
 ---
 
@@ -132,13 +143,21 @@ git push -u origin main
 Alles in **`js/config.js`**:
 
 ```js
-BUSINESS_NAME:           'Geschäftsname folgt',   // TODO nach Gewerbeanmeldung
+BUSINESS_NAME:           null,                    // Launch-Feld 1, siehe LAUNCH.md
 BUSINESS_INITIALS:       'BB',                    // 2–3 Zeichen fürs Logo-Quadrat
 BUSINESS_EMAIL:          'girly.va18@gmail.com',
 BUSINESS_CONTACT_PERSON: 'Girly Boldt',           // Ansprechpartnerin
 BUSINESS_PHONE:          null,                    // null = wird nicht angezeigt
 BUSINESS_LOCATION:       'Nürnberg, Deutschland',
+BUSINESS_VAT_ID:         null,                    // Launch-Feld 2, Variante A
+BUSINESS_TAX_NOTE:       null,                    // Launch-Feld 2, Variante B
 ```
+
+Die beiden Launch-Felder steuern zusätzlich, ob die Seite als startklar gilt.
+Solange `BUSINESS_NAME` leer ist, bleiben im Impressum die eckigen Platzhalter
+und auf beiden Rechtsseiten die gelben Hinweiskästen stehen. Sobald Name und
+steuerliche Angabe gesetzt sind, verschwinden sie von selbst — ohne dass am
+HTML etwas geändert werden muss. Details in [LAUNCH.md](LAUNCH.md).
 
 Grundregel: **Was `null` ist, erscheint nicht auf der Seite.** Die
 Telefonnummer bleibt also unsichtbar, solange sie nicht eingetragen ist — es

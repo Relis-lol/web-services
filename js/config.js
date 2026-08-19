@@ -13,13 +13,15 @@ const SITE_CONFIG = {
      1. Firmendaten
      ---------------------------------------------------------------------- */
 
-  // TODO: Endgültige Geschäftsbezeichnung eintragen, sobald die
-  //       Gewerbeanmeldung durch ist. Muss dann auch in impressum.html
-  //       an der dort markierten Stelle ergänzt werden.
-  BUSINESS_NAME: 'Geschäftsname folgt',
+  /* >>> LAUNCH-FELD 1 <<<
+     Endgültige Geschäftsbezeichnung. Solange hier `null` steht, gilt die
+     Seite als "noch nicht startklar": Im Impressum bleibt der Platzhalter
+     stehen und auf beiden Rechtsseiten erscheint der gelbe Hinweiskasten.
+     Sobald hier ein Name steht UND Launch-Feld 2 ausgefüllt ist,
+     verschwinden Platzhalter und Hinweiskästen von selbst. */
+  BUSINESS_NAME: null,   // z. B. 'Boldt Web Services'
 
   // Kurzform fürs Logo (2–3 Zeichen). Wird im Logo-Quadrat angezeigt.
-  // TODO: Passend zum endgültigen Geschäftsnamen anpassen.
   BUSINESS_INITIALS: 'BB',
 
   BUSINESS_EMAIL: 'girly.va18@gmail.com',
@@ -33,6 +35,19 @@ const SITE_CONFIG = {
 
   // Standort (frei formuliert).
   BUSINESS_LOCATION: 'Nürnberg, Deutschland',
+
+  /* >>> LAUNCH-FELD 2 <<<
+     Steuerliche Angabe fürs Impressum. GENAU EINES von beiden ausfüllen:
+
+       BUSINESS_VAT_ID    Umsatzsteuer-Identifikationsnummer nach § 27a UStG
+       BUSINESS_TAX_NOTE  Freitext, wenn keine USt-IdNr. vorliegt
+                          (Standardfall bei der Kleinunternehmerregelung)
+
+     Beispiel Kleinunternehmer:
+       BUSINESS_TAX_NOTE: 'Als Kleinunternehmer im Sinne von § 19 UStG ' +
+                          'wird keine Umsatzsteuer berechnet.' */
+  BUSINESS_VAT_ID: null,     // z. B. 'DE123456789'
+  BUSINESS_TAX_NOTE: null,   // Freitext statt USt-IdNr.
 
   /* ----------------------------------------------------------------------
      2. Kontaktformular
@@ -70,14 +85,12 @@ const SITE_CONFIG = {
      4. Seiten-/SEO-Basis
      ----------------------------------------------------------------------
      SITE_URL wird für canonical-Links, OpenGraph und sitemap.xml gebraucht.
-     TODO: Vor dem Launch auf die echte Domain umstellen und zusätzlich
-           in index.html / impressum.html / datenschutz.html / sitemap.xml
-           die dortigen canonical- und og:url-Angaben anpassen.
      ---------------------------------------------------------------------- */
-  // TODO: Auf die echte Domain umstellen, sobald sie feststeht.
-  //       Achtung: Das Repository digitalservice-backup ist NUR die
-  //       Sicherungskopie, nicht der spätere Hosting-Ort.
-  SITE_URL: 'https://relis-lol.github.io/digitalservice-backup/',
+  /* Zeigt bereits auf die endgültige GitHub-Pages-Adresse dieses
+     Repositories — beim Schalten ist hier also NICHTS zu tun.
+     Nur bei einer eigenen Domain umstellen; dafür gibt es
+     scripts/domain-setzen.py, das alle Dateien auf einmal anpasst. */
+  SITE_URL: 'https://relis-lol.github.io/web-services/',
 
   /* ----------------------------------------------------------------------
      5. Verhalten

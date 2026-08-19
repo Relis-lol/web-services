@@ -400,6 +400,72 @@
   }
 
   /* ======================================================================
+     6b. STARTKLAR-ZUSTAND DER RECHTSSEITEN
+     ----------------------------------------------------------------------
+     Die Seite gilt als startklar, sobald in js/config.js beide
+     Launch-Felder ausgefüllt sind:
+
+       1. BUSINESS_NAME
+       2. BUSINESS_VAT_ID  ODER  BUSINESS_TAX_NOTE
+
+     Bis dahin bleiben die gelben Hinweiskästen und die eckigen
+     Platzhalter sichtbar. Danach verschwinden sie von selbst — es muss
+     also kein HTML angefasst werden, um die Seite zu veröffentlichen.
+     ====================================================================== */
+
+  /* Ein Hinweiskasten im HTML nennt seine Bedingungen selbst, z. B.
+     data-todo-until-ready="firma endpunkt". Er verschwindet erst, wenn
+     ALLE genannten Bedingungen erfüllt sind. Dadurch kann kein Kasten
+     versehentlich verschwinden, dessen Warnung noch gilt. */
+  const LAUNCH_BEDINGUNGEN = {
+    // Geschäftsbezeichnung und steuerliche Angabe stehen fest
+    firma: function () {
+      return isFilled(cfg.BUSINESS_NAME) &&
+             (isFilled(cfg.BUSINESS_VAT_ID) || isFilled(cfg.BUSINESS_TAX_NOTE));
+    },
+    // Das Kontaktformular versendet tatsächlich
+    endpunkt: function () {
+      return isFilled(cfg.CONTACT_FORM_ENDPOINT);
+    }
+  };
+
+  function erfuellt(bedingungen) {
+    return String(bedingungen || 'firma').split(/\s+/).every(function (name) {
+      const pruefung = LAUNCH_BEDINGUNGEN[name];
+      return pruefung ? pruefung() : true;
+    });
+  }
+
+  function applyLaunchState() {
+    const t = typeof I18N !== 'undefined' ? I18N.t.bind(I18N) : function (k) { return k; };
+
+    // Geschäftsbezeichnung im Impressum
+    const legalName = doc.querySelector('[data-site="legalname"]');
+    if (legalName && isFilled(cfg.BUSINESS_NAME)) {
+      legalName.textContent = cfg.BUSINESS_NAME;
+      legalName.classList.remove('placeholder-value');
+    }
+
+    // Steuerliche Angabe im Impressum
+    const vat = doc.getElementById('vat-line');
+    if (vat) {
+      if (isFilled(cfg.BUSINESS_VAT_ID)) {
+        vat.textContent = '';
+        vat.appendChild(el('span', null, t('vatLabel') + ' '));
+        vat.appendChild(el('strong', null, cfg.BUSINESS_VAT_ID));
+      } else if (isFilled(cfg.BUSINESS_TAX_NOTE)) {
+        vat.textContent = cfg.BUSINESS_TAX_NOTE;
+      }
+      // Ohne beides bleibt der Platzhalter aus dem HTML stehen.
+    }
+
+    // Jeden Hinweiskasten einzeln gegen SEINE Bedingungen prüfen.
+    doc.querySelectorAll('[data-todo-until-ready]').forEach(function (box) {
+      if (erfuellt(box.getAttribute('data-todo-until-ready'))) box.remove();
+    });
+  }
+
+  /* ======================================================================
      7. SOCIAL LINKS (nur konfigurierte)
      ====================================================================== */
 
@@ -765,6 +831,7 @@
     initTheme();
     initLanguage();      // muss vor dem Rendern laufen (Sprache steht dann fest)
     applyBusinessData();
+    applyLaunchState();
     renderContactDetails();
     renderSocial();
     renderProjects();
@@ -780,6 +847,7 @@
     doc.addEventListener('langchange', function () {
       renderContactDetails();
       renderProjects();
+      applyLaunchState();
     });
   }
 

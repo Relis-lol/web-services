@@ -11,4 +11,4 @@ Allow: /
 # Die Steuerung erfolgt zusätzlich über <meta name="robots" content="noindex">
 # in den Seiten selbst — das ist die verlässlichere Variante.
 
-Sitemap: https://relis-lol.github.io/digitalservice-backup/sitemap.xml
+Sitemap: https://relis-lol.github.io/web-services/sitemap.xml

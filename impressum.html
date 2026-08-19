@@ -8,7 +8,7 @@
 <meta name="description" content="Impressum und Anbieterkennzeichnung.">
 <!-- Rechtsseiten gehören nicht in den Suchindex, sollen aber erreichbar bleiben. -->
 <meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://relis-lol.github.io/digitalservice-backup/impressum.html">
+<link rel="canonical" href="https://relis-lol.github.io/web-services/impressum.html">
 
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
@@ -25,8 +25,8 @@
 <header class="site-header" id="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="Startseite">
-      <span class="brand-mark" aria-hidden="true" data-site="initials">SN</span>
-      <span class="brand-name" data-site="name">Studio Name</span>
+      <span class="brand-mark" aria-hidden="true" data-site="initials">BB</span>
+      <span class="brand-name" data-site="name">Geschäftsname folgt</span>
     </a>
 
     <div class="header-tools">
@@ -62,7 +62,7 @@
          und die Klasse "placeholder-value" an den beiden Stellen
          entfernen.
          ============================================================== -->
-    <div class="todo-box">
+    <div class="todo-box" data-todo-until-ready="firma">
       <p><strong>[VOR VERÖFFENTLICHUNG ERGÄNZEN]</strong></p>
       <p data-i18n="imprint.todo">
         Zwei Angaben fehlen noch und hängen an der Gewerbeanmeldung: die
@@ -73,9 +73,9 @@
     </div>
 
     <h2 data-i18n="imprint.h1">Anbieter</h2>
-    <p>
-      <strong><span class="placeholder-value">[GESCHÄFTSBEZEICHNUNG]</span></strong>
-    </p>
+    <!-- Wird aus js/config.js gefüllt (BUSINESS_NAME). Solange dort `null`
+         steht, bleibt der Platzhalter samt Markierung stehen. -->
+    <p><strong class="placeholder-value" data-site="legalname">[GESCHÄFTSBEZEICHNUNG]</strong></p>
     <ul>
       <li>Björn Boldt</li>
       <li>Siemensstraße 32</li>
@@ -104,7 +104,8 @@
       Identifikationsnummer nach § 27a UStG oder eine
       Wirtschafts-Identifikationsnummer vorliegt.
     </p>
-    <p><span class="placeholder-value">[USt-IdNr. ODER HINWEIS AUF KLEINUNTERNEHMERREGELUNG NACH § 19 UStG]</span></p>
+    <!-- Wird aus js/config.js gefüllt (BUSINESS_VAT_ID oder BUSINESS_TAX_NOTE). -->
+    <p id="vat-line"><span class="placeholder-value">[USt-IdNr. ODER HINWEIS AUF KLEINUNTERNEHMERREGELUNG NACH § 19 UStG]</span></p>
 
     <h2 data-i18n="imprint.h5">Verantwortlich für den Inhalt</h2>
     <ul>
@@ -135,8 +136,8 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true" data-site="initials">SN</span>
-        <span class="brand-name" data-site="name">Studio Name</span>
+        <span class="brand-mark" aria-hidden="true" data-site="initials">BB</span>
+        <span class="brand-name" data-site="name">Geschäftsname folgt</span>
       </a>
       <p class="footer-desc" data-i18n="footer.desc">
         Websites, individuelle Web-Funktionen und laufende technische Betreuung
@@ -171,7 +172,7 @@
   </div>
 
   <div class="container footer-bottom">
-    <p><span data-site="name">Studio Name</span> &middot; <span id="footer-year">2026</span></p>
+    <p><span data-site="name">Geschäftsname folgt</span> &middot; <span id="footer-year">2026</span></p>
   </div>
 </footer>
 
