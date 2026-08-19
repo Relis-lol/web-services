@@ -517,11 +517,10 @@ Stand: Die Seite ist inhaltlich fertig und wartet auf die Gewerbeanmeldung.
 
 ### Offen — Inhalte
 
-- [ ] Screenshots der drei Projekte (16:10, `.webp`, unter 250 KB) statt
-      `assets/projects/placeholder.svg`
+- [x] Screenshots der drei Projekte eingebunden (16:10 WebP, 32–96 KB)
 - [x] WIVOKO ist online — geprüft am 2026-08-16, Apex leitet auf `/en` weiter
-- [ ] Projektbeschreibungen gegenlesen (WIVOKO wurde anhand der Live-Seite
-      korrigiert, EVE Tradelooper und Portfolio noch aus zweiter Hand)
+- [x] Alle drei Projektbeschreibungen anhand der Live-Seiten gegengeprüft
+      und neu formuliert
 - [ ] Eigenes Logo statt `assets/icons/favicon.svg` und `apple-touch-icon.png`
 - [ ] OpenGraph-Bild `assets/images/og-image.png` ersetzen
 - [ ] Social Links in `js/config.js`, falls gewünscht

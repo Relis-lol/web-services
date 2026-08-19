@@ -47,11 +47,10 @@ const PROJECTS = [
       'Asian markets, served pre-rendered with fully compressed product imagery.',
     tech: ['Next.js', 'Vorgerendert (SSG)', 'Vier Sprachen (EN/KO/JA/ZH)',
            'WebP-Bilder', 'Cloudflare', 'Responsive'],
-    // TODO: Echten Screenshot ergänzen (16:10, .webp, unter 250 KB).
-    image: 'assets/projects/placeholder.svg',
+    image: 'assets/projects/wivoko.webp',
     imageWidth: 1600,
     imageHeight: 1000,
-    // Geprüft am 2026-08-16: Die Apex-Domain leitet auf /en weiter (307).
+    // Geprüft am 2026-08-19: Die Apex-Domain leitet auf /en weiter (307).
     // Bewusst ohne "www" und ohne Sprachpfad — so landet jeder Besucher
     // automatisch in der für ihn passenden Sprachfassung.
     url: 'https://wivoko.com/',
@@ -60,46 +59,55 @@ const PROJECTS = [
   },
   {
     id: 'eve-tradelooper',
-    title: 'EVE Tradelooper — Handelsplattform',
-    title_en: 'EVE Tradelooper — trading platform',
+    title: 'EVE Market Tools',
+    title_en: 'EVE Market Tools',
     category: 'Web-Anwendung, API & Datenbank',
     category_en: 'Web application, API & database',
     description:
-      'Auswertungsplattform für Marktdaten mit eigener API und Datenbank im ' +
-      'Hintergrund. Die Datenbasis umfasst Millionen Datensätze und wird täglich ' +
-      'automatisch aktualisiert. Läuft auf einem eigenen Linux-Server mit ' +
-      'festem Deployment-Weg.',
+      'Umfangreiche Werkzeugsammlung für ein Online-Spiel, aufgebaut auf einer ' +
+      'eigenen Datenbank mit angeschlossener API. Rund 7,5 Millionen neue ' +
+      'Datensätze am Tag werden automatisch eingelesen und stehen in Handels-, ' +
+      'Industrie- und Abbaurechnern, in der Routenbewertung und in der ' +
+      'Kampfauswertung zur Verfügung. Ein einziges Eingabefeld erkennt ' +
+      'selbstständig, welche Art von Liste eingefügt wurde. Acht Sprachen, ohne ' +
+      'Anmeldung und ohne Werbung.',
     description_en:
-      'Market data analysis platform with its own API and database behind it. ' +
-      'The dataset runs into millions of records and is refreshed automatically ' +
-      'every day. Hosted on a dedicated Linux server with a fixed deployment path.',
-    tech: ['Eigene API', 'Datenbank', 'Millionen Datensätze', 'Tägliche Aktualisierung',
-           'Linux-Server', 'Deployment-Workflow'],
-    // TODO: Echten Screenshot ergänzen (16:10, .webp, unter 250 KB).
-    image: 'assets/projects/placeholder.svg',
-    imageWidth: 1600,
-    imageHeight: 1000,
+      'An extensive toolset for an online game, built on a dedicated database with ' +
+      'an API on top. Around 7.5 million new records a day are imported ' +
+      'automatically and feed trade, industry and mining calculators, route risk ' +
+      'assessment and combat analysis. A single input field works out on its own ' +
+      'what kind of list has been pasted. Eight languages, no login and no ads.',
+    tech: ['Eigene API', 'Datenbank', '7,5 Mio. Datensätze pro Tag',
+           'Automatischer Import', 'Acht Sprachen', 'Linux-Server'],
+    image: 'assets/projects/eve.webp',
+    imageWidth: 1120,
+    imageHeight: 700,
     url: 'https://eve-tradelooper.com/',
     detailUrl: null,
     placeholder: false
   },
   {
     id: 'portfolio',
-    title: 'Entwickler-Portfolio',
-    title_en: 'Developer portfolio',
+    title: 'Portfolio — Cloud & Plattformbetrieb',
+    title_en: 'Portfolio — cloud & platform operations',
     category: 'Portfolio & Projektübersicht',
     category_en: 'Portfolio & project overview',
     description:
-      'Persönliche Portfolioseite mit Projektübersicht. Vollständig statisch ' +
-      'ausgeliefert: keine Datenbank, kein Framework, keine externen Abhängigkeiten. ' +
-      'Dadurch lädt sie praktisch verzögerungsfrei und ist wartungsarm im Betrieb.',
+      'Bewerbungsportfolio für den Bereich Cloud- und Plattformbetrieb. Links das ' +
+      'Profil mit Schwerpunkten und Zertifikat, rechts drei Projekte mit Kennzahl, ' +
+      'Technologiestack und Verweisen auf das laufende System und den Quellcode. ' +
+      'Vollständig statisch ausgeliefert: keine Datenbank, kein Framework, keine ' +
+      'externen Abhängigkeiten — dadurch lädt die Seite praktisch ' +
+      'verzögerungsfrei und ist wartungsarm im Betrieb.',
     description_en:
-      'Personal portfolio site with a project overview. Served entirely as static ' +
-      'files: no database, no framework, no external dependencies. The result loads ' +
-      'almost instantly and needs very little upkeep.',
+      'Application portfolio for cloud and platform operations. The profile with ' +
+      'focus areas and certification sits on the left, three projects on the right ' +
+      'with a headline metric, technology stack and links to the running system and ' +
+      'the source code. Served entirely as static files: no database, no framework, ' +
+      'no external dependencies — the page loads almost instantly and needs very ' +
+      'little upkeep.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Statisch', 'GitHub Pages', 'Responsive'],
-    // TODO: Echten Screenshot ergänzen (16:10, .webp, unter 250 KB).
-    image: 'assets/projects/placeholder.svg',
+    image: 'assets/projects/portfolio.webp',
     imageWidth: 1600,
     imageHeight: 1000,
     url: 'https://relis-lol.github.io/',
