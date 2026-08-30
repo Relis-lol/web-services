@@ -3,6 +3,10 @@
 Statische Website für **Saveroq Studio**, den Dienstleistungsbereich neben
 der Saveroq-Plattform. Öffentliche Adresse: `https://studio.saveroq.com`.
 
+**Hosting:** eigener Docker-Container auf dem On-Prem-Server hinter
+Cloudflare Tunnel — nicht GitHub Pages. Dieses Repository ist Quelle und
+Sicherung. Siehe [Deployment](#deployment).
+
 > **Getrennt von saveroq.com.** Die Hauptplattform bleibt unangetastet: keine
 > gemeinsame Navigation, keine Weiterleitung, keine gegenseitige Verlinkung,
 > kein Eintrag in der Saveroq-Sitemap, keine Änderung an deren SEO-Daten.
@@ -26,8 +30,8 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 
 - [Dateistruktur](#dateistruktur)
 - [Lokal starten](#lokal-starten)
-- [Auf GitHub Pages veröffentlichen](#auf-github-pages-veröffentlichen)
-- [Custom Domain hinzufügen](#custom-domain-hinzufügen)
+- [Deployment](#deployment)
+- [Custom Domain](#custom-domain-nur-bei-wechsel-auf-eine-eigene-domain)
 - [Firmeninformationen ändern](#firmeninformationen-ändern)
 - [Business-E-Mail eintragen](#business-e-mail-eintragen)
 - [Social Links ändern](#social-links-ändern)
@@ -66,7 +70,8 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 ├── LAUNCH.md             >> Anleitung fürs Schalten <<
 ├── robots.txt
 ├── sitemap.xml
-├── .nojekyll             verhindert die Jekyll-Verarbeitung auf GitHub Pages
+├── deploy/               Docker-Deployment (Dockerfile, compose.yml, nginx.conf)
+├── .nojekyll             nur für eine mögliche Pages-Vorschau, nicht für Produktion
 └── .gitignore
 ```
 
@@ -101,35 +106,56 @@ npx serve .
 
 ---
 
-## Auf GitHub Pages veröffentlichen
+## Deployment
 
-Der Code liegt bereits in zwei Repositories:
-
-| Repository | Rolle |
-|---|---|
-| `Relis-lol/web-services` | öffentlich, künftiger Hosting-Ort |
-| `Relis-lol/digitalservice-backup` | privat, reine Sicherung |
-
-Änderungen in beide schieben:
+Produktion läuft auf dem eigenen Server, nicht auf GitHub Pages.
 
 ```bash
-git push origin main && git push backup main
+ssh relis@192.168.178.47
+cd ~/stack/saveroq-studio
+git pull
+docker compose -f deploy/compose.yml up -d --build
 ```
 
-Zum Schalten im Repository `web-services`: **Settings → Pages → Build and
-deployment → Source: „Deploy from a branch"**, Branch `main`, Ordner
-`/ (root)`, speichern. Nach ein bis zwei Minuten läuft die Seite unter
-`https://studio.saveroq.com/` — die URLs im Projekt zeigen
-bereits dorthin.
+### Aufbau
 
-> **Achtung:** Wird ein Repository, das über GitHub Pages läuft, nachträglich
-> auf privat gestellt, verschwindet die Seite. Sie kommt erst zurück, wenn man
-> unter Settings → Pages die Source einmal auf **None** und danach wieder auf
-> **main** stellt.
+| | |
+|---|---|
+| Compose-Projekt | `saveroq-studio` |
+| Container | `saveroq-studio` (nginx), `saveroq-studio-tunnel` (cloudflared) |
+| Netz | `saveroq-studio_studio` |
+| Interner Port | 8080 |
+| Veröffentlichter Host-Port | **keiner** |
+| Öffentlicher Weg | Internet → Cloudflare → Tunnel (nur ausgehend) → `web:8080` |
 
----
+Der Stack ist bewusst eigenständig. `ai-price-index`, der `saveroq.com`
+bedient, wird nicht angefasst: kein gemeinsames Netz, kein gemeinsamer
+Tunnel, keine Verlinkung.
 
-## Custom Domain hinzufügen
+Das Abbild baut auf `nginx-unprivileged` statt auf dem Standard-nginx —
+letzteres startet den Master-Prozess als root und verträgt sich nicht mit
+`read_only: true`.
+
+### Tunnel-Token
+
+Das Token gehört in `deploy/.env` **auf dem Server** und niemals ins
+Repository. Vorlage: `deploy/.env.example`.
+
+Fehlt es, startet nur der Tunnel-Container in einer Neustartschleife — der
+Webserver läuft weiter und ist im Docker-Netz erreichbar. Das ist Absicht:
+So lässt sich das Deployment prüfen, bevor die Seite öffentlich wird.
+
+### Sicherheits-Header
+
+Sie sind jetzt **aktiv** (auf GitHub Pages waren sie nicht setzbar):
+Content-Security-Policy, X-Content-Type-Options, Referrer-Policy,
+Permissions-Policy und HSTS. Gesetzt in `deploy/nginx.conf`.
+
+> **Beim Kontaktformular beachten:** Sobald `CONTACT_FORM_ENDPOINT` gesetzt
+> wird, muss dessen Origin in `deploy/nginx.conf` unter `connect-src`
+> ergänzt werden — sonst blockiert der Browser das Absenden.
+
+## Custom Domain (nur bei Wechsel auf eine eigene Domain)
 
 1. Beim Domain-Anbieter DNS-Einträge setzen:
    - **Apex-Domain** (`beispiel.de`) → vier `A`-Records auf
