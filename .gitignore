@@ -33,3 +33,11 @@ lighthouse-report.*
 
 # Bild-Originale (die optimierten Fassungen gehören ins Repo)
 assets/projects/_raw/
+
+# Tunnel-Token und andere Server-Geheimnisse
+deploy/.env
+
+# Die Vorlage dagegen gehoert ins Repository. Sie enthaelt nur Schluesselnamen
+# und Erklaerungen, keine Werte — und wird sonst vom Muster `.env.*` oben
+# mit ausgeschlossen.
+!deploy/.env.example

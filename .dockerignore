@@ -1,0 +1,12 @@
+# Alles, was nicht zur ausgelieferten Website gehoert.
+.git
+.gitattributes
+.gitignore
+.github
+.nojekyll
+README.md
+LAUNCH.md
+scripts/
+deploy/compose.yml
+deploy/.env
+deploy/.env.example

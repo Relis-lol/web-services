@@ -35,38 +35,34 @@ python -m http.server 8000
 
 ---
 
-## Schritt 2 — Subdomain und GitHub Pages
+## Schritt 2 — Deployment auf dem eigenen Server
 
-Die Seite läuft unter **`https://studio.saveroq.com`**, einer Subdomain der
-bestehenden Saveroq-Plattform. Beide bleiben technisch getrennte Sites:
-keine gemeinsame Navigation, keine Weiterleitung, keine gegenseitige
-Verlinkung, kein Eintrag in der Saveroq-Sitemap.
+Produktionshosting ist **nicht** GitHub Pages, sondern der eigene
+Docker-Server hinter Cloudflare Tunnel. Das Repository bleibt Quelle und
+Sicherung; der Server zieht daraus.
 
-Alle Adressen im Projekt zeigen bereits dorthin, und die Datei `CNAME`
-enthält `studio.saveroq.com`. Es sind nur noch zwei Einstellungen nötig:
+```bash
+ssh relis@192.168.178.47
+cd ~/stack/saveroq-studio
+git pull
+docker compose -f deploy/compose.yml up -d --build
+```
 
-**1. Cloudflare — DNS-Eintrag anlegen**
+Der Stack ist bewusst eigenstaendig: eigenes Compose-Projekt, eigenes Netz,
+eigener Tunnel, **kein** veroeffentlichter Host-Port. Der Stack
+`ai-price-index`, der saveroq.com bedient, wird nicht angefasst.
 
-| Feld | Wert |
-|---|---|
-| Type | `CNAME` |
-| Name | `studio` |
-| Target | `relis-lol.github.io` |
-| Proxy | **DNS only** (graue Wolke) |
-| TTL | Auto |
+Einmalig noetig, bevor der Tunnel laeuft:
 
-Der Proxy muss zunächst **aus** bleiben, sonst kann GitHub das
-Let's-Encrypt-Zertifikat nicht ausstellen. Nach erfolgreicher Ausstellung
-kann der Proxy eingeschaltet werden — dann muss der SSL-Modus in Cloudflare
-auf **Full (strict)** stehen, sonst entsteht eine Weiterleitungsschleife.
+1. In Cloudflare unter **Zero Trust → Networks → Tunnels** einen Tunnel
+   `saveroq-studio` anlegen
+2. Public Hostname hinzufuegen: `studio.saveroq.com` → `http://web:8080`
+3. Token in `deploy/.env` eintragen (Vorlage: `deploy/.env.example`)
+4. `docker compose -f deploy/compose.yml up -d`
 
-**2. GitHub — Pages einschalten**
-
-Im Repository `web-services` unter **Settings → Pages**:
-
-- Source: **Deploy from a branch**, Branch `main`, Ordner `/ (root)`
-- Custom domain: `studio.saveroq.com`
-- **Enforce HTTPS** aktivieren, sobald das Zertifikat ausgestellt ist
+Solange das Token fehlt, laeuft der Webserver bereits und nur der
+Tunnel-Container startet in einer Schleife neu — die Seite ist dann im
+Docker-Netz erreichbar, aber noch nicht oeffentlich.
 
 ## Indexierung
 
@@ -86,6 +82,8 @@ separat in der Google Search Console anmelden — **nicht** über die
 bestehende Saveroq-Property.
 
 ## Später — eigene Domain statt Subdomain
+
+*(Nur relevant, falls das Studio einmal eine eigene Domain bekommt.)*
 
 1. Beim Domain-Anbieter DNS setzen
    - Apex (`beispiel.de`) → vier `A`-Records auf

@@ -1,0 +1,118 @@
+# Saveroq Studio — eigenstaendiger Stack.
+#
+# Bewusst unabhaengig von jedem anderen Stack auf diesem Host:
+#   * eigenes Compose-Projekt (`saveroq-studio`) → eigenes Netz
+#   * eigene Containernamen, eigener Tunnel
+#   * KEIN veroeffentlichter Host-Port
+#   * keine gemeinsamen Netze, Volumes oder Reverse-Proxy-Eintraege
+#
+# Besonders wichtig: Der Stack `ai-price-index` bedient saveroq.com und wird
+# hier NICHT angefasst — kein gemeinsames Netz, kein gemeinsamer Tunnel, keine
+# Verlinkung. Studio und Hauptplattform bleiben getrennte Sites, die sich nur
+# den Markennamen teilen.
+#
+# Start:   docker compose -f deploy/compose.yml up -d --build
+# Update:  git pull && docker compose -f deploy/compose.yml up -d --build
+# Stop:    docker compose -f deploy/compose.yml down
+#
+# Oeffentlicher Weg:  Internet → Cloudflare → Tunnel (nur ausgehend) → web:8080
+# Es gibt bewusst keinen Weg von aussen an den Container vorbei.
+
+name: saveroq-studio
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: saveroq-studio:latest
+    container_name: saveroq-studio
+    restart: unless-stopped
+    init: true
+
+    # Kein `ports:` — Absicht. Erreichbar ist der Container ausschliesslich
+    # ueber das Compose-Netz, und dorthin kommt nur der Tunnel.
+
+    read_only: true
+    tmpfs:
+      # nginx-unprivileged schreibt Cache, PID und temporaere Uploads.
+      # Mit read_only braucht es dafuer beschreibbare tmpfs-Bereiche.
+      - /tmp:size=16m,mode=1777
+      - /var/cache/nginx:size=16m,mode=0755,uid=101,gid=101
+      - /var/run:size=1m,mode=0755,uid=101,gid=101
+
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      # nginx bindet 8080. Unter 1024 waere NET_BIND_SERVICE noetig,
+      # darueber nicht — es wird also keine einzige Faehigkeit gebraucht.
+      - ALL
+
+    mem_limit: 128m
+    mem_reservation: 32m
+    cpus: 0.5
+    pids_limit: 64
+
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+    networks:
+      - studio
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  tunnel:
+    image: cloudflare/cloudflared:2026.8.2
+    container_name: saveroq-studio-tunnel
+    restart: unless-stopped
+    # `--no-autoupdate`: Das Image ist hier der Aktualisierungsweg. Ein Binary,
+    # das sich unter dem laufenden Container selbst ersetzt, ist eine
+    # Ueberraschung, die niemand braucht.
+    command: tunnel --no-autoupdate --loglevel info run
+
+    environment:
+      # Bewusst NICHT `:?required`. Compose loest die Datei komplett auf,
+      # bevor irgendetwas startet — ein Pflichtfehler haette also auch den
+      # Webserver am Hochfahren gehindert. Solange das Token fehlt, startet
+      # allein dieser Container in einer Schleife neu und protokolliert den
+      # Grund; die Seite laeuft davon unbeeindruckt im internen Netz.
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:-}
+
+    depends_on:
+      web:
+        condition: service_healthy
+
+    read_only: true
+    user: "65532:65532"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+    mem_limit: 128m
+    cpus: 0.25
+    pids_limit: 64
+
+    networks:
+      - studio
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  # Ein einzelnes Netz fuer beide Container. Es ist NICHT `internal: true`,
+  # weil der Tunnel eine ausgehende Verbindung zu Cloudflare aufbauen muss.
+  # Eingehend ist trotzdem nichts erreichbar: Es gibt keine Portfreigabe.
+  studio:
+    driver: bridge
