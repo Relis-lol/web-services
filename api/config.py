@@ -34,8 +34,14 @@ class Settings:
     CONTACT_TO = _str("CONTACT_TO")
 
     # ---- Ratenbegrenzung ----------------------------------------------
-    RATE_LIMIT_MAX = _int("RATE_LIMIT_MAX", 5)              # Anfragen
-    RATE_LIMIT_WINDOW = _int("RATE_LIMIT_WINDOW", 900)      # je Sekunden
+    # 10 Anfragen je IP in 15 Minuten. Auch fehlgeschlagene Eingaben zaehlen
+    # mit, deshalb nicht zu knapp: Wer beim Ausfuellen mehrfach nachbessert,
+    # darf nicht ausgesperrt werden. Fuer echten Missbrauch ist der Wert
+    # trotzdem eng — mehr als 10 Mails in 15 Minuten will hier niemand.
+    RATE_LIMIT_MAX = _int("RATE_LIMIT_MAX", 10)
+    RATE_LIMIT_WINDOW = _int("RATE_LIMIT_WINDOW", 900)
+    # Obergrenze ueber alle IPs zusammen. Schuetzt gegen verteilte Versuche,
+    # bei denen jede einzelne Adresse unauffaellig bleibt.
     RATE_LIMIT_GLOBAL_MAX = _int("RATE_LIMIT_GLOBAL_MAX", 60)
 
     # ---- Sonstiges -----------------------------------------------------
