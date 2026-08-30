@@ -447,6 +447,31 @@ Danach `docker compose -f deploy/compose.yml up -d api`.
 Prüfen mit `curl http://api:8000/api/health` im Stack-Netz — dort steht
 `smtp_configured`.
 
+### Offener Punkt: Cloudflare verschleiert die Impressums-Adresse
+
+Auf der Zone ist **Email Address Obfuscation** (Scrape Shield) aktiv.
+Cloudflare ersetzt `mailto:`-Links im ausgelieferten HTML durch
+`[email protected]` und stellt die Adresse erst per JavaScript wieder her.
+
+Mit JavaScript funktioniert das einwandfrei — das Skript kommt von derselben
+Herkunft und ist deshalb von der CSP erlaubt. **Ohne JavaScript bleibt im
+Impressum jedoch `[email protected]` stehen**, und der `mailto:`-Link fehlt.
+Bei einer Pflichtangabe nach § 5 DDG, die unmittelbar erreichbar sein muss,
+ist das ungünstig.
+
+Betroffen sind nur `impressum.html` und `datenschutz.html` (statische
+`mailto:`-Links). Auf der Startseite wird die Adresse per JavaScript erzeugt,
+die Cloudflare gar nicht erst sieht.
+
+**Behebung ohne Eingriff in saveroq.com** — die Einstellung gilt zonenweit,
+deshalb nicht global abschalten, sondern gezielt für diese Subdomain:
+
+> Cloudflare → **Rules → Configuration Rules → Create rule**
+> Ausdruck: `hostname eq "studio.saveroq.com"`
+> Einstellung: **Email Obfuscation → Off**
+
+Damit bleibt das Verhalten von `saveroq.com` unverändert.
+
 ### Sicherheit
 
 | | |
