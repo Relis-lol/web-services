@@ -38,7 +38,36 @@ python -m http.server 8000
 
 ---
 
-## Schritt 2 — GitHub Pages einschalten
+## Schritt 2 — Domain zuerst, dann Pages
+
+Die Seite soll über Google gefunden werden. Dafür braucht sie eine **eigene
+Domain**, keinen Unterpfad. `relis-lol.github.io/web-services/` ist als
+Adresse ungeeignet: Sie gehört sichtbar zu einem fremden Profil und ist als
+Projektpfad für Suchmaschinen schwächer als eine eigene Domain.
+
+Deshalb steht in `index.html` derzeit `noindex`. Wird nämlich zuerst der
+Projektpfad indexiert, steht er später als konkurrierende Fassung im Index —
+und GitHub Pages kann aus einem Projektpfad **keine 301-Weiterleitung** auf
+die neue Domain setzen. Die alten Treffer liessen sich also nicht sauber
+umleiten.
+
+Reihenfolge deshalb:
+
+1. Domain registrieren
+2. DNS setzen (siehe unten)
+3. In **Settings → Pages → Custom domain** eintragen, **Enforce HTTPS** an
+4. Adressen umstellen — das schaltet `noindex` automatisch ab:
+
+```bash
+python scripts/domain-setzen.py https://deine-domain.de/
+```
+
+5. Domain in der Google Search Console anmelden und die Sitemap einreichen
+
+Wer trotzdem vorab auf dem Projektpfad starten will: Das geht, die Seite
+bleibt dann nur aus dem Suchindex heraus. Zum Testen reicht das völlig.
+
+## Schritt 3 — GitHub Pages einschalten
 
 Im Repository **Settings → Pages**:
 
@@ -54,9 +83,7 @@ Die URLs im Projekt zeigen bereits dorthin — es ist **keine** weitere
 
 ---
 
-## Optional — eigene Domain
-
-Erst wenn eine Domain dazukommt:
+## DNS-Einträge für die eigene Domain
 
 1. Beim Domain-Anbieter DNS setzen
    - Apex (`beispiel.de`) → vier `A`-Records auf

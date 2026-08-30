@@ -88,25 +88,26 @@ const PROJECTS = [
   },
   {
     id: 'portfolio',
-    title: 'Portfolio — Cloud & Plattformbetrieb',
-    title_en: 'Portfolio — cloud & platform operations',
-    category: 'Portfolio & Projektübersicht',
-    category_en: 'Portfolio & project overview',
+    title: 'Technisches Profil — Cloud & Plattformbetrieb',
+    title_en: 'Technical profile — cloud & platform operations',
+    category: 'Kompetenznachweis',
+    category_en: 'Proof of competence',
     description:
-      'Bewerbungsportfolio für den Bereich Cloud- und Plattformbetrieb. Links das ' +
-      'Profil mit Schwerpunkten und Zertifikat, rechts drei Projekte mit Kennzahl, ' +
-      'Technologiestack und Verweisen auf das laufende System und den Quellcode. ' +
-      'Vollständig statisch ausgeliefert: keine Datenbank, kein Framework, keine ' +
-      'externen Abhängigkeiten — dadurch lädt die Seite praktisch ' +
-      'verzögerungsfrei und ist wartungsarm im Betrieb.',
+      'Kein Kundenprojekt, sondern der Nachweis der technischen Grundlage ' +
+      'hinter diesen Leistungen: ein eigenes Profil für Cloud- und ' +
+      'Plattformbetrieb mit Linux, Docker, Python, PostgreSQL und ' +
+      'Azure-Grundlagen. Dort sind drei selbst betriebene Systeme mit ' +
+      'Kennzahl, Technologiestack und Verweis auf den Quellcode ' +
+      'dokumentiert — darunter die Plattform aus Projekt 02.',
     description_en:
-      'Application portfolio for cloud and platform operations. The profile with ' +
-      'focus areas and certification sits on the left, three projects on the right ' +
-      'with a headline metric, technology stack and links to the running system and ' +
-      'the source code. Served entirely as static files: no database, no framework, ' +
-      'no external dependencies — the page loads almost instantly and needs very ' +
-      'little upkeep.',
-    tech: ['HTML', 'CSS', 'JavaScript', 'Statisch', 'GitHub Pages', 'Responsive'],
+      'Not a client project but evidence of the technical grounding behind ' +
+      'these services: a personal profile for cloud and platform operations ' +
+      'covering Linux, Docker, Python, PostgreSQL and Azure fundamentals. It ' +
+      'documents three self-operated systems with a headline metric, ' +
+      'technology stack and links to the source code — including the ' +
+      'platform from project 02.',
+    tech: ['Linux', 'Docker', 'Python', 'PostgreSQL',
+           'Azure-Grundlagen (AZ-900)', 'Statische Auslieferung'],
     image: 'assets/projects/portfolio.webp',
     imageWidth: 1600,
     imageHeight: 1000,

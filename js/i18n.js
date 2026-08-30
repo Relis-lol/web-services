@@ -35,7 +35,7 @@ const I18N = (function () {
     /* --- Seitenkopf / Metadaten --------------------------------------- */
     'meta.title': 'Websites & digital solutions — built to work',
     'meta.description':
-      'We build modern websites, small web applications and custom digital solutions — from a first landing page to APIs, databases and ongoing technical support.',
+      'We build modern websites, small web applications and custom digital solutions — from a first landing page to APIs, databases, ongoing technical support and virtual assistance.',
 
     /* --- Barrierefreiheit --------------------------------------------- */
     'a11y.skip': 'Skip to content',
@@ -51,6 +51,7 @@ const I18N = (function () {
     'nav.home': 'Home',
     'nav.services': 'Services',
     'nav.support': 'Support',
+    'nav.assist': 'Assistance',
     'nav.projects': 'Projects',
     'nav.process': 'Process',
     'nav.pricing': 'Pricing',
@@ -62,7 +63,7 @@ const I18N = (function () {
     'hero.sub':
       'We build modern websites, small web applications and custom digital ' +
       'solutions — from a first landing page to APIs, databases and ongoing ' +
-      'technical support.',
+      'support. If you want, we handle the office admin behind it too.',
     'hero.cta1': 'Request a project',
     'hero.cta2': 'See our work',
     'hero.trust1': 'Responsive by default',
@@ -182,10 +183,45 @@ const I18N = (function () {
       'This is technical support, not marketing management. We do not ' +
       'promise reach or growth figures.',
 
+    /* --- Virtuelle Assistenz -------------------------------------------- */
+    'assist.kicker': 'Virtual assistance',
+    'assist.title': 'The office work that piles up',
+    'assist.lead':
+      'Recurring admin takes time but rarely justifies hiring someone. That is ' +
+      'what this area is for — looked after by Girly Boldt.',
+
+    'assist.comm.title': 'Correspondence & scheduling',
+    'assist.comm.i1': 'Reviewing and pre-sorting the inbox',
+    'assist.comm.i2': 'Answering recurring enquiries',
+    'assist.comm.i3': 'Arranging appointments, keeping the calendar current',
+    'assist.comm.i4': 'Following up on open items',
+    'assist.comm.i5': 'Pre-qualifying enquiries and passing them on',
+
+    'assist.data.title': 'Data & documents',
+    'assist.data.i1': 'Entering and maintaining data',
+    'assist.data.i2': 'Keeping lists and spreadsheets up to date',
+    'assist.data.i3': 'Preparing documents and templates',
+    'assist.data.i4': 'Sorting and filing receipts',
+    'assist.data.i5': 'Research on clearly defined questions',
+
+    'assist.flow.title': 'Routines & ongoing tasks',
+    'assist.flow.i1': 'Taking over recurring tasks',
+    'assist.flow.i2': 'Coordinating orders and appointments',
+    'assist.flow.i3': 'Preparing and publishing content',
+    'assist.flow.i4': 'Putting together simple reports',
+    'assist.flow.i5': 'Structuring handovers and filing',
+
+    'assist.note':
+      'Scope, access rights and confidentiality are agreed in writing ' +
+      'beforehand. Bookkeeping, tax and legal advice are explicitly not ' +
+      'included — those require the relevant licence.',
+
     /* --- Projekte ------------------------------------------------------ */
     'projects.kicker': 'Projects',
     'projects.title': 'Selected work',
-    'projects.lead': 'A small selection rather than a long list.',
+    'projects.lead':
+      'A small selection rather than a long list. The third entry is not a ' +
+      'client project — it evidences the technical grounding behind the work.',
 
     /* --- Ablauf -------------------------------------------------------- */
     'process.kicker': 'Process',
@@ -247,6 +283,7 @@ const I18N = (function () {
     'form.topic.o7': 'Server / technical support',
     'form.topic.o8': 'Email / DNS',
     'form.topic.o9': 'Social media support',
+    'form.topic.o11': 'Virtual assistance / office admin',
     'form.topic.o10': 'Something else',
     'form.website': 'Existing website',
     'form.budget': 'Budget range',

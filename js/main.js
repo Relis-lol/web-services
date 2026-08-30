@@ -128,7 +128,8 @@
     });
 
     // Beim Wechsel auf Desktop-Breite aufräumen.
-    window.matchMedia('(min-width: 901px)').addEventListener('change', function (mq) {
+    // Der Wert muss zum Umschaltpunkt in css/styles.css passen (Abschnitt 6).
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', function (mq) {
       if (mq.matches) setOpen(false);
     });
   }

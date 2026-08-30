@@ -11,8 +11,15 @@
      scripts/domain-setzen.py, das alle betroffenen Dateien auf einmal ändert.
      ============================================================ -->
 <title>Websites &amp; digitale Lösungen — individuell entwickelt</title>
-<meta name="description" content="Wir entwickeln moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – von der Landingpage bis zu APIs, Datenbanken und laufender technischer Betreuung.">
-<meta name="robots" content="index, follow">
+<meta name="description" content="Wir entwickeln moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – von der Landingpage bis zu APIs, Datenbanken, laufender technischer Betreuung und virtueller Assistenz.">
+<!-- Bis zur eigenen Domain bewusst NICHT indexieren.
+     Grund: Wird zuerst die Projektadresse relis-lol.github.io/web-services/
+     indexiert, steht sie spaeter als konkurrierende Fassung im Index. GitHub
+     Pages kann aus einem Projektpfad keine 301-Weiterleitung auf die neue
+     Domain setzen — die alten Treffer liessen sich also nicht sauber
+     umleiten. scripts/domain-setzen.py schaltet diese Zeile automatisch auf
+     "index, follow" um, sobald eine echte Domain eingetragen wird. -->
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://relis-lol.github.io/web-services/">
 
 <meta property="og:type" content="website">
@@ -20,7 +27,7 @@
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://relis-lol.github.io/web-services/">
 <meta property="og:title" content="Websites &amp; digitale Lösungen — individuell entwickelt">
-<meta property="og:description" content="Moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – inklusive laufender technischer Betreuung.">
+<meta property="og:description" content="Moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – inklusive laufender Betreuung und virtueller Assistenz.">
 <!-- TODO: Eigenes OpenGraph-Bild (1200x630 px) hinterlegen. -->
 <meta property="og:image" content="https://relis-lol.github.io/web-services/assets/images/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -301,6 +308,7 @@
         <li><a href="#top" data-i18n="nav.home">Start</a></li>
         <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
         <li><a href="#support" data-i18n="nav.support">Wartung</a></li>
+        <li><a href="#assistenz" data-i18n="nav.assist">Assistenz</a></li>
         <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
         <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
         <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
@@ -348,6 +356,7 @@
       <li><a href="#top" data-i18n="nav.home">Start</a></li>
       <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
       <li><a href="#support" data-i18n="nav.support">Wartung &amp; Support</a></li>
+      <li><a href="#assistenz" data-i18n="nav.assist">Virtuelle Assistenz</a></li>
       <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
       <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
       <li><a href="#preise" data-i18n="nav.pricing">Kalkulation</a></li>
@@ -372,7 +381,8 @@
       <p class="hero-sub reveal" data-i18n="hero.sub">
         Wir entwickeln moderne Websites, kleinere Webanwendungen und individuelle
         digitale Lösungen – von der ersten Landingpage bis zu APIs, Datenbanken
-        und laufender technischer Betreuung.
+        und laufender Betreuung. Auf Wunsch übernehmen wir auch die
+        Büroorganisation dahinter.
       </p>
 
       <div class="hero-actions reveal">
@@ -589,15 +599,95 @@
   </section>
 
   <!-- ================================================================
+       VIRTUELLE ASSISTENZ
+       ================================================================ -->
+  <section class="section" id="assistenz" aria-labelledby="assistenz-h">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="section-kicker" data-i18n="assist.kicker">Virtuelle Assistenz</p>
+        <h2 id="assistenz-h" data-i18n="assist.title">Büroarbeit, die liegen bleibt</h2>
+        <p class="section-lead" data-i18n="assist.lead">
+          Wiederkehrende Organisationsaufgaben kosten Zeit, rechtfertigen aber
+          selten eine eigene Anstellung. Genau dafür gibt es diesen Bereich —
+          betreut von Girly Boldt.
+        </p>
+      </header>
+
+      <div class="grid grid-3">
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+              <path d="M3.5 7l8.5 6 8.5-6"/>
+            </svg>
+          </div>
+          <h3 data-i18n="assist.comm.title">Kommunikation &amp; Termine</h3>
+          <ul class="check-list">
+            <li data-i18n="assist.comm.i1">Postfach sichten und vorsortieren</li>
+            <li data-i18n="assist.comm.i2">Wiederkehrende Anfragen beantworten</li>
+            <li data-i18n="assist.comm.i3">Termine abstimmen, Kalender pflegen</li>
+            <li data-i18n="assist.comm.i4">Bei offenen Vorgängen nachfassen</li>
+            <li data-i18n="assist.comm.i5">Anfragen vorqualifizieren und weiterleiten</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5"/>
+            </svg>
+          </div>
+          <h3 data-i18n="assist.data.title">Daten &amp; Dokumente</h3>
+          <ul class="check-list">
+            <li data-i18n="assist.data.i1">Daten erfassen und pflegen</li>
+            <li data-i18n="assist.data.i2">Listen und Tabellen aktuell halten</li>
+            <li data-i18n="assist.data.i3">Dokumente und Vorlagen aufbereiten</li>
+            <li data-i18n="assist.data.i4">Belege sortieren und ablegen</li>
+            <li data-i18n="assist.data.i5">Recherchen zu klar umrissenen Fragen</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M4 6.5h9M4 12h13M4 17.5h7"/>
+              <circle cx="18" cy="6.5" r="2.2"/>
+              <circle cx="15" cy="17.5" r="2.2"/>
+            </svg>
+          </div>
+          <h3 data-i18n="assist.flow.title">Abläufe &amp; laufende Aufgaben</h3>
+          <ul class="check-list">
+            <li data-i18n="assist.flow.i1">Wiederkehrende Aufgaben übernehmen</li>
+            <li data-i18n="assist.flow.i2">Bestellungen und Termine koordinieren</li>
+            <li data-i18n="assist.flow.i3">Inhalte vorbereiten und einstellen</li>
+            <li data-i18n="assist.flow.i4">Einfache Auswertungen zusammenstellen</li>
+            <li data-i18n="assist.flow.i5">Übergaben und Ablage strukturieren</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <p class="notice reveal" style="margin-top:1.5rem" data-i18n="assist.note">
+        Umfang, Zugriffsrechte und Vertraulichkeit legen wir vorher schriftlich
+        fest. Buchhaltung, Steuer- und Rechtsberatung gehören ausdrücklich
+        nicht dazu — dafür braucht es die jeweilige Zulassung.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================================================================
        PROJEKTE
        ================================================================ -->
-  <section class="section" id="projekte" aria-labelledby="projekte-h">
+  <section class="section section-alt" id="projekte" aria-labelledby="projekte-h">
     <div class="container">
       <header class="section-head reveal">
         <p class="section-kicker" data-i18n="projects.kicker">Projekte</p>
         <h2 id="projekte-h" data-i18n="projects.title">Ausgewählte Arbeiten</h2>
         <p class="section-lead" data-i18n="projects.lead">
-          Eine kleine Auswahl statt einer langen Liste.
+          Eine kleine Auswahl statt einer langen Liste. Der dritte Eintrag ist
+          kein Kundenprojekt, sondern belegt die technische Grundlage dahinter.
         </p>
       </header>
 
@@ -616,7 +706,7 @@
   <!-- ================================================================
        ABLAUF
        ================================================================ -->
-  <section class="section section-alt" id="ablauf" aria-labelledby="ablauf-h">
+  <section class="section" id="ablauf" aria-labelledby="ablauf-h">
     <div class="container">
       <header class="section-head reveal">
         <p class="section-kicker" data-i18n="process.kicker">Ablauf</p>
@@ -659,7 +749,7 @@
   <!-- ================================================================
        KALKULATION
        ================================================================ -->
-  <section class="section" id="preise" aria-labelledby="preise-h">
+  <section class="section section-alt" id="preise" aria-labelledby="preise-h">
     <div class="container">
       <div class="pricing-panel reveal">
         <div class="pricing-main">
@@ -698,7 +788,7 @@
   <!-- ================================================================
        KONTAKT
        ================================================================ -->
-  <section class="section section-alt" id="kontakt" aria-labelledby="kontakt-h">
+  <section class="section" id="kontakt" aria-labelledby="kontakt-h">
     <div class="container contact-layout">
 
       <div class="contact-intro reveal">
@@ -766,6 +856,7 @@
               <option value="server" data-i18n="form.topic.o7">Server / technische Betreuung</option>
               <option value="email-dns" data-i18n="form.topic.o8">E-Mail / DNS</option>
               <option value="social" data-i18n="form.topic.o9">Social-Media-Support</option>
+              <option value="assistenz" data-i18n="form.topic.o11">Virtuelle Assistenz / Büroorganisation</option>
               <option value="sonstiges" data-i18n="form.topic.o10">Sonstiges</option>
             </select>
             <p class="field-error" id="err-topic" role="alert" hidden></p>
@@ -845,6 +936,7 @@
       <ul>
         <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
         <li><a href="#support" data-i18n="nav.support">Wartung &amp; Support</a></li>
+        <li><a href="#assistenz" data-i18n="nav.assist">Virtuelle Assistenz</a></li>
         <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
         <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
         <li><a href="#preise" data-i18n="nav.pricing">Kalkulation</a></li>

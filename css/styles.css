@@ -407,7 +407,7 @@ a:hover { color: var(--accent); }
 .header-inner {
   display: flex;
   align-items: center;
-  gap: var(--s-5);
+  gap: var(--s-4);
   min-height: var(--header-h);
 }
 
@@ -439,9 +439,9 @@ a:hover { color: var(--accent); }
 .nav-desktop ul { display: flex; gap: var(--s-1); }
 .nav-desktop a {
   display: block;
-  padding: .5rem .8rem;
+  padding: .5rem .62rem;
   border-radius: 999px;
-  font-size: .94rem;
+  font-size: .92rem;
   font-weight: 500;
   color: var(--ink-soft);
   text-decoration: none;
@@ -538,11 +538,19 @@ a:hover { color: var(--accent); }
 }
 .nav-mobile li:last-child a { border-bottom: 0; }
 
-@media (max-width: 900px) {
+/* Umschaltpunkt zwischen Vollnavigation und mobilem Menue.
+   Gemessen: Marke + sieben Navigationspunkte + Werkzeuge brauchen rund
+   980 px. Darunter wuerde der Kopf ueberlaufen, deshalb liegt die Grenze
+   bei 1024 px und nicht beim sonst ueblichen Wert um 900 px.
+
+   ACHTUNG: Derselbe Wert steht in js/main.js in initMobileNav().
+   Beide muessen zusammenpassen, sonst bleibt das mobile Menue beim
+   Wechsel auf Desktop-Breite offen stehen. */
+@media (max-width: 1023px) {
   .nav-desktop { display: none; }
   .nav-toggle { display: grid; }
 }
-@media (min-width: 901px) {
+@media (min-width: 1024px) {
   .nav-mobile { display: none !important; }
 }
 

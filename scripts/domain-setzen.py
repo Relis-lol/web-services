@@ -84,6 +84,21 @@ def main():
             io.open(pfad, 'w', encoding='utf-8', newline='\n').write(
                 inhalt.replace(alt, neu))
 
+    # Mit einer echten Domain darf die Seite in den Index. Auf einer
+    # github.io-Adresse bleibt sie bewusst draussen, siehe Kommentar in
+    # index.html.
+    auf_github = 'github.io' in neu
+    pfad_index = os.path.join(stamm, 'index.html')
+    inhalt = io.open(pfad_index, encoding='utf-8').read()
+    soll = 'noindex, follow' if auf_github else 'index, follow'
+    ist = 'index, follow' if 'content="index, follow"' in inhalt else 'noindex, follow'
+    if ist != soll:
+        gesamt += 1
+        print('  %-20s Indexierung: %s -> %s' % ('index.html', ist, soll))
+        if not nur_zeigen:
+            io.open(pfad_index, 'w', encoding='utf-8', newline=chr(10)).write(
+                inhalt.replace('content="%s"' % ist, 'content="%s"' % soll))
+
     print()
     if nur_zeigen:
         print('Probelauf — es wurde nichts geschrieben. %d Stelle(n) betroffen.' % gesamt)
