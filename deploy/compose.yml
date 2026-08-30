@@ -73,6 +73,14 @@ services:
     build:
       context: ..
       dockerfile: api/Dockerfile
+      # Dieser Host loest DNS ueber einen Loopback-Resolver auf. Fuer normale
+      # Container behandelt Docker das als Sonderfall, der Build-Container von
+      # BuildKit bekommt aber keinen funktionierenden Resolver — jeder
+      # pip-Download endet mit "Try again". Der Bau im Netz des Hosts loest
+      # das, ohne die Docker-Konfiguration anzufassen (die wuerde jeden
+      # anderen Stack auf dieser Maschine mit betreffen).
+      # Derselbe Kniff steht aus demselben Grund im wivoko-Stack.
+      network: host
     image: saveroq-studio-api:latest
     container_name: saveroq-studio-api
     restart: unless-stopped
@@ -121,6 +129,7 @@ services:
     build:
       context: ..
       dockerfile: api/Dockerfile.test
+      network: host
     read_only: true
     tmpfs:
       - /tmp:size=64m,mode=1777
