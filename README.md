@@ -39,7 +39,7 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 - [Texte ändern (Deutsch/Englisch)](#texte-ändern-deutschenglisch)
 - [Hintergrund-Grafik anpassen](#hintergrund-grafik-anpassen)
 - [Fortschreitende Gestaltung](#fortschreitende-gestaltung)
-- [Kontaktformular aktivieren](#kontaktformular-aktivieren)
+- [Kontaktformular](#kontaktformular)
 - [SEO-Daten ändern](#seo-daten-ändern)
 - [Security Header (später)](#security-header-später)
 - [Checkliste vor dem kommerziellen Launch](#checkliste-vor-dem-kommerziellen-launch)
@@ -55,6 +55,7 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 ├── datenschutz.html      verantwortliche Stelle gefüllt, Endpunkt-Angaben offen
 ├── css/
 │   └── styles.css        Gesamtes Design, in nummerierte Abschnitte gegliedert
+├── api/                  Kontakt-Endpunkt (FastAPI) + Tests
 ├── js/
 │   ├── config.js         >> Firmendaten, Kontakt, Social, Endpunkt <<
 │   ├── projects.js       >> Die drei Referenzprojekte <<
@@ -414,73 +415,58 @@ kaputten Seite aus — deshalb der Startwert oberhalb von null.
 Ohne JavaScript bleibt `--e` beim Standardwert 1: Dann sieht der Besucher
 schlicht die fertig gestaltete Seite.
 
-## Kontaktformular aktivieren
+## Kontaktformular
 
-### Aktueller Zustand
+Das Formular sendet an einen eigenen Dienst im selben Stack:
 
-Das Formular läuft im **Demo-Modus**: Es prüft alle Eingaben, versendet aber
-nichts und weist die Besucher sichtbar darauf hin.
-
-Das ist Absicht. Ein Versand direkt aus dem Browser — per SMTP-Zugangsdaten
-oder mit einem API-Schlüssel im Frontend — wäre unsicher, weil jede Datei in
-diesem Repository öffentlich lesbar ist. Deshalb enthält das Projekt keinerlei
-Zugangsdaten.
-
-### Aktivieren
-
-1. Einen Endpunkt bereitstellen, der `POST` mit JSON entgegennimmt
-   (Cloudflare Worker, Serverless Function, eigenes Backend oder ein
-   seriöser Formular-Anbieter).
-2. Dessen öffentliche URL in `js/config.js` eintragen:
-
-```js
-CONTACT_FORM_ENDPOINT: 'https://forms.example.workers.dev/submit',
+```text
+Browser -> https://studio.saveroq.com/api/contact -> nginx -> saveroq-studio-api
 ```
 
-Mehr ist im Frontend nicht nötig. Der Demo-Hinweis verschwindet automatisch.
+Kein veröffentlichter Port, keine Zugangsdaten im Browser. Der Quellcode
+liegt in `api/`, die Weiterleitung in `deploy/nginx.conf`.
 
-### Was der Endpunkt senden bekommt
+### Was noch fehlt: SMTP
 
-```json
-{
-  "name": "…", "email": "…", "company": "…", "topic": "…",
-  "existing_website": "…", "budget": "…", "message": "…", "lang": "de"
-}
+Ohne SMTP-Angaben nimmt das Formular Eingaben entgegen, meldet dem Besucher
+aber ehrlich einen Fehler — es wird **nie** ein Versand vorgetäuscht.
+
+In `deploy/.env` auf dem Server einzutragen:
+
+| Variable | Pflicht | Bedeutung |
+|---|---|---|
+| `SMTP_HOST` | ja | Mailserver |
+| `SMTP_PORT` | ja | 587 (STARTTLS) oder 465 (SSL) |
+| `SMTP_FROM` | ja | Absenderadresse, muss zum Postfach passen |
+| `CONTACT_TO` | ja | Zieladresse — kommt nur von hier, nie aus dem Browser |
+| `SMTP_USERNAME` | nein | leer lassen bei Relays ohne Anmeldung |
+| `SMTP_PASSWORD` | nein | " |
+| `SMTP_SECURITY` | nein | `starttls` (Standard), `ssl` oder `none` |
+
+Danach `docker compose -f deploy/compose.yml up -d api`.
+Prüfen mit `curl http://api:8000/api/health` im Stack-Netz — dort steht
+`smtp_configured`.
+
+### Sicherheit
+
+| | |
+|---|---|
+| Validierung | vollständig serverseitig, Feldlängen, E-Mail-Format, erlaubte Auswahlwerte |
+| Header-Injection | konstruktiv ausgeschlossen: fester Betreff und Empfänger, Nutzereingaben nur im Text |
+| Ratenbegrenzung | 10 Anfragen je IP in 15 Minuten, 60 insgesamt; nginx fängt Fluten davor ab |
+| Honeypot | unsichtbares Feld, serverseitig geprüft |
+| Body-Grenze | 16 KB in nginx und im Dienst |
+| Protokoll | keine Inhalte, Namen oder Adressen; IP nur als gekürzter Hash |
+
+### Tests
+
+```bash
+docker compose -f deploy/compose.yml --profile test run --rm test
 ```
 
-### Serverseitig unbedingt umsetzen
-
-Die Prüfungen im Browser sind reine Bequemlichkeit für den Besucher und lassen
-sich umgehen. Der Endpunkt muss deshalb selbst absichern:
-
-- **Serverseitige Validierung** aller Felder — Pflichtfelder, E-Mail-Format,
-  Zeichenlängen (Name 100, E-Mail 150, Firma 120, URL 200, Nachricht 2000).
-- **Content-Type prüfen** — nur `application/json` akzeptieren.
-- **Größenlimit** für den Request-Body (z. B. 16 KB), größere Anfragen ablehnen.
-- **Rate Limiting** pro IP, z. B. maximal fünf Anfragen pro Stunde.
-- **CORS restriktiv** — `Access-Control-Allow-Origin` ausschließlich auf die
-  eigene Domain, nicht auf `*`.
-- **Honeypot auswerten** — das Feld `website-url` ist für Menschen unsichtbar.
-  Ist es gefüllt, die Anfrage still verwerfen und trotzdem Erfolg melden.
-  Das Frontend sendet das Feld derzeit nicht mit; wer es serverseitig
-  auswerten will, nimmt es in `js/main.js` in den Payload auf.
-- **Spam-Schutz** — Honeypot und Rate Limiting reichen erfahrungsgemäß lange.
-  Ein CAPTCHA erst nachrüsten, wenn es tatsächlich nötig wird; es kostet
-  Barrierefreiheit und Conversion.
-- **Secrets nur serverseitig** — Mail-API-Schlüssel gehören in die Umgebungs-
-  variablen des Endpunkts, niemals in dieses Repository.
-- **Logging ohne unnötige personenbezogene Daten** — Zeitstempel und Status
-  genügen; keine vollständigen Nachrichteninhalte dauerhaft speichern.
-- **Sichere Fehlerbehandlung** — nach außen nur eine allgemeine Fehlermeldung,
-  keine Stack Traces oder internen Details.
-- **CSRF:** Für diesen Fall nicht erforderlich. Der Endpunkt arbeitet ohne
-  Cookies und ohne Session — es gibt keine Anmeldung, die ein Angreifer
-  ausnutzen könnte. Sobald der Endpunkt cookie-basierte Authentifizierung
-  bekommt, muss ein CSRF-Token ergänzt werden.
-- **E-Mail-Ausgabe escapen** — Nutzereingaben nie ungeprüft in HTML-Mails
-  einsetzen.
-
----
+20 Tests: Erfolgsfall, fehlende und ungültige Felder, überlange Eingaben,
+Header-Injection, Honeypot, Ratenbegrenzung, falsche Methode, ungültiges
+JSON, zu großer Body, fehlendes und gestörtes SMTP, Protokollhygiene.
 
 ## SEO-Daten ändern
 
