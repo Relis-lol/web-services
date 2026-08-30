@@ -1,4 +1,4 @@
-# Livegang
+# Livegang — Saveroq Studio
 
 Die Seite ist fertig und wartet nur noch auf die Gewerbeanmeldung.
 Zum Schalten sind **zwei Felder** auszufüllen und **ein Schalter** umzulegen.
@@ -7,20 +7,17 @@ Zum Schalten sind **zwei Felder** auszufüllen und **ein Schalter** umzulegen.
 
 ## Schritt 1 — zwei Felder in `js/config.js`
 
-```js
-BUSINESS_NAME: 'Boldt Web Services',      // Feld 1: Geschäftsbezeichnung
+`BUSINESS_NAME` steht bereits auf `Saveroq Studio`. Offen ist nur noch die
+steuerliche Angabe:
 
+```js
 BUSINESS_VAT_ID: 'DE123456789',           // Feld 2, Variante A: USt-IdNr.
 // ODER, falls keine USt-IdNr. vorliegt:
 BUSINESS_TAX_NOTE: 'Als Kleinunternehmer im Sinne von § 19 UStG ' +
                    'wird keine Umsatzsteuer berechnet.',
 ```
 
-Von **Feld 2** wird genau eine der beiden Varianten gefüllt, die andere
-bleibt auf `null`.
-
-Optional dazu: `BUSINESS_INITIALS` auf die Initialen des neuen Namens
-setzen (steht derzeit auf `BB`).
+Genau eine der beiden Varianten füllen, die andere bleibt auf `null`.
 
 **Das war es an Textarbeit.** Am HTML ist nichts zu ändern. Sobald beide
 Felder gefüllt sind, passiert automatisch Folgendes:
@@ -38,52 +35,57 @@ python -m http.server 8000
 
 ---
 
-## Schritt 2 — Domain zuerst, dann Pages
+## Schritt 2 — Subdomain und GitHub Pages
 
-Die Seite soll über Google gefunden werden. Dafür braucht sie eine **eigene
-Domain**, keinen Unterpfad. `relis-lol.github.io/web-services/` ist als
-Adresse ungeeignet: Sie gehört sichtbar zu einem fremden Profil und ist als
-Projektpfad für Suchmaschinen schwächer als eine eigene Domain.
+Die Seite läuft unter **`https://studio.saveroq.com`**, einer Subdomain der
+bestehenden Saveroq-Plattform. Beide bleiben technisch getrennte Sites:
+keine gemeinsame Navigation, keine Weiterleitung, keine gegenseitige
+Verlinkung, kein Eintrag in der Saveroq-Sitemap.
 
-Deshalb steht in `index.html` derzeit `noindex`. Wird nämlich zuerst der
-Projektpfad indexiert, steht er später als konkurrierende Fassung im Index —
-und GitHub Pages kann aus einem Projektpfad **keine 301-Weiterleitung** auf
-die neue Domain setzen. Die alten Treffer liessen sich also nicht sauber
-umleiten.
+Alle Adressen im Projekt zeigen bereits dorthin, und die Datei `CNAME`
+enthält `studio.saveroq.com`. Es sind nur noch zwei Einstellungen nötig:
 
-Reihenfolge deshalb:
+**1. Cloudflare — DNS-Eintrag anlegen**
 
-1. Domain registrieren
-2. DNS setzen (siehe unten)
-3. In **Settings → Pages → Custom domain** eintragen, **Enforce HTTPS** an
-4. Adressen umstellen — das schaltet `noindex` automatisch ab:
+| Feld | Wert |
+|---|---|
+| Type | `CNAME` |
+| Name | `studio` |
+| Target | `relis-lol.github.io` |
+| Proxy | **DNS only** (graue Wolke) |
+| TTL | Auto |
+
+Der Proxy muss zunächst **aus** bleiben, sonst kann GitHub das
+Let's-Encrypt-Zertifikat nicht ausstellen. Nach erfolgreicher Ausstellung
+kann der Proxy eingeschaltet werden — dann muss der SSL-Modus in Cloudflare
+auf **Full (strict)** stehen, sonst entsteht eine Weiterleitungsschleife.
+
+**2. GitHub — Pages einschalten**
+
+Im Repository `web-services` unter **Settings → Pages**:
+
+- Source: **Deploy from a branch**, Branch `main`, Ordner `/ (root)`
+- Custom domain: `studio.saveroq.com`
+- **Enforce HTTPS** aktivieren, sobald das Zertifikat ausgestellt ist
+
+## Indexierung
+
+Die Seite steht auf `noindex, follow` — öffentlich erreichbar, aber nicht in
+den Suchergebnissen. In `robots.txt` steht bewusst **kein** `Disallow`: Ein
+gesperrter Crawler könnte das `noindex` gar nicht lesen. Die Sitemap ist
+vorhanden, wird dort aber nicht beworben.
+
+Freigeben, wenn es soweit ist:
 
 ```bash
-python scripts/domain-setzen.py https://deine-domain.de/
+python scripts/domain-setzen.py --index an
 ```
 
-5. Domain in der Google Search Console anmelden und die Sitemap einreichen
+Danach die Sitemap-Zeile in `robots.txt` einkommentieren und die Domain
+separat in der Google Search Console anmelden — **nicht** über die
+bestehende Saveroq-Property.
 
-Wer trotzdem vorab auf dem Projektpfad starten will: Das geht, die Seite
-bleibt dann nur aus dem Suchindex heraus. Zum Testen reicht das völlig.
-
-## Schritt 3 — GitHub Pages einschalten
-
-Im Repository **Settings → Pages**:
-
-- Source: **Deploy from a branch**
-- Branch: **main**, Ordner: **/ (root)**
-- Speichern
-
-Nach ein bis zwei Minuten läuft die Seite unter
-`https://relis-lol.github.io/web-services/`.
-
-Die URLs im Projekt zeigen bereits dorthin — es ist **keine** weitere
-Änderung nötig.
-
----
-
-## DNS-Einträge für die eigene Domain
+## Später — eigene Domain statt Subdomain
 
 1. Beim Domain-Anbieter DNS setzen
    - Apex (`beispiel.de`) → vier `A`-Records auf

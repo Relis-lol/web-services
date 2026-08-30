@@ -10,34 +10,34 @@
      sind startklar. Nur bei einer eigenen Domain umstellen — dafür gibt es
      scripts/domain-setzen.py, das alle betroffenen Dateien auf einmal ändert.
      ============================================================ -->
-<title>Websites &amp; digitale Lösungen — individuell entwickelt</title>
-<meta name="description" content="Wir entwickeln moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – von der Landingpage bis zu APIs, Datenbanken, laufender technischer Betreuung und virtueller Assistenz.">
-<!-- Bis zur eigenen Domain bewusst NICHT indexieren.
-     Grund: Wird zuerst die Projektadresse relis-lol.github.io/web-services/
-     indexiert, steht sie spaeter als konkurrierende Fassung im Index. GitHub
-     Pages kann aus einem Projektpfad keine 301-Weiterleitung auf die neue
-     Domain setzen — die alten Treffer liessen sich also nicht sauber
-     umleiten. scripts/domain-setzen.py schaltet diese Zeile automatisch auf
-     "index, follow" um, sobald eine echte Domain eingetragen wird. -->
+<title>Saveroq Studio — Websites &amp; digitale Systeme</title>
+<meta name="description" content="Saveroq Studio entwickelt Websites, kleinere Web-Anwendungen und digitale Systeme für kleine Unternehmen – von der Landingpage über APIs, Datenbanken und Hosting bis zu laufender Betreuung und virtueller Assistenz.">
+<!-- Bewusst NICHT indexieren.
+     Das Studio soll oeffentlich erreichbar, aber vorerst nicht in den
+     Suchergebnissen sein. Wichtig dabei: In robots.txt steht KEIN Disallow —
+     sonst duerfte der Crawler die Seite nicht abrufen und wuerde dieses
+     noindex nie sehen.
+     Freigeben mit:  python scripts/domain-setzen.py --index an
+     Danach zusaetzlich die Sitemap-Zeile in robots.txt einkommentieren. -->
 <meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://relis-lol.github.io/web-services/">
+<link rel="canonical" href="https://studio.saveroq.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:url" content="https://relis-lol.github.io/web-services/">
-<meta property="og:title" content="Websites &amp; digitale Lösungen — individuell entwickelt">
-<meta property="og:description" content="Moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen – inklusive laufender Betreuung und virtueller Assistenz.">
+<meta property="og:url" content="https://studio.saveroq.com/">
+<meta property="og:title" content="Saveroq Studio — Websites &amp; digitale Systeme">
+<meta property="og:description" content="Websites, kleinere Web-Anwendungen und digitale Systeme für kleine Unternehmen – inklusive Hosting, laufender Betreuung und virtueller Assistenz.">
 <!-- TODO: Eigenes OpenGraph-Bild (1200x630 px) hinterlegen. -->
-<meta property="og:image" content="https://relis-lol.github.io/web-services/assets/images/og-image.png">
+<meta property="og:image" content="https://studio.saveroq.com/assets/images/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Websites und digitale Lösungen">
+<meta property="og:image:alt" content="Saveroq Studio">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Websites &amp; digitale Lösungen — individuell entwickelt">
-<meta name="twitter:description" content="Moderne Websites, kleinere Webanwendungen und individuelle digitale Lösungen.">
-<meta name="twitter:image" content="https://relis-lol.github.io/web-services/assets/images/og-image.png">
+<meta name="twitter:title" content="Saveroq Studio — Websites &amp; digitale Systeme">
+<meta name="twitter:description" content="Websites, digitale Systeme und laufende Unterstützung für kleine Unternehmen.">
+<meta name="twitter:image" content="https://studio.saveroq.com/assets/images/og-image.png">
 
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
@@ -46,6 +46,27 @@
 <link rel="icon" href="favicon.ico" sizes="32x32"><!-- Fallback für ältere Browser -->
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="css/styles.css">
+
+<!-- Strukturierte Daten. Bewusst knapp und ausschliesslich mit Angaben, die
+     auch im Impressum stehen. Kein Bezug auf saveroq.com: Die beiden Sites
+     bleiben technisch getrennt. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Saveroq Studio",
+  "url": "https://studio.saveroq.com/",
+  "description": "Websites, digitale Systeme und laufende Unterstützung für kleine Unternehmen.",
+  "email": "girly.va18@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Nürnberg",
+    "addressCountry": "DE"
+  },
+  "areaServed": "DE",
+  "availableLanguage": ["de", "en"]
+}
+</script>
 </head>
 
 <body data-title-key="meta.title" data-desc-key="meta.description">
@@ -299,8 +320,8 @@
   <div class="container header-inner">
 
     <a class="brand" href="#top" aria-label="Startseite">
-      <span class="brand-mark" aria-hidden="true" data-site="initials">BB</span>
-      <span class="brand-name" data-site="name">Geschäftsname folgt</span>
+      <span class="brand-mark" aria-hidden="true" data-site="initials">SQ</span>
+      <span class="brand-name" data-site="name">Saveroq Studio</span>
     </a>
 
     <nav class="nav-desktop" aria-label="Hauptnavigation" data-i18n-attr="aria-label:a11y.mainNav">
@@ -379,10 +400,10 @@
       </h1>
 
       <p class="hero-sub reveal" data-i18n="hero.sub">
-        Wir entwickeln moderne Websites, kleinere Webanwendungen und individuelle
-        digitale Lösungen – von der ersten Landingpage bis zu APIs, Datenbanken
-        und laufender Betreuung. Auf Wunsch übernehmen wir auch die
-        Büroorganisation dahinter.
+        Websites, digitale Systeme und laufende Unterstützung für kleine
+        Unternehmen – von der ersten Landingpage über Web-Anwendungen, APIs,
+        Datenbanken und Hosting bis zur technischen Betreuung. Auf Wunsch
+        übernehmen wir auch die Büroorganisation dahinter.
       </p>
 
       <div class="hero-actions reveal">
@@ -451,13 +472,14 @@
               <path d="M8.5 8.5L5 12l3.5 3.5M15.5 8.5L19 12l-3.5 3.5M13.5 5.5l-3 13"/>
             </svg>
           </div>
-          <h3 data-i18n="services.func.title">Individuelle Web-Funktionen</h3>
+          <h3 data-i18n="services.func.title">Web-Anwendungen &amp; individuelle Funktionen</h3>
           <p data-i18n="services.func.text">
-            Wenn eine reine Website nicht ausreicht: Funktionen, die zu Ihrem
-            Ablauf passen statt umgekehrt.
+            Wenn eine reine Website nicht ausreicht: kleinere SaaS- und
+            Web-Anwendungen sowie Funktionen, die zu Ihrem Ablauf passen statt
+            umgekehrt.
           </p>
           <ul class="check-list">
-            <li data-i18n="services.func.i1">Login- und Accountbereiche</li>
+            <li data-i18n="services.func.i1">Login-, Account- und Anmeldebereiche</li>
             <li data-i18n="services.func.i2">Benutzerverwaltung und Rollen</li>
             <li data-i18n="services.func.i3">Kleinere Datenbanken</li>
             <li data-i18n="services.func.i4">Individuelle APIs</li>
@@ -558,7 +580,7 @@
           <ul class="dash-list">
             <li data-i18n="support.srv.i1">Grundlegende Linux-Serverpflege</li>
             <li data-i18n="support.srv.i2">Updates einspielen</li>
-            <li data-i18n="support.srv.i3">Deployment-Unterstützung</li>
+            <li data-i18n="support.srv.i3">Hosting einrichten, Deployment betreuen</li>
             <li data-i18n="support.srv.i4">Dienste prüfen, Backups, Basis-Monitoring</li>
             <li data-i18n="support.srv.i5">Kleinere Docker-Umgebungen</li>
           </ul>
@@ -921,12 +943,12 @@
 
     <div class="footer-brand">
       <a class="brand" href="#top">
-        <span class="brand-mark" aria-hidden="true" data-site="initials">BB</span>
-        <span class="brand-name" data-site="name">Geschäftsname folgt</span>
+        <span class="brand-mark" aria-hidden="true" data-site="initials">SQ</span>
+        <span class="brand-name" data-site="name">Saveroq Studio</span>
       </a>
       <p class="footer-desc" data-i18n="footer.desc">
-        Websites, individuelle Web-Funktionen und laufende technische Betreuung
-        für kleine und mittelgroße Auftraggeber.
+        Websites, digitale Systeme und laufende Unterstützung für kleine
+        Unternehmen.
       </p>
       <ul class="social-list" id="social-list"></ul>
     </div>
@@ -958,7 +980,7 @@
   </div>
 
   <div class="container footer-bottom">
-    <p><span data-site="name">Geschäftsname folgt</span> &middot; <span id="footer-year">2026</span></p>
+    <p><span data-site="name">Saveroq Studio</span> &middot; <span id="footer-year">2026</span></p>
   </div>
 </footer>
 

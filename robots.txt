@@ -1,13 +1,21 @@
-# robots.txt
-# Die Adresse unten zeigt auf die GitHub-Pages-Adresse dieses Repositories
-# und ist startklar. Nur bei einer eigenen Domain umstellen -- dafuer gibt es
-# scripts/domain-setzen.py, das alle betroffenen Dateien auf einmal aendert.
+# robots.txt — studio.saveroq.com
+#
+# WICHTIG: Hier steht bewusst KEIN Disallow.
+# Die Seite soll derzeit nicht indexiert werden, das steuert
+# <meta name="robots" content="noindex, follow"> in index.html.
+# Ein Disallow waere kontraproduktiv: Der Crawler duerfte die Seite dann
+# gar nicht erst abrufen und wuerde das noindex nie sehen. Die URL koennte
+# trotzdem im Index landen — nur ohne Inhalt.
+#
+# Die Sitemap wird hier absichtlich NICHT beworben, solange die Seite auf
+# noindex steht. Die Datei sitemap.xml existiert und ist aktuell; sie wird
+# erst eingetragen und in der Search Console eingereicht, wenn die Seite
+# indexiert werden soll.
+#
+#   Zum Freigeben:  python scripts/domain-setzen.py --index an
+#                   und die Sitemap-Zeile unten einkommentieren.
 
 User-agent: *
 Allow: /
 
-# Rechtsseiten sind erreichbar, gehören aber nicht in den Suchindex.
-# Die Steuerung erfolgt zusätzlich über <meta name="robots" content="noindex">
-# in den Seiten selbst — das ist die verlässlichere Variante.
-
-Sitemap: https://relis-lol.github.io/web-services/sitemap.xml
+# Sitemap: https://studio.saveroq.com/sitemap.xml

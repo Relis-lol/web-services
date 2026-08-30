@@ -13,16 +13,14 @@ const SITE_CONFIG = {
      1. Firmendaten
      ---------------------------------------------------------------------- */
 
-  /* >>> LAUNCH-FELD 1 <<<
-     Endgültige Geschäftsbezeichnung. Solange hier `null` steht, gilt die
-     Seite als "noch nicht startklar": Im Impressum bleibt der Platzhalter
-     stehen und auf beiden Rechtsseiten erscheint der gelbe Hinweiskasten.
-     Sobald hier ein Name steht UND Launch-Feld 2 ausgefüllt ist,
-     verschwinden Platzhalter und Hinweiskästen von selbst. */
-  BUSINESS_NAME: null,   // z. B. 'Boldt Web Services'
+  /* >>> LAUNCH-FELD 1 — erledigt <<<
+     Geschäftsbezeichnung. Erscheint in Kopfzeile, Fußzeile und als
+     Anbieterangabe im Impressum. Zusammen mit Launch-Feld 2 steuert der
+     Wert, ob die gelben Hinweiskästen auf den Rechtsseiten verschwinden. */
+  BUSINESS_NAME: 'Saveroq Studio',
 
   // Kurzform fürs Logo (2–3 Zeichen). Wird im Logo-Quadrat angezeigt.
-  BUSINESS_INITIALS: 'BB',
+  BUSINESS_INITIALS: 'SQ',
 
   BUSINESS_EMAIL: 'girly.va18@gmail.com',
 
@@ -90,7 +88,7 @@ const SITE_CONFIG = {
      Repositories — beim Schalten ist hier also NICHTS zu tun.
      Nur bei einer eigenen Domain umstellen; dafür gibt es
      scripts/domain-setzen.py, das alle Dateien auf einmal anpasst. */
-  SITE_URL: 'https://relis-lol.github.io/web-services/',
+  SITE_URL: 'https://studio.saveroq.com/',
 
   /* ----------------------------------------------------------------------
      5. Verhalten

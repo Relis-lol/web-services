@@ -1,0 +1,9 @@
+# Zeilenenden im Repository einheitlich auf LF.
+# Wichtig vor allem fuer CNAME: GitHub Pages liest daraus die Custom Domain,
+# und ein angehaengtes CR kann den Eintrag unbrauchbar machen.
+* text=auto eol=lf
+
+# Binaerdateien nicht anfassen
+*.png binary
+*.webp binary
+*.ico binary

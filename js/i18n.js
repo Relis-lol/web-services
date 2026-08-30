@@ -33,9 +33,9 @@ const I18N = (function () {
      ====================================================================== */
   const EN = {
     /* --- Seitenkopf / Metadaten --------------------------------------- */
-    'meta.title': 'Websites & digital solutions — built to work',
+    'meta.title': 'Saveroq Studio — websites & digital systems',
     'meta.description':
-      'We build modern websites, small web applications and custom digital solutions — from a first landing page to APIs, databases, ongoing technical support and virtual assistance.',
+      'Saveroq Studio builds websites, small web applications and digital systems for small businesses — from a first landing page to APIs, databases, hosting, ongoing technical support and virtual assistance.',
 
     /* --- Barrierefreiheit --------------------------------------------- */
     'a11y.skip': 'Skip to content',
@@ -61,9 +61,10 @@ const I18N = (function () {
     'hero.eyebrow': 'A small team. One direct contact.',
     'hero.title': 'Websites and digital solutions that actually work.',
     'hero.sub':
-      'We build modern websites, small web applications and custom digital ' +
-      'solutions — from a first landing page to APIs, databases and ongoing ' +
-      'support. If you want, we handle the office admin behind it too.',
+      'Websites, digital systems and ongoing support for small businesses — ' +
+      'from a first landing page through web applications, APIs, databases ' +
+      'and hosting to technical maintenance. If you want, we handle the ' +
+      'office admin behind it too.',
     'hero.cta1': 'Request a project',
     'hero.cta2': 'See our work',
     'hero.trust1': 'Responsive by default',
@@ -96,11 +97,12 @@ const I18N = (function () {
       'Note: we lay the technical SEO groundwork. We do not run ongoing SEO ' +
       'or advertising campaigns.',
 
-    'services.func.title': 'Custom web functionality',
+    'services.func.title': 'Web applications & custom functionality',
     'services.func.text':
-      'When a plain website is not enough: functionality that fits your ' +
-      'workflow rather than the other way round.',
-    'services.func.i1': 'Login and account areas',
+      'When a plain website is not enough: smaller SaaS and web applications, ' +
+      'plus functionality that fits your workflow rather than the other way ' +
+      'round.',
+    'services.func.i1': 'Login, account and sign-in areas',
     'services.func.i2': 'User management and roles',
     'services.func.i3': 'Smaller databases',
     'services.func.i4': 'Custom APIs',
@@ -159,7 +161,7 @@ const I18N = (function () {
     'support.srv.title': 'Server maintenance',
     'support.srv.i1': 'Basic Linux server maintenance',
     'support.srv.i2': 'Applying updates',
-    'support.srv.i3': 'Deployment support',
+    'support.srv.i3': 'Setting up hosting, supporting deployment',
     'support.srv.i4': 'Service checks, backups, basic monitoring',
     'support.srv.i5': 'Smaller Docker environments',
     'support.srv.note':
@@ -301,8 +303,7 @@ const I18N = (function () {
 
     /* --- Footer -------------------------------------------------------- */
     'footer.desc':
-      'Websites, custom web functionality and ongoing technical support for ' +
-      'small and mid-sized clients.',
+      'Websites, digital systems and ongoing support for small businesses.',
     'footer.navTitle': 'Navigation',
     'footer.contactTitle': 'Contact',
     'footer.legalTitle': 'Legal',
@@ -313,7 +314,7 @@ const I18N = (function () {
     'legal.back': 'Back to the homepage',
 
     'imprint.title': 'Imprint',
-    'imprint.meta': 'Imprint',
+    'imprint.meta': 'Imprint — Saveroq Studio',
     'imprint.intro':
       'Legal information as required by section 5 of the German Digital ' +
       'Services Act (DDG).',
@@ -345,7 +346,7 @@ const I18N = (function () {
       'resolution proceedings before a consumer arbitration board.',
 
     'privacy.title': 'Privacy notice',
-    'privacy.meta': 'Privacy notice',
+    'privacy.meta': 'Privacy notice — Saveroq Studio',
     'privacy.intro': 'How personal data is handled on this website.',
     'privacy.todo':
       'The controller is filled in. Still open are the contact form details, ' +

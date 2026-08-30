@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   sitemap.xml
-  TODO vor dem Launch:
-    1. Die Platzhalter-Domain durch die echte Domain ersetzen.
-    2. <lastmod> auf das Datum der letzten inhaltlichen Änderung setzen.
-    3. Neue Unterseiten hier ergänzen.
-  Die Rechtsseiten stehen bewusst nicht in der Sitemap (noindex).
+  Die Datei ist aktuell, wird aber bewusst NICHT in robots.txt beworben
+  und nicht in der Search Console eingereicht, solange die Seite auf
+  noindex steht. Siehe robots.txt.
+
+  Bei Aenderungen: <lastmod> nachziehen, neue Unterseiten ergaenzen.
+  Die Rechtsseiten stehen bewusst nicht drin (noindex).
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://relis-lol.github.io/web-services/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <loc>https://studio.saveroq.com/</loc>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

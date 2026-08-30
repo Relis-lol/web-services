@@ -1,6 +1,14 @@
-# Website — Websites & digitale Lösungen
+# Saveroq Studio — Website
 
-Statische Website für einen kleinen Web-/Digital-Service. Kein Build-System,
+Statische Website für **Saveroq Studio**, den Dienstleistungsbereich neben
+der Saveroq-Plattform. Öffentliche Adresse: `https://studio.saveroq.com`.
+
+> **Getrennt von saveroq.com.** Die Hauptplattform bleibt unangetastet: keine
+> gemeinsame Navigation, keine Weiterleitung, keine gegenseitige Verlinkung,
+> kein Eintrag in der Saveroq-Sitemap, keine Änderung an deren SEO-Daten.
+> Dieses Repository enthält ausschließlich die Studio-Seite.
+
+Aufbau: Kein Build-System,
 keine Frameworks, keine externen Abhängigkeiten: reines HTML5, CSS und
 Vanilla JavaScript. Läuft direkt auf GitHub Pages und lässt sich später ohne
 Umbau auf eine eigene Domain umziehen.
@@ -52,6 +60,7 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 │   ├── images/           og-image.png (Social-Vorschaubild)
 │   ├── projects/         Projekt-Screenshots
 │   └── icons/            favicon.svg, apple-touch-icon.png
+├── CNAME                 Custom Domain für GitHub Pages
 ├── scripts/
 │   └── domain-setzen.py  stellt alle Adressen auf einmal um
 ├── LAUNCH.md             >> Anleitung fürs Schalten <<
@@ -110,7 +119,7 @@ git push origin main && git push backup main
 Zum Schalten im Repository `web-services`: **Settings → Pages → Build and
 deployment → Source: „Deploy from a branch"**, Branch `main`, Ordner
 `/ (root)`, speichern. Nach ein bis zwei Minuten läuft die Seite unter
-`https://relis-lol.github.io/web-services/` — die URLs im Projekt zeigen
+`https://studio.saveroq.com/` — die URLs im Projekt zeigen
 bereits dorthin.
 
 > **Achtung:** Wird ein Repository, das über GitHub Pages läuft, nachträglich
