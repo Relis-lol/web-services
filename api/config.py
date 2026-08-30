@@ -42,15 +42,20 @@ class Settings:
     MAX_BODY_BYTES = _int("MAX_BODY_BYTES", 16 * 1024)
     SUBJECT = _str("CONTACT_SUBJECT", "Neue Anfrage – Saveroq Studio")
 
-    @classmethod
-    def smtp_configured(cls) -> bool:
+    def smtp_configured(self) -> bool:
         """Ohne diese vier Angaben kann nicht zugestellt werden.
 
         Benutzername und Passwort sind bewusst nicht Pflicht: Manche
         Relays im eigenen Netz nehmen ohne Anmeldung an.
+
+        Bewusst KEINE classmethod. Als solche laese sie die Attribute der
+        Klasse, waehrend der Rest der Anwendung ueber die Instanz
+        `settings` geht. Wer die Instanz veraendert — Tests tun genau
+        das — bliebe hier wirkungslos, und die Pruefung antwortete anders
+        als der Rest des Programms.
         """
-        return bool(cls.SMTP_HOST and cls.SMTP_PORT
-                    and cls.SMTP_FROM and cls.CONTACT_TO)
+        return bool(self.SMTP_HOST and self.SMTP_PORT
+                    and self.SMTP_FROM and self.CONTACT_TO)
 
 
 settings = Settings()
