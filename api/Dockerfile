@@ -15,7 +15,10 @@ WORKDIR /app
 COPY api/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY api/config.py api/validation.py api/mailer.py api/app.py ./
+# Alle Module einzeln aufgefuehrt statt `COPY api/ ./`: So landen Tests und
+# Hilfsdateien nicht im Produktionsabbild. Preis dafuer ist, dass eine neue
+# Datei hier ergaenzt werden muss — sonst faellt sie erst beim Start auf.
+COPY api/config.py api/validation.py api/ratelimit.py api/mailer.py api/app.py ./
 
 USER 10001
 EXPOSE 8000
