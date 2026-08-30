@@ -75,7 +75,9 @@ def test_fehlender_name(client, gesendet):
 
 
 def test_ungueltige_email(client, gesendet):
-    for schlecht in ["keine-mail", "a@b", "a b@c.de", "a@@b.de", ""]:
+    ungueltig = ["keine-mail", "a@b", "a b@c.de", "a@@b.de", "",
+                 "a\\b@c.de", "a`b@c.de", "a|b@c.de"]
+    for schlecht in ungueltig:
         app_modul.limiter.reset()
         r = client.post("/api/contact", json={**GUELTIG, "email": schlecht})
         assert r.status_code == 400, schlecht

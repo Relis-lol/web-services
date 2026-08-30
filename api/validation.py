@@ -25,11 +25,21 @@ TOPICS = {
 }
 BUDGETS = {"offen", "klein", "mittel", "gross"}
 
-# Absichtlich streng und ohne Bibliothek: ein Zeichen vor dem @, ein Punkt
+# Absichtlich streng und ohne Bibliothek: etwas vor dem @, ein Punkt
 # danach, keine Leerzeichen. Deckt echte Adressen ab und schliesst alles
 # aus, was in einem Mailheader Unfug anrichten koennte.
-EMAIL_RE = re.compile(r"^[^\s@,;:<>\"'\]+@[^\s@,;:<>\"'\]+\.[A-Za-z]{2,}$")
+#
+# Der Backslash steht bewusst NICHT in der Zeichenklasse, sondern wird
+# getrennt geprueft. Ein maskierter Backslash unmittelbar vor der
+# schliessenden Klammer ist eine bekannte Fehlerquelle: Geht die
+# Maskierung verloren, endet die Klasse an der falschen Stelle und der
+# Ausdruck bedeutet lautlos etwas voellig anderes, ohne dass das
+# Kompilieren fehlschlaegt.
+EMAIL_RE = re.compile(r"^[^\s@,;:<>\"']+@[^\s@,;:<>\"']+\.[A-Za-z]{2,}$")
 URL_RE = re.compile(r"^https?://[^\s<>\"']+$", re.IGNORECASE)
+
+# Zeichen, die in keinem Feld etwas zu suchen haben.
+VERBOTENE_ZEICHEN = ("\\", "`", "|")
 
 # Steuerzeichen einschliesslich CR und LF. Sie sind der Hebel fuer
 # Header-Injection und haben in keinem der Felder etwas zu suchen.
@@ -55,6 +65,10 @@ def _text(raw, key, *, required, minimum=0, allow_newlines=False):
         return None, "enthaelt unzulaessige Zeichen"
     if not allow_newlines and NEWLINE_RE.search(value):
         return None, "enthaelt unzulaessige Zeilenumbrueche"
+    # Nur in Kurzfeldern. In der Nachricht selbst sind diese Zeichen
+    # harmlos, weil sie ausschliesslich im Mailtext landen.
+    if not allow_newlines and any(z in value for z in VERBOTENE_ZEICHEN):
+        return None, "enthaelt unzulaessige Zeichen"
 
     if not value:
         return ("", None) if not required else (None, "ist erforderlich")
