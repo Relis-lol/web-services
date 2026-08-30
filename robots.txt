@@ -1,8 +1,7 @@
 # robots.txt
-# TODO: Vor dem Launch durch die echte Domain ersetzen
-#       (auch in sitemap.xml und in den canonical-Links der drei HTML-Dateien).
-#       Die aktuelle Adresse zeigt auf das Backup-Repository und ist NICHT
-#       der spaetere Hosting-Ort.
+# Die Adresse unten zeigt auf die GitHub-Pages-Adresse dieses Repositories
+# und ist startklar. Nur bei einer eigenen Domain umstellen -- dafuer gibt es
+# scripts/domain-setzen.py, das alle betroffenen Dateien auf einmal aendert.
 
 User-agent: *
 Allow: /
