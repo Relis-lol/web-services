@@ -265,9 +265,6 @@ const I18N = (function () {
     'contact.text':
       'A few bullet points are enough to start. We will come back with ' +
       'questions or a first assessment.',
-    'contact.demo':
-      'Demo mode: no submission endpoint has been configured yet. The form ' +
-      'validates your input but does not send anything.',
 
     /* --- Formular ------------------------------------------------------ */
     'form.name': 'Name',
@@ -368,12 +365,32 @@ const I18N = (function () {
       'this has to be clarified before commercial use.',
     'privacy.h4': 'Contact form',
     'privacy.contactText':
-      'Details entered into the contact form are used solely to handle the ' +
-      'enquiry. The legal basis is Art. 6(1)(b) GDPR for pre-contractual ' +
-      'steps, otherwise Art. 6(1)(f) GDPR.',
-    'privacy.contactState':
-      'No submission endpoint is set up at present. The form validates your ' +
-      'input but transmits nothing and stores nothing.',
+      'The contact form processes the following details: name, email ' +
+      'address, the selected topic, your message and — if you fill them in — ' +
+      'company, existing website and budget range. The chosen language ' +
+      'version is transmitted as well.',
+    'privacy.contactPurpose':
+      'The sole purpose is handling and answering your enquiry. The details ' +
+      'are not used for advertising and not passed to third parties for ' +
+      'advertising purposes. The legal basis is Art. 6(1)(b) GDPR for ' +
+      'pre-contractual steps, otherwise Art. 6(1)(f) GDPR.',
+    'privacy.contactTransport':
+      'Transmission is encrypted via HTTPS. The details are validated on our ' +
+      'server and then delivered to our mailbox by email over an encrypted ' +
+      'SMTP connection. They are not stored permanently in a database.',
+    'privacy.contactIp':
+      'To protect against automated bulk requests, your IP address is held ' +
+      'briefly in memory to limit the number of requests. It is not logged ' +
+      'in clear text, only in a shortened form that cannot be traced back. ' +
+      'The value is discarded once the time window has passed.',
+    'privacy.contactRetention':
+      'Your enquiry stays in our mailbox until it has been dealt with and no ' +
+      'statutory retention obligations remain. It is then deleted.',
+    'privacy.contactTodo':
+      'A concrete retention period is deliberately not stated here. It ' +
+      'depends on whether the enquiry becomes a business transaction and ' +
+      'commercial or tax retention obligations therefore apply. This has to ' +
+      'be decided and entered before commercial operation.',
     'privacy.h5': 'Cookies and local storage',
     'privacy.storageText':
       'This website sets no tracking or advertising cookies. Your chosen ' +
@@ -431,7 +448,10 @@ const I18N = (function () {
       statusSending:      'Wird gesendet …',
       statusOk:           'Vielen Dank. Ihre Anfrage ist eingegangen – wir melden uns.',
       statusFail:         'Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.',
-      statusDemo:         'Eingaben sind vollständig. Es wurde nichts gesendet (Demo-Modus, kein Endpunkt konfiguriert).',
+      statusRateLimited:  'Es wurden zu viele Anfragen in kurzer Zeit gesendet. Bitte versuchen Sie es in einigen Minuten erneut.',
+      statusUnavailable:  'Der Versand ist derzeit nicht möglich. Bitte schreiben Sie uns in der Zwischenzeit direkt per E-Mail.',
+      statusNetwork:      'Die Verbindung ist unterbrochen. Ihre Eingaben bleiben erhalten — bitte erneut senden.',
+      errServerField:     'Bitte prüfen Sie diese Angabe.',
       sending:            'Senden …'
     },
     en: {
@@ -460,7 +480,10 @@ const I18N = (function () {
       statusSending:      'Sending …',
       statusOk:           'Thank you. Your enquiry has arrived — we will be in touch.',
       statusFail:         'That did not work. Please try again later.',
-      statusDemo:         'Your input is complete. Nothing was sent (demo mode, no endpoint configured).',
+      statusRateLimited:  'Too many requests in a short time. Please try again in a few minutes.',
+      statusUnavailable:  'Sending is not possible right now. Please email us directly in the meantime.',
+      statusNetwork:      'The connection dropped. Your input has been kept — please send again.',
+      errServerField:     'Please check this entry.',
       sending:            'Sending …'
     }
   };

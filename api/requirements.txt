@@ -1,0 +1,6 @@
+# Bewusst minimal. Die Aufgabe ist ein einzelner Endpunkt — jede weitere
+# Abhaengigkeit waere Wartungslast ohne Gegenwert.
+# E-Mail-Pruefung und Ratenbegrenzung sind selbst implementiert, damit
+# keine Bibliothek dafuer gepflegt werden muss.
+fastapi==0.115.6
+uvicorn[standard]==0.34.0

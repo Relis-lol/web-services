@@ -1,0 +1,8 @@
+# Testabbild. Getrennt vom Produktionsabbild, damit pytest & Co. nicht in
+# der laufenden Anwendung landen.
+FROM python:3.12-alpine
+WORKDIR /app
+COPY api/requirements.txt api/requirements-test.txt ./
+RUN pip install --no-cache-dir -r requirements-test.txt
+COPY api/ ./
+CMD ["python", "-m", "pytest", "-q", "tests/"]

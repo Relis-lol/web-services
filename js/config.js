@@ -50,22 +50,20 @@ const SITE_CONFIG = {
   /* ----------------------------------------------------------------------
      2. Kontaktformular
      ----------------------------------------------------------------------
+     Der Endpunkt liegt auf derselben Adresse wie die Seite. nginx reicht
+     ihn an einen internen Container weiter, der die Anfrage prueft und
+     per SMTP zustellt.
+
      WICHTIG — SICHERHEIT:
-     Hier gehoert AUSSCHLIESSLICH eine oeffentliche Endpunkt-URL hinein.
-     NIEMALS API-Keys, SMTP-Zugangsdaten, Tokens oder Passwoerter.
-     Alles in diesem Repository ist oeffentlich lesbar.
+     Hier steht nur ein Pfad, niemals Zugangsdaten. SMTP-Benutzer,
+     Passwort und Zieladresse liegen ausschliesslich in deploy/.env auf
+     dem Server und sind fuer den Browser unerreichbar.
 
-     Solange CONTACT_FORM_ENDPOINT `null` ist, laeuft das Formular im
-     DEMO-MODUS: Es validiert die Eingaben, versendet aber nichts und
-     weist den Besucher sichtbar darauf hin.
-
-     Geeignete Endpunkte (Secrets liegen dort serverseitig):
-       - Cloudflare Worker  (siehe README, Abschnitt "Kontaktformular aktivieren")
-       - eigene Serverless Function (Netlify / Vercel / AWS Lambda)
-       - eigenes Backend
-       - seriöser Formular-Anbieter
+     Eine absolute URL waere hier moeglich, aber unnoetig: Ein relativer
+     Pfad bleibt bei einem Domainwechsel richtig und kommt ohne
+     Erweiterung der CSP aus (connect-src 'self' deckt ihn ab).
      ---------------------------------------------------------------------- */
-  CONTACT_FORM_ENDPOINT: null, // Beispiel: 'https://forms.example.workers.dev/submit'
+  CONTACT_FORM_ENDPOINT: '/api/contact',
 
   /* ----------------------------------------------------------------------
      3. Social Links

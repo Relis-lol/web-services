@@ -427,13 +427,24 @@
     // Das Kontaktformular versendet tatsächlich
     endpunkt: function () {
       return isFilled(cfg.CONTACT_FORM_ENDPOINT);
+    },
+    // Die Löschfrist für Kontaktanfragen ist eine Betreiberentscheidung und
+    // lässt sich nicht aus der Konfiguration ableiten. Der Hinweiskasten
+    // bleibt deshalb stehen, bis er von Hand aus datenschutz.html entfernt
+    // wird — zusammen mit der dann eingetragenen Frist.
+    loeschfrist: function () {
+      return false;
     }
   };
 
   function erfuellt(bedingungen) {
     return String(bedingungen || 'firma').split(/\s+/).every(function (name) {
       const pruefung = LAUNCH_BEDINGUNGEN[name];
-      return pruefung ? pruefung() : true;
+      // Unbekannte Bedingung gilt als NICHT erfüllt. Andersherum würde ein
+      // Tippfehler im HTML einen noch gültigen Warnhinweis stillschweigend
+      // verschwinden lassen — genau das Gegenteil dessen, was ein
+      // Hinweiskasten leisten soll.
+      return pruefung ? pruefung() : false;
     });
   }
 
@@ -623,24 +634,19 @@
 
     const status = doc.getElementById('form-status');
     const submit = doc.getElementById('form-submit');
-    const notice = doc.getElementById('form-demo-notice');
+    const honeypot = doc.getElementById('website-url');
     const limits = cfg.FORM_LIMITS || {};
-    const endpointSet = isFilled(cfg.CONTACT_FORM_ENDPOINT);
+    const endpoint = isFilled(cfg.CONTACT_FORM_ENDPOINT)
+      ? cfg.CONTACT_FORM_ENDPOINT : null;
 
-    /* --------------------------------------------------------------
-       ENTWICKLERHINWEIS
-       Ohne konfigurierten Endpunkt wird bewusst NICHTS versendet.
-       Ein Versand direkt aus dem Browser über SMTP oder mit einem
-       API-Schlüssel im Frontend wäre unsicher: alles in diesem
-       Repository ist öffentlich lesbar.
-       Endpunkt in js/config.js unter CONTACT_FORM_ENDPOINT eintragen.
-       -------------------------------------------------------------- */
-    if (!endpointSet) {
-      if (notice) notice.hidden = false;
+    // Der Endpunkt gehoert zur Seite selbst. Fehlt er, ist das ein
+    // Konfigurationsfehler — dann wird beim Absenden ein ehrlicher Fehler
+    // gezeigt und nichts vorgetaeuscht.
+    if (!endpoint) {
       // eslint-disable-next-line no-console
-      console.info(
-        '[Kontaktformular] Demo-Modus aktiv: CONTACT_FORM_ENDPOINT ist in ' +
-        'js/config.js nicht gesetzt. Es werden keine Daten versendet.'
+      console.error(
+        '[Kontaktformular] CONTACT_FORM_ENDPOINT ist in js/config.js nicht ' +
+        'gesetzt. Das Formular kann nichts versenden.'
       );
     }
 
@@ -774,19 +780,9 @@
         return;
       }
 
-      // Honeypot: ausgefüllt = mit hoher Wahrscheinlichkeit ein Bot.
-      // Wir brechen still ab und geben dieselbe neutrale Rückmeldung.
-      const honeypot = doc.getElementById('website-url');
-      if (honeypot && honeypot.value !== '') {
-        setStatus(t('statusOk'), 'ok');
-        form.reset();
-        return;
-      }
-
-      if (!endpointSet) {
-        setStatus(t('statusDemo'), 'ok');
-        return;
-      }
+      // Der Honeypot wird NICHT mehr im Browser ausgewertet, sondern
+      // mitgeschickt und serverseitig geprueft. Ein Bot soll nicht am
+      // Verhalten der Seite ablesen koennen, dass er aufgefallen ist.
 
       const payload = {
         name: fields.name.value.trim(),
@@ -796,27 +792,71 @@
         existing_website: fields.website ? fields.website.value.trim() : '',
         budget: (doc.getElementById('f-budget') || {}).value || '',
         message: fields.message.value.trim(),
-        lang: typeof I18N !== 'undefined' ? I18N.lang : 'de'
+        lang: typeof I18N !== 'undefined' ? I18N.lang : 'de',
+        // Wird mitgeschickt, damit der Server die Falle auswerten kann.
+        // Fuer Menschen ist das Feld unsichtbar und bleibt leer.
+        website_url: honeypot ? honeypot.value : ''
       };
 
       const originalLabel = submit ? submit.textContent : '';
       if (submit) { submit.disabled = true; submit.textContent = t('sending'); }
       setStatus(t('statusSending'), null);
 
-      fetch(cfg.CONTACT_FORM_ENDPOINT, {
+      if (!endpoint) {
+        setStatus(t('statusUnavailable'), 'error');
+        if (submit) { submit.disabled = false; submit.textContent = originalLabel; }
+        return;
+      }
+
+      fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       })
         .then(function (response) {
-          if (!response.ok) throw new Error('HTTP ' + response.status);
-          setStatus(t('statusOk'), 'ok');
-          form.reset();
-          if (counter) counter.textContent = '0 / ' + (limits.message || 2000);
+          // Auch Fehlerantworten sind JSON. Faellt das Auslesen aus,
+          // zaehlt allein der Status.
+          return response.json()
+            .catch(function () { return {}; })
+            .then(function (body) { return { status: response.status, body: body }; });
+        })
+        .then(function (result) {
+          if (result.status === 200 && result.body.ok) {
+            setStatus(t('statusOk'), 'ok');
+            form.reset();
+            // Feldfehler und Zeichenzaehler mit zuruecksetzen.
+            Object.keys(fields).forEach(function (key) {
+              if (fields[key]) setError(fields[key], null);
+            });
+            if (counter) counter.textContent = '0 / ' + (limits.message || 2000);
+            return;
+          }
+
+          // Ab hier bleibt alles Eingetippte stehen — nichts geht verloren,
+          // nur weil der Server gerade nicht konnte.
+          const code = result.body.error;
+
+          if (code === 'validation_error' && result.body.fields) {
+            // Serverseitige Beanstandungen an den Feldern anzeigen.
+            let erstes = null;
+            Object.keys(result.body.fields).forEach(function (key) {
+              if (!fields[key]) return;
+              setError(fields[key], t('errServerField'));
+              if (!erstes) erstes = fields[key];
+            });
+            setStatus(t('errSummary'), 'error');
+            if (erstes) erstes.focus();
+          } else if (code === 'rate_limited') {
+            setStatus(t('statusRateLimited'), 'error');
+          } else if (code === 'mail_not_configured' || code === 'service_unavailable') {
+            setStatus(t('statusUnavailable'), 'error');
+          } else {
+            setStatus(t('statusFail'), 'error');
+          }
         })
         .catch(function () {
-          // Bewusst keine technischen Details für den Besucher.
-          setStatus(t('statusFail'), 'error');
+          // Netzwerkfehler oder abgebrochene Verbindung.
+          setStatus(t('statusNetwork'), 'error');
         })
         .then(function () {
           if (submit) { submit.disabled = false; submit.textContent = originalLabel; }

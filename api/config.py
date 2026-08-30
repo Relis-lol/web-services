@@ -1,0 +1,56 @@
+"""Konfiguration des Kontakt-Endpunkts.
+
+Alle Werte kommen aus Umgebungsvariablen. Es gibt bewusst keine
+eingebauten Zugangsdaten und keine Vorgabewerte fuer Geheimnisse.
+"""
+
+import os
+
+
+def _int(name: str, default: int) -> int:
+    try:
+        return int(os.environ.get(name, "").strip() or default)
+    except ValueError:
+        return default
+
+
+def _str(name: str, default: str = "") -> str:
+    return os.environ.get(name, "").strip() or default
+
+
+class Settings:
+    # ---- SMTP ---------------------------------------------------------
+    SMTP_HOST = _str("SMTP_HOST")
+    SMTP_PORT = _int("SMTP_PORT", 587)
+    SMTP_USERNAME = _str("SMTP_USERNAME")
+    SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")  # nicht strippen
+    SMTP_FROM = _str("SMTP_FROM")
+    # starttls (Standard, Port 587) | ssl (Port 465) | none (nur fuer Tests)
+    SMTP_SECURITY = _str("SMTP_SECURITY", "starttls").lower()
+    SMTP_TIMEOUT = _int("SMTP_TIMEOUT", 20)
+
+    # Zieladresse. Kommt ausschliesslich von hier — der Browser darf sie
+    # unter keinen Umstaenden bestimmen.
+    CONTACT_TO = _str("CONTACT_TO")
+
+    # ---- Ratenbegrenzung ----------------------------------------------
+    RATE_LIMIT_MAX = _int("RATE_LIMIT_MAX", 5)              # Anfragen
+    RATE_LIMIT_WINDOW = _int("RATE_LIMIT_WINDOW", 900)      # je Sekunden
+    RATE_LIMIT_GLOBAL_MAX = _int("RATE_LIMIT_GLOBAL_MAX", 60)
+
+    # ---- Sonstiges -----------------------------------------------------
+    MAX_BODY_BYTES = _int("MAX_BODY_BYTES", 16 * 1024)
+    SUBJECT = _str("CONTACT_SUBJECT", "Neue Anfrage – Saveroq Studio")
+
+    @classmethod
+    def smtp_configured(cls) -> bool:
+        """Ohne diese vier Angaben kann nicht zugestellt werden.
+
+        Benutzername und Passwort sind bewusst nicht Pflicht: Manche
+        Relays im eigenen Netz nehmen ohne Anmeldung an.
+        """
+        return bool(cls.SMTP_HOST and cls.SMTP_PORT
+                    and cls.SMTP_FROM and cls.CONTACT_TO)
+
+
+settings = Settings()
