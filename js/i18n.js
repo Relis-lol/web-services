@@ -315,14 +315,8 @@ const I18N = (function () {
     'imprint.intro':
       'Legal information as required by section 5 of the German Digital ' +
       'Services Act (DDG).',
-    'imprint.todo':
-      'Two details are still missing, both tied to the business registration: ' +
-      'the final trading name and the tax or VAT identification number. The ' +
-      'wording should be checked by a qualified professional before the site ' +
-      'is used commercially.',
     'imprint.h1': 'Provider',
     'imprint.h2': 'Contact',
-    'imprint.h3': 'VAT / economic identification number',
     'imprint.h5': 'Responsible for the content',
     'imprint.h6': 'Dispute resolution',
     'imprint.country': 'Germany',
@@ -330,13 +324,12 @@ const I18N = (function () {
     'imprint.form': 'Contact form:',
     'imprint.formLink': 'Send an enquiry',
     'imprint.person': 'Contact person:',
-    'imprint.vatNote':
-      'This section is only completed where a VAT identification number under ' +
-      'section 27a of the German VAT Act or an economic identification number ' +
-      'exists.',
-    'imprint.contentNote':
-      'This detail is only required where journalistic or editorial content ' +
-      'within the meaning of section 18(2) MStV is offered.',
+    'imprint.tradeName': 'Trading name:',
+    'imprint.soleTrader':
+      'Sole proprietorship. There is no managing board in the sense of a ' +
+      'limited company.',
+    'imprint.contactCustomer': 'Customer and service enquiries',
+    'imprint.contactLegal': 'Legal and formal enquiries',
     'imprint.disputeText':
       'The European Commission provides a platform for online dispute ' +
       'resolution. We are neither obliged nor willing to take part in dispute ' +
@@ -345,52 +338,46 @@ const I18N = (function () {
     'privacy.title': 'Privacy notice',
     'privacy.meta': 'Privacy notice — Saveroq Studio',
     'privacy.intro': 'How personal data is handled on this website.',
-    'privacy.todo':
-      'The controller is filled in. Still open are the contact form details, ' +
-      'which depend on the submission endpoint, and the final hosting ' +
-      'location. The whole text should be reviewed by a qualified ' +
-      'professional before the site is used commercially.',
     'privacy.h1': 'Controller',
+    'privacy.controllerContact':
+      'For data protection enquiries and to exercise your rights, please ' +
+      'contact:',
     'privacy.h2': 'Hosting',
     'privacy.hostingText':
-      'This website is served via GitHub Pages, a service of GitHub, Inc. ' +
-      '(88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). When you ' +
-      'visit, the provider processes technical connection data including your ' +
-      'IP address in order to deliver the page at all. The legal basis is the ' +
-      'legitimate interest in secure and efficient operation under Art. 6(1)(f) ' +
-      'GDPR.',
-    'privacy.hostingTodo':
-      'If hosting moves to another provider, this statement has to be replaced. ' +
-      'GitHub gives no commitment on server log retention that we can verify; ' +
-      'this has to be clarified before commercial use.',
+      'The website runs on our own server and is delivered through the ' +
+      'Cloudflare content delivery network (Cloudflare, Inc., 101 Townsend ' +
+      'St., San Francisco, CA 94107, USA). In doing so, Cloudflare processes ' +
+      'technical connection data including the IP address in order to deliver ' +
+      'the page at all and to protect it against attacks. The legal basis is ' +
+      'the legitimate interest in secure and efficient operation under ' +
+      'Art. 6(1)(f) GDPR.',
     'privacy.h4': 'Contact form',
     'privacy.contactText':
-      'The contact form processes the following details: name, email ' +
-      'address, the selected topic, your message and — if you fill them in — ' +
-      'company, existing website and budget range. The chosen language ' +
-      'version is transmitted as well.',
+      'The contact form processes: your name, your email address, the ' +
+      'selected topic and your message. Company, existing website and budget ' +
+      'range are processed in addition, insofar as you fill in these optional ' +
+      'fields. The language version you selected is also transmitted.',
     'privacy.contactPurpose':
-      'The sole purpose is handling and answering your enquiry. The details ' +
-      'are not used for advertising and not passed to third parties for ' +
-      'advertising purposes. The legal basis is Art. 6(1)(b) GDPR for ' +
+      'Processing serves solely to handle and answer your enquiry. The ' +
+      'details are not used for advertising without a corresponding legal ' +
+      'basis or consent. The legal basis is Art. 6(1)(b) GDPR for ' +
       'pre-contractual steps, otherwise Art. 6(1)(f) GDPR.',
     'privacy.contactTransport':
       'Transmission is encrypted via HTTPS. The details are validated on our ' +
-      'server and then delivered to our mailbox by email over an encrypted ' +
-      'SMTP connection. They are not stored permanently in a database.',
+      'server and then delivered over an encrypted SMTP connection to the ' +
+      'mailbox of our contact person. They are not stored permanently in a ' +
+      'database.',
     'privacy.contactIp':
       'To protect against automated bulk requests, your IP address is held ' +
-      'briefly in memory to limit the number of requests. It is not logged ' +
-      'in clear text, only in a shortened form that cannot be traced back. ' +
-      'The value is discarded once the time window has passed.',
+      'briefly in memory to limit the number of requests. It is not logged in ' +
+      'clear text, only in a shortened form that cannot be traced back. The ' +
+      'value is discarded once the time window has passed.',
     'privacy.contactRetention':
-      'Your enquiry stays in our mailbox until it has been dealt with and no ' +
-      'statutory retention obligations remain. It is then deleted.',
-    'privacy.contactTodo':
-      'A concrete retention period is deliberately not stated here. It ' +
-      'depends on whether the enquiry becomes a business transaction and ' +
-      'commercial or tax retention obligations therefore apply. This has to ' +
-      'be decided and entered before commercial operation.',
+      'Your enquiry is deleted as soon as storing it is no longer necessary ' +
+      'to deal with it. This does not apply where statutory retention ' +
+      'obligations exist, or where a business relationship has arisen from ' +
+      'the enquiry for which further storage remains necessary.',
+
     'privacy.h5': 'Cookies and local storage',
     'privacy.storageText':
       'This website sets no tracking or advertising cookies. Your chosen ' +
@@ -430,7 +417,10 @@ const I18N = (function () {
       projectOpensNew:    'öffnet in neuem Tab',
       labelEmail:         'E-Mail',
       labelPerson:        'Ansprechpartnerin',
+      labelLegal:         'Rechtliches & Datenschutz',
+      vatHeading:         'Umsatzsteuer- / Wirtschafts-Identifikationsnummer',
       vatLabel:           'Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:',
+      economicIdLabel:    'Wirtschafts-Identifikationsnummer:',
       labelPhone:         'Telefon',
       labelLocation:      'Standort',
       contactViaForm:     'Am schnellsten über das Formular',
@@ -462,7 +452,10 @@ const I18N = (function () {
       projectOpensNew:    'opens in a new tab',
       labelEmail:         'Email',
       labelPerson:        'Contact person',
+      labelLegal:         'Legal & data protection',
+      vatHeading:         'VAT / economic identification number',
       vatLabel:           'VAT identification number under section 27a of the German VAT Act:',
+      economicIdLabel:    'Economic identification number:',
       labelPhone:         'Phone',
       labelLocation:      'Location',
       contactViaForm:     'The form is the quickest way to reach us',

@@ -367,9 +367,8 @@
 
       if (isFilled(cfg.BUSINESS_EMAIL)) {
         list.appendChild(
-          isFooter
-            ? contactItem('', cfg.BUSINESS_EMAIL, 'mailto:' + cfg.BUSINESS_EMAIL)
-            : contactItem(t('labelEmail'), cfg.BUSINESS_EMAIL, 'mailto:' + cfg.BUSINESS_EMAIL)
+          contactItem(isFooter ? '' : t('labelEmail'),
+                      cfg.BUSINESS_EMAIL, 'mailto:' + cfg.BUSINESS_EMAIL)
         );
       } else {
         // Keine erfundene Adresse anzeigen — stattdessen aufs Formular verweisen.
@@ -380,12 +379,24 @@
         list.appendChild(li);
       }
 
-      // Ansprechpartnerin, Telefon und Standort: nur wenn konfiguriert.
+      // Ansprechpartnerin für Kundenanfragen.
       if (isFilled(cfg.BUSINESS_CONTACT_PERSON)) {
         list.appendChild(
-          contactItem(isFooter ? '' : t('labelPerson'), cfg.BUSINESS_CONTACT_PERSON, null)
+          contactItem(isFooter ? '' : t('labelPerson'),
+                      cfg.BUSINESS_CONTACT_PERSON, null)
         );
       }
+
+      // Rechtliche und datenschutzbezogene Anfragen gehen an den Betreiber.
+      // Bewusst getrennt ausgewiesen: Wer eine Auskunft nach Art. 15 DSGVO
+      // verlangt, soll nicht im Anfragepostfach landen.
+      if (isFilled(cfg.BUSINESS_LEGAL_EMAIL)) {
+        list.appendChild(
+          contactItem(isFooter ? '' : t('labelLegal'),
+                      cfg.BUSINESS_LEGAL_EMAIL, 'mailto:' + cfg.BUSINESS_LEGAL_EMAIL)
+        );
+      }
+
       if (isFilled(cfg.BUSINESS_PHONE)) {
         const tel = 'tel:' + cfg.BUSINESS_PHONE.replace(/[^\d+]/g, '');
         list.appendChild(
@@ -401,80 +412,53 @@
   }
 
   /* ======================================================================
-     6b. STARTKLAR-ZUSTAND DER RECHTSSEITEN
+     6b. IMPRESSUMSANGABEN AUS DER KONFIGURATION
      ----------------------------------------------------------------------
-     Die Seite gilt als startklar, sobald in js/config.js beide
-     Launch-Felder ausgefüllt sind:
+     Zwei Dinge werden hier erzeugt:
 
-       1. BUSINESS_NAME
-       2. BUSINESS_VAT_ID  ODER  BUSINESS_TAX_NOTE
+     1. Die Geschäftsbezeichnung im Impressum.
+     2. Der Abschnitt zur Umsatzsteuer- bzw.
+        Wirtschafts-Identifikationsnummer — aber NUR, wenn eine solche
+        Nummer konfiguriert ist.
 
-     Bis dahin bleiben die gelben Hinweiskästen und die eckigen
-     Platzhalter sichtbar. Danach verschwinden sie von selbst — es muss
-     also kein HTML angefasst werden, um die Seite zu veröffentlichen.
+     Zu Punkt 2: Nach § 5 DDG ist die Nummer nur anzugeben, sofern sie
+     vorhanden ist. Liegt keine vor, ist gar kein Abschnitt richtig —
+     ein Platzhalter oder eine leere Überschrift wäre schlechter als
+     nichts. Deshalb steht im HTML nur ein leerer Platz, der ungenutzt
+     bleibt, solange nichts konfiguriert ist.
      ====================================================================== */
 
-  /* Ein Hinweiskasten im HTML nennt seine Bedingungen selbst, z. B.
-     data-todo-until-ready="firma endpunkt". Er verschwindet erst, wenn
-     ALLE genannten Bedingungen erfüllt sind. Dadurch kann kein Kasten
-     versehentlich verschwinden, dessen Warnung noch gilt. */
-  const LAUNCH_BEDINGUNGEN = {
-    // Geschäftsbezeichnung und steuerliche Angabe stehen fest
-    firma: function () {
-      return isFilled(cfg.BUSINESS_NAME) &&
-             (isFilled(cfg.BUSINESS_VAT_ID) || isFilled(cfg.BUSINESS_TAX_NOTE));
-    },
-    // Das Kontaktformular versendet tatsächlich
-    endpunkt: function () {
-      return isFilled(cfg.CONTACT_FORM_ENDPOINT);
-    },
-    // Die Löschfrist für Kontaktanfragen ist eine Betreiberentscheidung und
-    // lässt sich nicht aus der Konfiguration ableiten. Der Hinweiskasten
-    // bleibt deshalb stehen, bis er von Hand aus datenschutz.html entfernt
-    // wird — zusammen mit der dann eingetragenen Frist.
-    loeschfrist: function () {
-      return false;
-    }
-  };
-
-  function erfuellt(bedingungen) {
-    return String(bedingungen || 'firma').split(/\s+/).every(function (name) {
-      const pruefung = LAUNCH_BEDINGUNGEN[name];
-      // Unbekannte Bedingung gilt als NICHT erfüllt. Andersherum würde ein
-      // Tippfehler im HTML einen noch gültigen Warnhinweis stillschweigend
-      // verschwinden lassen — genau das Gegenteil dessen, was ein
-      // Hinweiskasten leisten soll.
-      return pruefung ? pruefung() : false;
-    });
-  }
-
-  function applyLaunchState() {
+  function applyLegalData() {
     const t = typeof I18N !== 'undefined' ? I18N.t.bind(I18N) : function (k) { return k; };
 
-    // Geschäftsbezeichnung im Impressum
-    const legalName = doc.querySelector('[data-site="legalname"]');
-    if (legalName && isFilled(cfg.BUSINESS_NAME)) {
-      legalName.textContent = cfg.BUSINESS_NAME;
-      legalName.classList.remove('placeholder-value');
+    if (isFilled(cfg.BUSINESS_NAME)) {
+      doc.querySelectorAll('[data-site="legalname"]').forEach(function (node) {
+        node.textContent = cfg.BUSINESS_NAME;
+      });
     }
 
-    // Steuerliche Angabe im Impressum
-    const vat = doc.getElementById('vat-line');
-    if (vat) {
-      if (isFilled(cfg.BUSINESS_VAT_ID)) {
-        vat.textContent = '';
-        vat.appendChild(el('span', null, t('vatLabel') + ' '));
-        vat.appendChild(el('strong', null, cfg.BUSINESS_VAT_ID));
-      } else if (isFilled(cfg.BUSINESS_TAX_NOTE)) {
-        vat.textContent = cfg.BUSINESS_TAX_NOTE;
-      }
-      // Ohne beides bleibt der Platzhalter aus dem HTML stehen.
-    }
+    const slot = doc.getElementById('vat-slot');
+    if (!slot) return;
 
-    // Jeden Hinweiskasten einzeln gegen SEINE Bedingungen prüfen.
-    doc.querySelectorAll('[data-todo-until-ready]').forEach(function (box) {
-      if (erfuellt(box.getAttribute('data-todo-until-ready'))) box.remove();
+    slot.textContent = '';
+    const eintraege = [];
+    if (isFilled(cfg.BUSINESS_VAT_ID)) {
+      eintraege.push([t('vatLabel'), cfg.BUSINESS_VAT_ID]);
+    }
+    if (isFilled(cfg.BUSINESS_ECONOMIC_ID)) {
+      eintraege.push([t('economicIdLabel'), cfg.BUSINESS_ECONOMIC_ID]);
+    }
+    if (!eintraege.length) return;   // nichts konfiguriert -> nichts anzeigen
+
+    slot.appendChild(el('h2', null, t('vatHeading')));
+    const liste = el('ul');
+    eintraege.forEach(function (paar) {
+      const li = el('li');
+      li.appendChild(el('span', null, paar[0] + ' '));
+      li.appendChild(el('strong', null, paar[1]));
+      liste.appendChild(li);
     });
+    slot.appendChild(liste);
   }
 
   /* ======================================================================
@@ -872,7 +856,7 @@
     initTheme();
     initLanguage();      // muss vor dem Rendern laufen (Sprache steht dann fest)
     applyBusinessData();
-    applyLaunchState();
+    applyLegalData();
     renderContactDetails();
     renderSocial();
     renderProjects();
@@ -888,7 +872,7 @@
     doc.addEventListener('langchange', function () {
       renderContactDetails();
       renderProjects();
-      applyLaunchState();
+      applyLegalData();
     });
   }
 

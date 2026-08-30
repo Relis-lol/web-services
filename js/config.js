@@ -13,20 +13,29 @@ const SITE_CONFIG = {
      1. Firmendaten
      ---------------------------------------------------------------------- */
 
-  /* >>> LAUNCH-FELD 1 — erledigt <<<
-     Geschäftsbezeichnung. Erscheint in Kopfzeile, Fußzeile und als
-     Anbieterangabe im Impressum. Zusammen mit Launch-Feld 2 steuert der
-     Wert, ob die gelben Hinweiskästen auf den Rechtsseiten verschwinden. */
+  /* Geschäftsbezeichnung. Erscheint in Kopfzeile, Fußzeile und als
+     Anbieterangabe im Impressum. */
   BUSINESS_NAME: 'Saveroq Studio',
 
   // Kurzform fürs Logo (2–3 Zeichen). Wird im Logo-Quadrat angezeigt.
   BUSINESS_INITIALS: 'SQ',
 
+  /* Kundenkontakt. Diese Adresse steht im Kontaktbereich, in der Fusszeile
+     und ist das Ziel des Kontaktformulars. */
   BUSINESS_EMAIL: 'girly.va18@gmail.com',
 
-  // Ansprechpartnerin — wird im Kontaktbereich mit ausgewiesen.
-  // Leer lassen oder auf `null` setzen, wenn sie nicht erscheinen soll.
+  /* Ansprechpartnerin fuer Kundenanfragen, Angebote, Termine und die
+     virtuelle Assistenz. */
   BUSINESS_CONTACT_PERSON: 'Girly Boldt',
+
+  /* Betreiber im Sinne des Impressums. Einzelunternehmen — bewusst keine
+     Bezeichnung als Geschaeftsfuehrung. */
+  BUSINESS_OWNER: 'Björn Boldt',
+
+  /* Rechtliche, formelle und datenschutzbezogene Anfragen gehen an den
+     Betreiber, nicht an den Kundenkontakt. Bewusst getrennt: Eine
+     Auskunft nach Art. 15 DSGVO gehoert nicht ins Anfragepostfach. */
+  BUSINESS_LEGAL_EMAIL: 'relislol@yahoo.com',
 
   // Telefonnummer wird nur angezeigt, wenn sie hier gesetzt ist.
   BUSINESS_PHONE: null, // Beispiel: '+49 123 4567890'
@@ -34,18 +43,19 @@ const SITE_CONFIG = {
   // Standort (frei formuliert).
   BUSINESS_LOCATION: 'Nürnberg, Deutschland',
 
-  /* >>> LAUNCH-FELD 2 <<<
-     Steuerliche Angabe fürs Impressum. GENAU EINES von beiden ausfüllen:
+  /* ----------------------------------------------------------------------
+     Steuerliche Kennungen — optional
+     ----------------------------------------------------------------------
+     Nach § 5 DDG anzugeben ist eine Umsatzsteuer-Identifikationsnummer
+     oder eine Wirtschafts-Identifikationsnummer, SOFERN VORHANDEN. Eine
+     gewoehnliche Steuernummer gehoert ausdruecklich nicht auf die Seite.
 
-       BUSINESS_VAT_ID    Umsatzsteuer-Identifikationsnummer nach § 27a UStG
-       BUSINESS_TAX_NOTE  Freitext, wenn keine USt-IdNr. vorliegt
-                          (Standardfall bei der Kleinunternehmerregelung)
-
-     Beispiel Kleinunternehmer:
-       BUSINESS_TAX_NOTE: 'Als Kleinunternehmer im Sinne von § 19 UStG ' +
-                          'wird keine Umsatzsteuer berechnet.' */
-  BUSINESS_VAT_ID: null,     // z. B. 'DE123456789'
-  BUSINESS_TAX_NOTE: null,   // Freitext statt USt-IdNr.
+     Solange beide Felder `null` sind, erscheint im Impressum GAR KEIN
+     Abschnitt dazu — kein Platzhalter, keine leere Ueberschrift. Der
+     Abschnitt wird von js/main.js erst erzeugt, wenn hier etwas steht.
+     ---------------------------------------------------------------------- */
+  BUSINESS_VAT_ID: null,        // z. B. 'DE123456789'
+  BUSINESS_ECONOMIC_ID: null,   // Wirtschafts-Identifikationsnummer
 
   /* ----------------------------------------------------------------------
      2. Kontaktformular

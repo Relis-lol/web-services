@@ -56,56 +56,57 @@
       Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG).
     </p>
 
-    <!-- ==============================================================
-         Es fehlen nur noch zwei Angaben, beide haengen an der
-         Gewerbeanmeldung. Nach dem Eintragen diesen Hinweiskasten
-         und die Klasse "placeholder-value" an den beiden Stellen
-         entfernen.
-         ============================================================== -->
-    <div class="todo-box" data-todo-until-ready="firma">
-      <p><strong>[VOR VERÖFFENTLICHUNG ERGÄNZEN]</strong></p>
-      <p data-i18n="imprint.todo">
-        Zwei Angaben fehlen noch und hängen an der Gewerbeanmeldung: die
-        endgültige Geschäftsbezeichnung und die Steuernummer beziehungsweise
-        Umsatzsteuer-Identifikationsnummer. Die Formulierungen sollten vor
-        dem gewerblichen Betrieb fachkundig geprüft werden.
-      </p>
-    </div>
-
     <h2 data-i18n="imprint.h1">Anbieter</h2>
-    <!-- Wird aus js/config.js gefüllt (BUSINESS_NAME). Solange dort `null`
-         steht, bleibt der Platzhalter samt Markierung stehen. -->
-    <p><strong class="placeholder-value" data-site="legalname">[GESCHÄFTSBEZEICHNUNG]</strong></p>
     <ul>
       <li>Björn Boldt</li>
       <li>Siemensstraße 32</li>
       <li>90459 Nürnberg</li>
       <li data-i18n="imprint.country">Deutschland</li>
     </ul>
+    <p>
+      <span data-i18n="imprint.tradeName">Geschäftsbezeichnung:</span>
+      <strong data-site="legalname">Saveroq Studio</strong>
+    </p>
+    <p class="card-note" data-i18n="imprint.soleTrader">
+      Einzelunternehmen. Es besteht keine Geschäftsführung im Sinne einer
+      Kapitalgesellschaft.
+    </p>
 
     <h2 data-i18n="imprint.h2">Kontakt</h2>
+
+    <h3 data-i18n="imprint.contactCustomer">Kunden- und Serviceanfragen</h3>
     <ul>
+      <li><span data-i18n="imprint.person">Ansprechpartnerin:</span> Girly Boldt</li>
+      <!--email_off-->
       <li>
         <span data-i18n="imprint.email">E-Mail:</span>
         <a href="mailto:girly.va18@gmail.com">girly.va18@gmail.com</a>
       </li>
+      <!--/email_off-->
       <li>
         <span data-i18n="imprint.form">Kontaktformular:</span>
         <a href="index.html#kontakt" data-i18n="imprint.formLink">Anfrage senden</a>
       </li>
-      <li>
-        <span data-i18n="imprint.person">Ansprechpartnerin:</span> Girly Boldt
-      </li>
     </ul>
 
-    <h2 data-i18n="imprint.h3">Umsatzsteuer- / Wirtschafts-Identifikationsnummer</h2>
-    <p data-i18n="imprint.vatNote">
-      Dieser Abschnitt wird nur ausgefüllt, sofern eine Umsatzsteuer-
-      Identifikationsnummer nach § 27a UStG oder eine
-      Wirtschafts-Identifikationsnummer vorliegt.
-    </p>
-    <!-- Wird aus js/config.js gefüllt (BUSINESS_VAT_ID oder BUSINESS_TAX_NOTE). -->
-    <p id="vat-line"><span class="placeholder-value">[USt-IdNr. ODER HINWEIS AUF KLEINUNTERNEHMERREGELUNG NACH § 19 UStG]</span></p>
+    <h3 data-i18n="imprint.contactLegal">Rechtliche und formelle Anfragen</h3>
+    <ul>
+      <li>Björn Boldt</li>
+      <!--email_off-->
+      <li>
+        <span data-i18n="imprint.email">E-Mail:</span>
+        <a href="mailto:relislol@yahoo.com">relislol@yahoo.com</a>
+      </li>
+      <!--/email_off-->
+    </ul>
+
+    <!-- Umsatzsteuer- oder Wirtschafts-Identifikationsnummer:
+         Bewusst NICHT im Grundgeruest. Liegt keine Nummer vor, ist nach
+         § 5 DDG auch nichts anzugeben — ein Platzhalter oder eine leere
+         Ueberschrift waere schlechter als gar kein Abschnitt. Sobald in
+         js/config.js eine Nummer eingetragen wird, fuegt js/main.js den
+         Abschnitt an dieser Stelle ein. -->
+    <div id="vat-slot"></div>
 
     <h2 data-i18n="imprint.h5">Verantwortlich für den Inhalt</h2>
     <ul>
@@ -113,10 +114,6 @@
       <li>Siemensstraße 32</li>
       <li>90459 Nürnberg</li>
     </ul>
-    <p data-i18n="imprint.contentNote">
-      Diese Angabe ist nur erforderlich, soweit journalistisch-redaktionelle
-      Inhalte im Sinne des § 18 Abs. 2 MStV angeboten werden.
-    </p>
 
     <h2 data-i18n="imprint.h6">Streitbeilegung</h2>
     <p data-i18n="imprint.disputeText">
