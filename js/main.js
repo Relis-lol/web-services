@@ -519,6 +519,17 @@
     return (lang === 'en' && isFilled(enField)) ? enField : project[field];
   }
 
+  function pickList(project, field) {
+    /* Wie pick(), aber fuer Listen.
+       isFilled() prueft auf einen nicht leeren String und liefert bei
+       einem Array immer false — deshalb blieben die Merkmale der
+       Projektkarten in der englischen Fassung deutsch. */
+    const lang = typeof I18N !== 'undefined' ? I18N.lang : 'de';
+    const enList = project[field + '_en'];
+    if (lang === 'en' && Array.isArray(enList) && enList.length) return enList;
+    return Array.isArray(project[field]) ? project[field] : [];
+  }
+
   function buildProjectCard(project) {
     const t = typeof I18N !== 'undefined' ? I18N.t.bind(I18N) : function (k) { return k; };
 
@@ -550,9 +561,10 @@
 
     body.appendChild(el('p', 'project-desc', pick(project, 'description')));
 
-    if (Array.isArray(project.tech) && project.tech.length) {
+    const merkmale = pickList(project, 'tech');
+    if (merkmale.length) {
       const tags = el('ul', 'tag-list');
-      project.tech.forEach(function (tech) { tags.appendChild(el('li', null, tech)); });
+      merkmale.forEach(function (tech) { tags.appendChild(el('li', null, tech)); });
       body.appendChild(tags);
     }
 

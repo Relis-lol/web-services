@@ -12,7 +12,11 @@
      category_en Optional: englische Kategorie.
      description Kurzbeschreibung, 1–3 Sätze.
      description_en Optional: englische Kurzbeschreibung.
-     tech        Liste von Technologien / Leistungen (Strings).
+     tech        Liste von Technologien / Leistungen (Strings), deutsch.
+     tech_en     Optional: englische Fassung derselben Liste. Fehlt sie,
+                 bleiben die deutschen Merkmale auch in der englischen
+                 Sprachfassung stehen — genau das war ein Fehler, den ein
+                 Besucher der englischen Seite sofort sieht.
      image       Pfad zum Screenshot, relativ zum Projektstamm.
      imageWidth  Natürliche Bildbreite in Pixeln  ┐ verhindert Layout-Shift
      imageHeight Natürliche Bildhöhe in Pixeln    ┘ (CLS)
@@ -47,6 +51,8 @@ const PROJECTS = [
       'Asian markets, served pre-rendered with fully compressed product imagery.',
     tech: ['Next.js', 'Vorgerendert (SSG)', 'Vier Sprachen (EN/KO/JA/ZH)',
            'WebP-Bilder', 'Cloudflare', 'Responsive'],
+    tech_en: ['Next.js', 'Pre-rendered (SSG)', 'Four languages (EN/KO/JA/ZH)',
+              'WebP images', 'Cloudflare', 'Responsive'],
     image: 'assets/projects/wivoko.webp',
     imageWidth: 1600,
     imageHeight: 1000,
@@ -79,10 +85,41 @@ const PROJECTS = [
       'what kind of list has been pasted. Eight languages, no login and no ads.',
     tech: ['Eigene API', 'Datenbank', '7,5 Mio. Datensätze pro Tag',
            'Automatischer Import', 'Acht Sprachen', 'Linux-Server'],
+    tech_en: ['Custom API', 'Database', '7.5M records per day',
+              'Automated import', 'Eight languages', 'Linux server'],
     image: 'assets/projects/eve.webp',
     imageWidth: 1120,
     imageHeight: 700,
     url: 'https://eve-tradelooper.com/',
+    detailUrl: null,
+    placeholder: false
+  },
+  {
+    id: 'alice-syndrome-archive',
+    title: 'ALICE SYNDROME Archive',
+    title_en: 'ALICE SYNDROME Archive',
+    category: 'Redaktionelles Archiv, zweisprachig',
+    category_en: 'Editorial archive, bilingual',
+    description:
+      'Fan-Archiv zu einer koreanischen Rockband — ausdrücklich inoffiziell, ' +
+      'so steht es auch auf der Seite selbst. Bündelt Mitglieder, Diskografie, ' +
+      'Zeitleiste, Termine und wöchentliche Rückblicke. Jede Meldung ist ' +
+      'datiert und mit ihrer Quelle verknüpft. Vollständig auf Koreanisch und ' +
+      'Englisch, mit einem Hintergrunddienst, der die Einträge laufend pflegt.',
+    description_en:
+      'Fan archive for a Korean rock band — explicitly unofficial, as the site ' +
+      'itself states. It brings together members, discography, timeline, dates ' +
+      'and weekly recaps. Every entry is dated and linked to its source. Fully ' +
+      'bilingual in Korean and English, with a background service keeping the ' +
+      'entries current.',
+    tech: ['Next.js', 'Koreanisch & Englisch', 'Hintergrunddienst',
+           'Datenhaltung', 'Cloudflare Tunnel', 'Docker'],
+    tech_en: ['Next.js', 'Korean & English', 'Background worker',
+              'Data storage', 'Cloudflare Tunnel', 'Docker'],
+    image: 'assets/projects/alice.webp',
+    imageWidth: 1600,
+    imageHeight: 1000,
+    url: 'https://alicesyndromearchive.com/',
     detailUrl: null,
     placeholder: false
   },
@@ -108,6 +145,8 @@ const PROJECTS = [
       'platform from project 02.',
     tech: ['Linux', 'Docker', 'Python', 'PostgreSQL',
            'Azure-Grundlagen (AZ-900)', 'Statische Auslieferung'],
+    tech_en: ['Linux', 'Docker', 'Python', 'PostgreSQL',
+              'Azure fundamentals (AZ-900)', 'Static delivery'],
     image: 'assets/projects/portfolio.webp',
     imageWidth: 1600,
     imageHeight: 1000,
