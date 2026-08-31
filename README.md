@@ -112,11 +112,28 @@ npx serve .
 Produktion läuft auf dem eigenen Server, nicht auf GitHub Pages.
 
 ```bash
+python scripts/cache-buster.py          # vor dem Commit, wenn CSS/JS geändert
+git add -A && git commit && git push origin main && git push backup main
+
 ssh relis@192.168.178.47
 cd ~/stack/saveroq-studio
 git pull
 docker compose -f deploy/compose.yml up -d --build
 ```
+
+> **`cache-buster.py` nicht vergessen.** Cloudflare überschreibt auf dieser
+> Zone den `Cache-Control`-Header des Servers und setzt für statische Dateien
+> **4 Stunden** Browser-Cache. Ohne Versionskennung sähen Besucher nach einem
+> Deploy bis zu vier Stunden lang die alte `styles.css` oder `main.js` — mit
+> neuem HTML kombiniert ergibt das kaputte Seiten.
+>
+> Das Skript hängt an jeden CSS-/JS-Verweis eine Kennung aus dem Dateiinhalt
+> (`styles.css?v=c7a659b7`). Ändert sich der Inhalt, ändert sich die URL, und
+> der Zwischenspeicher greift nicht mehr. Es ist wiederholbar: Bei
+> unveränderten Dateien passiert nichts. `--probe` zeigt nur an.
+>
+> Die Cloudflare-Einstellung selbst bleibt unangetastet — sie gilt zonenweit
+> und beträfe auch `saveroq.com`.
 
 ### Aufbau
 
