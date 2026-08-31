@@ -12,17 +12,13 @@ Sicherung. Siehe [Deployment](#deployment).
 > kein Eintrag in der Saveroq-Sitemap, keine Änderung an deren SEO-Daten.
 > Dieses Repository enthält ausschließlich die Studio-Seite.
 
-Aufbau: Kein Build-System,
-keine Frameworks, keine externen Abhängigkeiten: reines HTML5, CSS und
-Vanilla JavaScript. Läuft direkt auf GitHub Pages und lässt sich später ohne
-Umbau auf eine eigene Domain umziehen.
+Aufbau: Kein Build-System, keine Frameworks, keine externen Abhängigkeiten
+im Frontend — reines HTML5, CSS und Vanilla JavaScript. Dazu ein kleiner
+FastAPI-Dienst für das Kontaktformular (`api/`).
 
 Zweisprachig (Deutsch/Englisch) mit Browser-Spracherkennung und Umschalter,
-optionalem Dark Mode und einem Kontaktformular, das bewusst noch nichts
-versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
-
-> **Zum Livegang: [LAUNCH.md](LAUNCH.md)** — zwei Felder ausfüllen, einen
-> Schalter umlegen. Mehr ist es nicht.
+Dark Mode und einem **produktiven Kontaktformular**, das über den
+Brevo-Relay an die Ansprechpartnerin zustellt.
 
 ---
 
@@ -31,7 +27,7 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 - [Dateistruktur](#dateistruktur)
 - [Lokal starten](#lokal-starten)
 - [Deployment](#deployment)
-- [Custom Domain](#custom-domain-nur-bei-wechsel-auf-eine-eigene-domain)
+- [Andere Domain](#andere-domain)
 - [Firmeninformationen ändern](#firmeninformationen-ändern)
 - [Business-E-Mail eintragen](#business-e-mail-eintragen)
 - [Social Links ändern](#social-links-ändern)
@@ -41,8 +37,8 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 - [Fortschreitende Gestaltung](#fortschreitende-gestaltung)
 - [Kontaktformular](#kontaktformular)
 - [SEO-Daten ändern](#seo-daten-ändern)
-- [Security Header (später)](#security-header-später)
-- [Checkliste vor dem kommerziellen Launch](#checkliste-vor-dem-kommerziellen-launch)
+- [Betrieb](#betrieb)
+- [Offene Punkte](#offene-punkte)
 
 ---
 
@@ -58,21 +54,19 @@ versendet (siehe [Kontaktformular aktivieren](#kontaktformular-aktivieren)).
 ├── api/                  Kontakt-Endpunkt (FastAPI) + Tests
 ├── js/
 │   ├── config.js         >> Firmendaten, Kontakt, Social, Endpunkt <<
-│   ├── projects.js       >> Die drei Referenzprojekte <<
+│   ├── projects.js       >> Die vier Referenzprojekte <<
 │   ├── i18n.js           Englische Übersetzungen + Sprachlogik
 │   └── main.js           Verhalten (Menü, Projekte, Formular, Theme)
 ├── assets/
 │   ├── images/           og-image.png (Social-Vorschaubild)
 │   ├── projects/         Projekt-Screenshots
 │   └── icons/            favicon.svg, apple-touch-icon.png
-├── CNAME                 Custom Domain für GitHub Pages
 ├── scripts/
-│   └── domain-setzen.py  stellt alle Adressen auf einmal um
-├── LAUNCH.md             >> Anleitung fürs Schalten <<
+│   ├── domain-setzen.py  stellt alle Adressen auf einmal um
+│   └── cache-buster.py   Versionskennungen für CSS/JS
 ├── robots.txt
 ├── sitemap.xml
 ├── deploy/               Docker-Deployment (Dockerfile, compose.yml, nginx.conf)
-├── .nojekyll             nur für eine mögliche Pages-Vorschau, nicht für Produktion
 └── .gitignore
 ```
 
@@ -173,21 +167,22 @@ Permissions-Policy und HSTS. Gesetzt in `deploy/nginx.conf`.
 > wird, muss dessen Origin in `deploy/nginx.conf` unter `connect-src`
 > ergänzt werden — sonst blockiert der Browser das Absenden.
 
-## Custom Domain (nur bei Wechsel auf eine eigene Domain)
+## Andere Domain
 
-1. Beim Domain-Anbieter DNS-Einträge setzen:
-   - **Apex-Domain** (`beispiel.de`) → vier `A`-Records auf
-     `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - **Subdomain** (`www.beispiel.de`) → ein `CNAME` auf `relis-lol.github.io`
-2. In **Settings → Pages → Custom domain** die Domain eintragen. GitHub legt
-   dabei automatisch eine `CNAME`-Datei im Repository an.
-3. **„Enforce HTTPS"** aktivieren, sobald das Zertifikat ausgestellt ist
-   (dauert in der Regel wenige Minuten bis Stunden).
-4. Danach alle Adressen im Projekt auf einmal umstellen:
+Die Seite läuft unter `studio.saveroq.com` über den Cloudflare Tunnel. Soll
+sie einmal woanders liegen:
+
+1. Im Cloudflare-Tunnel den Public Hostname ändern (Service bleibt
+   `http://web:8080`)
+2. Alle Adressen im Projekt auf einmal umstellen:
 
 ```bash
-python scripts/domain-setzen.py https://beispiel.de/
+python scripts/domain-setzen.py https://neue-adresse.de/
 ```
+
+Das ändert canonical-Links, OpenGraph, `robots.txt`, `sitemap.xml` und
+`SITE_URL`. Die Indexierung wird dabei **nicht** mitgeschaltet — das ist ein
+eigener Schalter (`--index an`).
 
 ---
 
@@ -196,21 +191,24 @@ python scripts/domain-setzen.py https://beispiel.de/
 Alles in **`js/config.js`**:
 
 ```js
-BUSINESS_NAME:           null,                    // Launch-Feld 1, siehe LAUNCH.md
-BUSINESS_INITIALS:       'BB',                    // 2–3 Zeichen fürs Logo-Quadrat
-BUSINESS_EMAIL:          'girly.va18@gmail.com',
+BUSINESS_NAME:           'Saveroq Studio',        // Geschäftsbezeichnung
+BUSINESS_INITIALS:       'SQ',                    // 2–3 Zeichen fürs Logo
+BUSINESS_OWNER:          'Björn Boldt',           // Betreiber (Impressum)
+BUSINESS_EMAIL:          'girly.va18@gmail.com',  // Kundenkontakt
 BUSINESS_CONTACT_PERSON: 'Girly Boldt',           // Ansprechpartnerin
+BUSINESS_LEGAL_EMAIL:    'relislol@yahoo.com',    // Recht & Datenschutz
 BUSINESS_PHONE:          null,                    // null = wird nicht angezeigt
 BUSINESS_LOCATION:       'Nürnberg, Deutschland',
-BUSINESS_VAT_ID:         null,                    // Launch-Feld 2, Variante A
-BUSINESS_TAX_NOTE:       null,                    // Launch-Feld 2, Variante B
+BUSINESS_VAT_ID:         null,                    // optional, siehe unten
+BUSINESS_ECONOMIC_ID:    null,                    // optional
 ```
 
-Die beiden Launch-Felder steuern zusätzlich, ob die Seite als startklar gilt.
-Solange `BUSINESS_NAME` leer ist, bleiben im Impressum die eckigen Platzhalter
-und auf beiden Rechtsseiten die gelben Hinweiskästen stehen. Sobald Name und
-steuerliche Angabe gesetzt sind, verschwinden sie von selbst — ohne dass am
-HTML etwas geändert werden muss. Details in [LAUNCH.md](LAUNCH.md).
+**Zu den Steuerkennungen:** Nach § 5 DDG ist eine Umsatzsteuer- oder
+Wirtschafts-Identifikationsnummer nur anzugeben, **sofern vorhanden**.
+Solange beide Felder `null` sind, erscheint im Impressum gar kein Abschnitt
+dazu — kein Platzhalter, keine leere Überschrift. Sobald eine Nummer
+eingetragen wird, erzeugt `js/main.js` den Abschnitt. Eine gewöhnliche
+Steuernummer gehört ausdrücklich **nicht** auf die Seite.
 
 Grundregel: **Was `null` ist, erscheint nicht auf der Seite.** Die
 Telefonnummer bleibt also unsichtbar, solange sie nicht eingetragen ist — es
@@ -539,82 +537,50 @@ und ist derzeit ein sichtbar markierter Platzhalter.
 
 ---
 
-## Security Header (später)
+## Betrieb
 
-GitHub Pages kann keine eigenen HTTP-Header setzen — die folgenden Header sind
-also **noch nicht aktiv**. Sobald die Seite über Cloudflare oder einen eigenen
-Webserver läuft, sind sie sinnvoll:
+Die Seite ist produktiv. Was noch aussteht, steht ganz unten unter
+[Offene Punkte](#offene-punkte).
+
+### Sicherheits-Header — aktiv
+
+Gesetzt in `deploy/nginx.conf`, nachweisbar in jeder Antwort:
 
 ```text
 Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self';
-    img-src 'self' data:; font-src 'self'; connect-src 'self' https://DEIN-FORMULAR-ENDPUNKT;
+    img-src 'self' data:; font-src 'self'; connect-src 'self';
     form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
-Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-Strict-Transport-Security: max-age=31536000; includeSubDomains   ← erst nach vollständiger HTTPS-Umstellung
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+Strict-Transport-Security: max-age=31536000
 ```
 
-Die Seite ist bereits so gebaut, dass diese CSP ohne Anpassung greift: keine
-Inline-Skripte, keine Inline-Eventhandler, keine externen Ressourcen. Nur
-`connect-src` muss um den Formular-Endpunkt ergänzt werden.
+Die Seite kommt ohne `'unsafe-inline'` aus: keine Inline-Skripte, keine
+Inline-Styles, keine externen Ressourcen. Der einzige `<script>`-Block ohne
+`src` ist die JSON-LD-Auszeichnung — die wird nicht ausgeführt und fällt
+deshalb nicht unter `script-src`.
 
----
+### E-Mail-Adressen und Cloudflare
 
-## Checkliste vor dem kommerziellen Launch
+Auf der Zone ist **Email Address Obfuscation** aktiv. Cloudflare ersetzt
+`mailto:`-Links durch `[email protected]` und stellt die Adresse erst per
+JavaScript wieder her — bei einer Pflichtangabe nach § 5 DDG ungeeignet.
 
-Stand: Die Seite ist inhaltlich fertig und wartet auf die Gewerbeanmeldung.
+Gelöst ohne Änderung an der Zone: Die betroffenen Stellen stehen in
+`<!--email_off--> … <!--/email_off-->`. Diese Blöcke lässt Cloudflare in
+Ruhe. Beim Ergänzen weiterer Adressen **ebenfalls so einfassen**.
 
-### Erledigt
+### Offene Punkte
 
-- [x] Drei echte Referenzen eingetragen (WIVOKO, EVE Tradelooper, Portfolio)
-- [x] Business-E-Mail und Ansprechpartnerin in `js/config.js`
-- [x] Standort eingetragen
-- [x] Impressum mit Anbieterdaten gefüllt
-- [x] Datenschutzhinweise mit verantwortlicher Stelle, Hosting, Aufsichtsbehörde
-- [x] Beide Rechtsseiten zweisprachig
-- [x] Sicherung im privaten Repository `Relis-lol/digitalservice-backup`
-
-### Offen — hängt an der Gewerbeanmeldung
-
-- [ ] Geschäftsbezeichnung in `js/config.js` (`BUSINESS_NAME`) **und** in
-      `impressum.html` an der markierten Stelle
-- [ ] Logo-Initialen (`BUSINESS_INITIALS`) passend dazu
-- [ ] Steuernummer / USt-IdNr. in `impressum.html` — oder Hinweis auf die
-      Kleinunternehmerregelung nach § 19 UStG
-- [ ] Beide `todo-box`-Kästen aus den Rechtsseiten entfernen, sobald gefüllt
-
-### Offen — Inhalte
-
-- [x] Screenshots der drei Projekte eingebunden (16:10 WebP, 32–96 KB)
-- [x] WIVOKO ist online — geprüft am 2026-08-16, Apex leitet auf `/en` weiter
-- [x] Alle drei Projektbeschreibungen anhand der Live-Seiten gegengeprüft
-      und neu formuliert
+- [ ] Umsatzsteuer- bzw. Wirtschafts-Identifikationsnummer, sobald vorhanden
+      (`BUSINESS_VAT_ID` / `BUSINESS_ECONOMIC_ID` in `js/config.js`) —
+      solange keine existiert, ist **kein** Eintrag korrekt
+- [ ] Rechtstexte fachkundig prüfen lassen
 - [ ] Eigenes Logo statt `assets/icons/favicon.svg` und `apple-touch-icon.png`
 - [ ] OpenGraph-Bild `assets/images/og-image.png` ersetzen
 - [ ] Social Links in `js/config.js`, falls gewünscht
-
-### Offen — Technik
-
-- [ ] Domain festlegen und in **fünf** Dateien eintragen: `js/config.js`
-      (`SITE_URL`), die canonical-Links in `index.html`, `impressum.html`
-      und `datenschutz.html`, dazu `robots.txt` und `sitemap.xml`.
-      Aktuell zeigen sie auf das **Backup**-Repository — das ist nicht der
-      spätere Hosting-Ort.
-- [ ] Kontakt-Endpunkt in `js/config.js` (`CONTACT_FORM_ENDPOINT`)
-- [ ] Endpunkt serverseitig absichern (Validierung, Rate Limiting, CORS)
-- [ ] Nach Einrichtung: Abschnitt „Kontaktformular" in `datenschutz.html`
-      um Empfänger, Verarbeitungsweg und Speicherdauer ergänzen
-- [ ] Formular real testen — Absenden, Fehlerfälle, Bestätigung
-- [ ] Hosting-Angabe in `datenschutz.html` prüfen, falls nicht GitHub Pages
-- [ ] Rechtstexte fachkundig prüfen lassen
-- [ ] Beide Sprachen durchklicken, Dark Mode prüfen
-- [ ] Mobile Darstellung auf einem echten Gerät prüfen
-- [ ] Lighthouse ausführen
-- [ ] Alle Links prüfen
-- [ ] Keine Secrets im Repository — auch nicht in der Historie
-
-> **Hinweis zum Backup-Repository:** `digitalservice-backup` ist privat und
-> dient nur der Sicherung. GitHub Pages aus einem privaten Repository
-> auszuliefern erfordert einen kostenpflichtigen Plan — für das Hosting
-> wird also ohnehin ein anderer Weg gebraucht.
+- [ ] Indexierung freigeben, wenn die Seite gefunden werden soll:
+      `python scripts/domain-setzen.py --index an`, danach die Sitemap-Zeile
+      in `robots.txt` einkommentieren und die Domain separat in der Search
+      Console anmelden
