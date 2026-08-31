@@ -25,6 +25,10 @@ class Settings:
     SMTP_USERNAME = _str("SMTP_USERNAME")
     SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")  # nicht strippen
     SMTP_FROM = _str("SMTP_FROM")
+    # Anzeigename des Absenders. Erscheint im Postfach als
+    # "Saveroq Studio <studio@saveroq.com>" statt nur der nackten Adresse.
+    # Stammt aus der Konfiguration, nie aus einer Benutzereingabe.
+    SMTP_FROM_NAME = _str("SMTP_FROM_NAME", "Saveroq Studio")
     # starttls (Standard, Port 587) | ssl (Port 465) | none (nur fuer Tests)
     SMTP_SECURITY = _str("SMTP_SECURITY", "starttls").lower()
     SMTP_TIMEOUT = _int("SMTP_TIMEOUT", 20)

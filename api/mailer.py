@@ -49,7 +49,14 @@ def build_message(data) -> EmailMessage:
     # Fester Betreff. Kaeme er aus der Eingabe, waere er der bequemste
     # Weg fuer Header-Injection.
     msg["Subject"] = settings.SUBJECT
-    msg["From"] = settings.SMTP_FROM
+    # Anzeigename und Adresse getrennt uebergeben: Address() kodiert den
+    # Namen regelkonform. Beide Werte stammen aus der Konfiguration.
+    if settings.SMTP_FROM_NAME:
+        von_local, _, von_domain = settings.SMTP_FROM.partition("@")
+        msg["From"] = Address(display_name=settings.SMTP_FROM_NAME,
+                              username=von_local, domain=von_domain)
+    else:
+        msg["From"] = settings.SMTP_FROM
     msg["To"] = settings.CONTACT_TO
 
     # Reply-To ist der einzige Header mit Benutzerbezug. Die Adresse hat
