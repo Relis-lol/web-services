@@ -29,6 +29,13 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
 # Ein Arbeitsprozess: Die Ratenbegrenzung liegt im Arbeitsspeicher und
 # waere ueber mehrere Prozesse hinweg wirkungslos. Fuer ein
 # Kontaktformular ist ein Prozess reichlich.
+#
+# --no-access-log ist hier KEINE Kosmetik, sondern Datenschutz:
+# uvicorns Zugriffsprotokoll schreibt die Client-IP im Klartext — und durch
+# --proxy-headers ist das die echte Besucheradresse, nicht die des Proxys.
+# Die Anwendung protokolliert stattdessen selbst, mit gekuerztem Hash statt
+# Adresse (siehe app.py). Zeitpunkt, Status, Request-ID und Dauer bleiben
+# erhalten, die IP verschwindet.
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", \
-     "--workers", "1", "--no-server-header", "--proxy-headers", \
-     "--forwarded-allow-ips", "*"]
+     "--workers", "1", "--no-server-header", "--no-access-log", \
+     "--proxy-headers", "--forwarded-allow-ips", "*"]
