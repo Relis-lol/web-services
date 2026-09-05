@@ -109,7 +109,8 @@ Produktion läuft auf dem eigenen Server, nicht auf GitHub Pages.
 python scripts/cache-buster.py          # vor dem Commit, wenn CSS/JS geändert
 git add -A && git commit && git push origin main && git push backup main
 
-ssh relis@192.168.178.47
+# Zugangsdaten stehen bewusst nicht im oeffentlichen Repository.
+ssh <benutzer>@<server>
 cd ~/stack/saveroq-studio
 git pull
 docker compose -f deploy/compose.yml up -d --build
