@@ -20,9 +20,10 @@ const SITE_CONFIG = {
   // Kurzform fürs Logo (2–3 Zeichen). Wird im Logo-Quadrat angezeigt.
   BUSINESS_INITIALS: 'SQ',
 
-  /* Kundenkontakt. Diese Adresse steht im Kontaktbereich, in der Fusszeile
-     und ist das Ziel des Kontaktformulars. */
-  BUSINESS_EMAIL: 'girly.va18@gmail.com',
+  /* Oeffentlich sichtbare Kontaktadresse im Kontaktbereich und in der
+     Fusszeile. Das technische Formularziel wird ausschliesslich ueber
+     deploy/.env konfiguriert. */
+  BUSINESS_EMAIL: 'kontakt@saveroq.com',
 
   /* Ansprechpartnerin fuer Kundenanfragen, Angebote, Termine und die
      virtuelle Assistenz. */
@@ -32,10 +33,9 @@ const SITE_CONFIG = {
      Bezeichnung als Geschaeftsfuehrung. */
   BUSINESS_OWNER: 'Björn Boldt',
 
-  /* Rechtliche, formelle und datenschutzbezogene Anfragen gehen an den
-     Betreiber, nicht an den Kundenkontakt. Bewusst getrennt: Eine
-     Auskunft nach Art. 15 DSGVO gehoert nicht ins Anfragepostfach. */
-  BUSINESS_LEGAL_EMAIL: 'relislol@yahoo.com',
+  /* Oeffentliche Adresse fuer rechtliche, formelle und
+     datenschutzbezogene Anfragen. */
+  BUSINESS_LEGAL_EMAIL: 'kontakt@saveroq.com',
 
   // Telefonnummer wird nur angezeigt, wenn sie hier gesetzt ist.
   BUSINESS_PHONE: null, // Beispiel: '+49 123 4567890'

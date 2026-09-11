@@ -195,9 +195,9 @@ Alles in **`js/config.js`**:
 BUSINESS_NAME:           'Saveroq Studio',        // Geschäftsbezeichnung
 BUSINESS_INITIALS:       'SQ',                    // 2–3 Zeichen fürs Logo
 BUSINESS_OWNER:          'Björn Boldt',           // Betreiber (Impressum)
-BUSINESS_EMAIL:          'girly.va18@gmail.com',  // Kundenkontakt
+BUSINESS_EMAIL:          'kontakt@saveroq.com',   // Kundenkontakt
 BUSINESS_CONTACT_PERSON: 'Girly Boldt',           // Ansprechpartnerin
-BUSINESS_LEGAL_EMAIL:    'relislol@yahoo.com',    // Recht & Datenschutz
+BUSINESS_LEGAL_EMAIL:    'kontakt@saveroq.com',   // Recht & Datenschutz
 BUSINESS_PHONE:          null,                    // null = wird nicht angezeigt
 BUSINESS_LOCATION:       'Nürnberg, Deutschland',
 BUSINESS_VAT_ID:         null,                    // optional, siehe unten
@@ -488,11 +488,11 @@ Cloudflares HTML-Umschreibung ohnehin nicht.
 
 | | |
 |---|---|
-| Björn Boldt | Betreiber, technische Leistungen, rechtliche und datenschutzbezogene Anfragen (`relislol@yahoo.com`) |
-| Girly Boldt | Kundenkontakt, Angebote, Termine, virtuelle Assistenz (`girly.va18@gmail.com`) |
+| Björn Boldt | Betreiber, technische Leistungen, rechtliche und datenschutzbezogene Anfragen (`kontakt@saveroq.com`) |
+| Girly Boldt | Kundenkontakt, Angebote, Termine, virtuelle Assistenz (`kontakt@saveroq.com`) |
 
-Das Kontaktformular geht an Girly. Die rechtliche Adresse ist bewusst **nicht**
-das Formularziel.
+Das technische Ziel des Kontaktformulars wird ausschließlich über
+`deploy/.env` konfiguriert und nicht öffentlich ausgegeben.
 
 ### Sicherheit
 
