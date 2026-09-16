@@ -55,7 +55,7 @@ const SITE_CONFIG = {
      Abschnitt wird von js/main.js erst erzeugt, wenn hier etwas steht.
      ---------------------------------------------------------------------- */
   BUSINESS_VAT_ID: null,        // z. B. 'DE123456789'
-  BUSINESS_ECONOMIC_ID: null,   // Wirtschafts-Identifikationsnummer
+  BUSINESS_ECONOMIC_ID: 'DE442938959-00001',   // Wirtschafts-Identifikationsnummer
 
   /* ----------------------------------------------------------------------
      2. Kontaktformular
