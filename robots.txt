@@ -1,21 +1,9 @@
 # robots.txt — studio.saveroq.com
 #
-# WICHTIG: Hier steht bewusst KEIN Disallow.
-# Die Seite soll derzeit nicht indexiert werden, das steuert
-# <meta name="robots" content="noindex, follow"> in index.html.
-# Ein Disallow waere kontraproduktiv: Der Crawler duerfte die Seite dann
-# gar nicht erst abrufen und wuerde das noindex nie sehen. Die URL koennte
-# trotzdem im Index landen — nur ohne Inhalt.
-#
-# Die Sitemap wird hier absichtlich NICHT beworben, solange die Seite auf
-# noindex steht. Die Datei sitemap.xml existiert und ist aktuell; sie wird
-# erst eingetragen und in der Search Console eingereicht, wenn die Seite
-# indexiert werden soll.
-#
-#   Zum Freigeben:  python scripts/domain-setzen.py --index an
-#                   und die Sitemap-Zeile unten einkommentieren.
+# Alle oeffentlichen Seiten duerfen von regulaeren Suchmaschinen gecrawlt
+# werden. Nichtoeffentliche Dienste liegen nicht unter diesem Webroot.
 
 User-agent: *
 Allow: /
 
-# Sitemap: https://studio.saveroq.com/sitemap.xml
+Sitemap: https://studio.saveroq.com/sitemap.xml

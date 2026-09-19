@@ -293,8 +293,7 @@ const I18N = (function () {
     'form.message': 'Project description',
     'form.message.hint': 'A few bullet points are enough for a first enquiry.',
     'form.privacy':
-      'I have read the privacy notice and consent to my details being ' +
-      'processed in order to handle my enquiry.',
+      'I have read the privacy notice about the processing of my details.',
     'form.privacyLink': 'Privacy notice',
     'form.submit': 'Send enquiry',
 
@@ -318,7 +317,6 @@ const I18N = (function () {
     'imprint.h1': 'Provider',
     'imprint.h2': 'Contact',
     'imprint.h5': 'Responsible for the content',
-    'imprint.h6': 'Dispute resolution',
     'imprint.country': 'Germany',
     'imprint.email': 'Email:',
     'imprint.form': 'Contact form:',
@@ -330,11 +328,6 @@ const I18N = (function () {
       'limited company.',
     'imprint.contactCustomer': 'Customer and service enquiries',
     'imprint.contactLegal': 'Legal and formal enquiries',
-    'imprint.disputeText':
-      'The European Commission provides a platform for online dispute ' +
-      'resolution. We are neither obliged nor willing to take part in dispute ' +
-      'resolution proceedings before a consumer arbitration board.',
-
     'privacy.title': 'Privacy notice',
     'privacy.meta': 'Privacy notice — Saveroq Studio',
     'privacy.intro': 'How personal data is handled on this website.',
@@ -364,9 +357,9 @@ const I18N = (function () {
       'pre-contractual steps, otherwise Art. 6(1)(f) GDPR.',
     'privacy.contactTransport':
       'Transmission is encrypted via HTTPS. The details are validated on our ' +
-      'server and then delivered over an encrypted SMTP connection to the ' +
-      'mailbox of our contact person. They are not stored permanently in a ' +
-      'database.',
+      'server and then delivered through the SMTP relay of the email service ' +
+      'provider Brevo (Sendinblue GmbH) over an encrypted connection to the ' +
+      'mailbox of our contact person. They are not stored permanently in a database.',
     'privacy.contactIp':
       'To protect against automated bulk requests, your IP address is held ' +
       'briefly in memory to limit the number of requests. It is not logged in ' +

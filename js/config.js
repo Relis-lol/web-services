@@ -33,9 +33,9 @@ const SITE_CONFIG = {
      Bezeichnung als Geschaeftsfuehrung. */
   BUSINESS_OWNER: 'Björn Boldt',
 
-  /* Oeffentliche Adresse fuer rechtliche, formelle und
-     datenschutzbezogene Anfragen. */
-  BUSINESS_LEGAL_EMAIL: 'kontakt@saveroq.com',
+  /* Rechtliche, formelle und datenschutzbezogene Anfragen gehen an den
+     Betreiber, getrennt vom allgemeinen Kundenkontakt. */
+  BUSINESS_LEGAL_EMAIL: 'relislol@yahoo.com',
 
   // Telefonnummer wird nur angezeigt, wenn sie hier gesetzt ist.
   BUSINESS_PHONE: null, // Beispiel: '+49 123 4567890'

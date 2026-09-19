@@ -36,8 +36,8 @@ const PROJECTS = [
     id: 'wivoko',
     title: 'WIVOKO — Fashion-Charm-Marke',
     title_en: 'WIVOKO — fashion charm brand',
-    category: 'Marken- & Produktpräsentation',
-    category_en: 'Brand & product presentation',
+    category: 'Eigenes Markenprojekt',
+    category_en: 'Own brand project',
     description:
       'Markenauftritt für ein modulares Fashion-Charm-System: ein etwa 15 cm großer ' +
       'Charakter, der sich über austauschbare Haare, Kleidung und Accessoires immer ' +
@@ -67,8 +67,8 @@ const PROJECTS = [
     id: 'eve-tradelooper',
     title: 'EVE Market Tools',
     title_en: 'EVE Market Tools',
-    category: 'Web-Anwendung, API & Datenbank',
-    category_en: 'Web application, API & database',
+    category: 'Eigene Plattform',
+    category_en: 'Own platform',
     description:
       'Umfangreiche Werkzeugsammlung für ein Online-Spiel, aufgebaut auf einer ' +
       'eigenen Datenbank mit angeschlossener API. Rund 7,5 Millionen neue ' +
@@ -98,8 +98,8 @@ const PROJECTS = [
     id: 'alice-syndrome-archive',
     title: 'ALICE SYNDROME Archive',
     title_en: 'ALICE SYNDROME Archive',
-    category: 'Redaktionelles Archiv, zweisprachig',
-    category_en: 'Editorial archive, bilingual',
+    category: 'Eigenes redaktionelles Projekt',
+    category_en: 'Own editorial project',
     description:
       'Fan-Archiv zu einer koreanischen Rockband — ausdrücklich inoffiziell, ' +
       'so steht es auch auf der Seite selbst. Bündelt Mitglieder, Diskografie, ' +
@@ -127,8 +127,8 @@ const PROJECTS = [
     id: 'portfolio',
     title: 'Technisches Profil — Cloud & Plattformbetrieb',
     title_en: 'Technical profile — cloud & platform operations',
-    category: 'Kompetenznachweis',
-    category_en: 'Proof of competence',
+    category: 'Technischer Kompetenznachweis',
+    category_en: 'Technical proof of competence',
     description:
       'Kein Kundenprojekt, sondern der Nachweis der technischen Grundlage ' +
       'hinter diesen Leistungen: ein eigenes Profil für Cloud- und ' +

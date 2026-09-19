@@ -22,6 +22,13 @@ COPY --chown=101:101 index.html impressum.html datenschutz.html \
 COPY --chown=101:101 css/    /usr/share/nginx/html/css/
 COPY --chown=101:101 js/     /usr/share/nginx/html/js/
 COPY --chown=101:101 assets/ /usr/share/nginx/html/assets/
+COPY --chown=101:101 websites/             /usr/share/nginx/html/websites/
+COPY --chown=101:101 web-apps-saas/        /usr/share/nginx/html/web-apps-saas/
+COPY --chown=101:101 ai-automatisierung/    /usr/share/nginx/html/ai-automatisierung/
+COPY --chown=101:101 api-integrationen/     /usr/share/nginx/html/api-integrationen/
+COPY --chown=101:101 hosting-betrieb/       /usr/share/nginx/html/hosting-betrieb/
+COPY --chown=101:101 wartung-support/       /usr/share/nginx/html/wartung-support/
+COPY --chown=101:101 virtuelle-assistenz/   /usr/share/nginx/html/virtuelle-assistenz/
 
 EXPOSE 8080
 

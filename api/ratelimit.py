@@ -47,8 +47,10 @@ class SlidingWindowLimiter:
             # Leere Eintraege gelegentlich aufraeumen, damit der Speicher
             # bei vielen verschiedenen IPs nicht unbegrenzt waechst.
             if len(self._per_key) > 2048:
-                for k in [k for k, v in self._per_key.items() if not v]:
-                    del self._per_key[k]
+                for k, alter_bucket in list(self._per_key.items()):
+                    self._prune(alter_bucket, now)
+                    if not alter_bucket:
+                        del self._per_key[k]
 
             return True, 0
 

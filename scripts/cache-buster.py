@@ -27,8 +27,18 @@ import os
 import re
 import sys
 
-SEITEN = ['index.html', 'impressum.html', 'datenschutz.html']
-MUSTER = re.compile(r'(href|src)="((?:css|js)/[a-z0-9-]+\.(?:css|js))(?:\?v=[a-f0-9]+)?"')
+SEITEN = [
+    'index.html', 'impressum.html', 'datenschutz.html',
+    'websites/index.html', 'web-apps-saas/index.html',
+    'ai-automatisierung/index.html', 'api-integrationen/index.html',
+    'hosting-betrieb/index.html', 'wartung-support/index.html',
+    'virtuelle-assistenz/index.html',
+]
+MUSTER = re.compile(
+    r'(href|src)="((?:\.\./|/)?((?:css|js)/[a-z0-9-]+\.(?:css|js)'
+    r'|assets/projects/[a-z0-9-]+\.(?:webp|png|jpe?g|svg)))'
+    r'(?:\?v=[a-f0-9]+)?"'
+)
 
 # Auch die Projektbilder brauchen eine Kennung. Sie behalten beim Austausch
 # ihren Dateinamen — ohne Kennung liefe der Zwischenspeicher also vier
@@ -85,11 +95,11 @@ def main():
         geaendert = []
 
         def ersetzen(treffer):
-            attr, datei = treffer.group(1), treffer.group(2)
+            attr, verweis, datei = treffer.group(1), treffer.group(2), treffer.group(3)
             ziel = os.path.join(stamm, datei)
             if not os.path.exists(ziel):
                 return treffer.group(0)
-            neu = '%s="%s?v=%s"' % (attr, datei, kennung(ziel))
+            neu = '%s="%s?v=%s"' % (attr, verweis, kennung(ziel))
             if neu != treffer.group(0):
                 geaendert.append(datei)
             return neu

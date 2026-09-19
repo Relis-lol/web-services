@@ -65,7 +65,8 @@ class Settings:
         als der Rest des Programms.
         """
         return bool(self.SMTP_HOST and self.SMTP_PORT
-                    and self.SMTP_FROM and self.CONTACT_TO)
+                    and self.SMTP_FROM and self.CONTACT_TO
+                    and self.SMTP_SECURITY in {"starttls", "ssl", "none"})
 
 
 settings = Settings()

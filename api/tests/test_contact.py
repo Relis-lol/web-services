@@ -15,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import app as app_modul          # noqa: E402
 import mailer                    # noqa: E402
+from ratelimit import SlidingWindowLimiter  # noqa: E402
 from config import settings      # noqa: E402
 
 
@@ -158,6 +159,17 @@ def test_rate_limit(monkeypatch, client, gesendet):
     assert len(gesendet) == 3
 
 
+def test_rate_limit_entfernt_abgelaufene_ip_schluessel(monkeypatch):
+    limiter = SlidingWindowLimiter(max_events=2, window_seconds=10)
+    zeiten = iter([0.0, 20.0])
+    monkeypatch.setattr("ratelimit.time.monotonic", lambda: next(zeiten))
+    assert limiter.check("alt")[0]
+    for i in range(2048):
+        limiter._per_key["fueller-%d" % i] = limiter._per_key["alt"].copy()
+    assert limiter.check("neu")[0]
+    assert "alt" not in limiter._per_key
+
+
 # ------------------------------------------------------------- Protokoll
 def test_falsche_methode(client):
     assert client.get("/api/contact").status_code == 405
@@ -188,6 +200,15 @@ def test_smtp_nicht_konfiguriert(monkeypatch, client, gesendet):
     assert r.status_code == 503
     assert r.json()["error"] == "mail_not_configured"
     assert not gesendet, "ohne SMTP darf kein Erfolg vorgetaeuscht werden"
+
+
+def test_unbekannte_smtp_sicherheit_gilt_als_nicht_konfiguriert(monkeypatch):
+    monkeypatch.setattr(settings, "SMTP_HOST", "smtp.example.invalid")
+    monkeypatch.setattr(settings, "SMTP_PORT", 587)
+    monkeypatch.setattr(settings, "SMTP_FROM", "noreply@example.invalid")
+    monkeypatch.setattr(settings, "CONTACT_TO", "ziel@example.invalid")
+    monkeypatch.setattr(settings, "SMTP_SECURITY", "startls")
+    assert settings.smtp_configured() is False
 
 
 def test_smtp_stoerung(monkeypatch, client):

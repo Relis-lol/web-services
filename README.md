@@ -46,9 +46,16 @@ Brevo-Relay an die Ansprechpartnerin zustellt.
 
 ```text
 /
-├── index.html            Startseite (Onepager mit allen Sections)
-├── impressum.html        Anbieterdaten gefüllt, zwei Angaben offen
-├── datenschutz.html      verantwortliche Stelle gefüllt, Endpunkt-Angaben offen
+├── index.html            Startseite mit statischen Kerninhalten
+├── impressum.html        Anbieterkennzeichnung und W-IdNr.
+├── datenschutz.html      Datenschutzhinweise zum realen Betrieb
+├── websites/             Leistungsseite Websites und Landingpages
+├── web-apps-saas/        Leistungsseite Web-Anwendungen
+├── ai-automatisierung/   Leistungsseite AI und Automatisierung
+├── api-integrationen/    Leistungsseite APIs und Daten
+├── hosting-betrieb/      Leistungsseite Hosting und Deployment
+├── wartung-support/      Leistungsseite technische Betreuung
+├── virtuelle-assistenz/ Leistungsseite virtuelle Assistenz
 ├── css/
 │   └── styles.css        Gesamtes Design, in nummerierte Abschnitte gegliedert
 ├── api/                  Kontakt-Endpunkt (FastAPI) + Tests
@@ -197,7 +204,7 @@ BUSINESS_INITIALS:       'SQ',                    // 2–3 Zeichen fürs Logo
 BUSINESS_OWNER:          'Björn Boldt',           // Betreiber (Impressum)
 BUSINESS_EMAIL:          'kontakt@saveroq.com',   // Kundenkontakt
 BUSINESS_CONTACT_PERSON: 'Girly Boldt',           // Ansprechpartnerin
-BUSINESS_LEGAL_EMAIL:    'kontakt@saveroq.com',   // Recht & Datenschutz
+BUSINESS_LEGAL_EMAIL:    'relislol@yahoo.com',    // Recht & Datenschutz
 BUSINESS_PHONE:          null,                    // null = wird nicht angezeigt
 BUSINESS_LOCATION:       'Nürnberg, Deutschland',
 BUSINESS_VAT_ID:         null,                    // optional, siehe unten
@@ -442,19 +449,14 @@ Browser -> https://studio.saveroq.com/api/contact -> nginx -> saveroq-studio-api
 Kein veröffentlichter Port, keine Zugangsdaten im Browser. Der Quellcode
 liegt in `api/`, die Weiterleitung in `deploy/nginx.conf`.
 
-### Was noch fehlt: die Absenderadresse
+### Absender und interne Zustellung
 
 Versendet wird über den **Brevo-Relay, der auf dem Server bereits für WIVOKO
 läuft**. Host, Port, Benutzer und Schlüssel stehen in `deploy/.env` auf dem
 Server — aus dem WIVOKO-Stack übernommen, nicht im Repository.
-`CONTACT_TO` steht auf der Adresse aus dem Impressum.
-
-**Offen ist allein `SMTP_FROM`**, und zwar aus einem inhaltlichen Grund:
-
-> Für `saveroq.com` ist in Brevo **keine Absenderadresse eingerichtet**. Im
-> DNS fehlen der `brevo-code`-Eintrag und der DKIM-Selektor, das SPF verweist
-> auf IONOS statt Brevo, und DMARC meldet nicht an Brevo. Zum Vergleich: Bei
-> `wivoko.com` sind genau diese Einträge vorhanden.
+`CONTACT_TO` ist eine ausschließlich serverseitige Zieladresse und wird nicht
+öffentlich ausgeliefert. Der verifizierte technische Absender ist
+`Saveroq Studio <studio@saveroq.com>`.
 
 Wichtig zur Fehlersuche: Brevo prüft die Berechtigung **nicht** beim
 Verbindungsaufbau. Ein `MAIL FROM` mit beliebiger Adresse wird mit
@@ -488,7 +490,7 @@ Cloudflares HTML-Umschreibung ohnehin nicht.
 
 | | |
 |---|---|
-| Björn Boldt | Betreiber, technische Leistungen, rechtliche und datenschutzbezogene Anfragen (`kontakt@saveroq.com`) |
+| Björn Boldt | Betreiber, technische Leistungen, rechtliche und datenschutzbezogene Anfragen (`relislol@yahoo.com`) |
 | Girly Boldt | Kundenkontakt, Angebote, Termine, virtuelle Assistenz (`kontakt@saveroq.com`) |
 
 Das technische Ziel des Kontaktformulars wird ausschließlich über
@@ -511,9 +513,10 @@ Das technische Ziel des Kontaktformulars wird ausschließlich über
 docker compose -f deploy/compose.yml --profile test run --rm test
 ```
 
-20 Tests: Erfolgsfall, fehlende und ungültige Felder, überlange Eingaben,
+22 Tests: Erfolgsfall, fehlende und ungültige Felder, überlange Eingaben,
 Header-Injection, Honeypot, Ratenbegrenzung, falsche Methode, ungültiges
-JSON, zu großer Body, fehlendes und gestörtes SMTP, Protokollhygiene.
+JSON, zu großer Body, fehlendes und gestörtes SMTP, Protokollhygiene,
+ungültige SMTP-Sicherheitsmodi und das Aufräumen alter Rate-Limit-Schlüssel.
 
 ## SEO-Daten ändern
 
@@ -521,20 +524,18 @@ Titel und Meta-Description stehen im `<head>` von `index.html`; die englischen
 Fassungen unter den Schlüsseln `meta.title` und `meta.description` in
 `js/i18n.js`.
 
-Beim Umzug auf eine eigene Domain müssen die Platzhalter-URLs an vier Stellen
-ersetzt werden:
+Die produktive Domain ist in allen öffentlichen Seiten, in `robots.txt`, in
+`sitemap.xml` und in `js/config.js` eingetragen. Bei einem späteren Domainwechsel
+aktualisiert `python scripts/domain-setzen.py <neue-domain>` diese Stellen.
 
 | Datei | Was |
 |---|---|
-| `index.html` | `<link rel="canonical">`, `og:url`, `og:image`, `twitter:image` |
-| `impressum.html`, `datenschutz.html` | `<link rel="canonical">` |
+| alle HTML-Seiten | `<link rel="canonical">`, OpenGraph-URLs und Bilder |
 | `robots.txt` | `Sitemap:`-Zeile |
 | `sitemap.xml` | `<loc>` und `<lastmod>` |
+| `js/config.js` | `SITE_URL` |
 
-Zusätzlich `SITE_URL` in `js/config.js` pflegen.
-
-Das Social-Vorschaubild liegt unter `assets/images/og-image.png` (1200 × 630 px)
-und ist derzeit ein sichtbar markierter Platzhalter.
+Das Social-Vorschaubild liegt unter `assets/images/og-image.png` (1200 × 630 px).
 
 ---
 
@@ -574,14 +575,7 @@ Ruhe. Beim Ergänzen weiterer Adressen **ebenfalls so einfassen**.
 
 ### Offene Punkte
 
-- [ ] Umsatzsteuer- bzw. Wirtschafts-Identifikationsnummer, sobald vorhanden
-      (`BUSINESS_VAT_ID` / `BUSINESS_ECONOMIC_ID` in `js/config.js`) —
-      solange keine existiert, ist **kein** Eintrag korrekt
 - [ ] Rechtstexte fachkundig prüfen lassen
-- [ ] Eigenes Logo statt `assets/icons/favicon.svg` und `apple-touch-icon.png`
-- [ ] OpenGraph-Bild `assets/images/og-image.png` ersetzen
 - [ ] Social Links in `js/config.js`, falls gewünscht
-- [ ] Indexierung freigeben, wenn die Seite gefunden werden soll:
-      `python scripts/domain-setzen.py --index an`, danach die Sitemap-Zeile
-      in `robots.txt` einkommentieren und die Domain separat in der Search
-      Console anmelden
+- [ ] `https://studio.saveroq.com/sitemap.xml` in der vorhandenen Search
+      Console Domain Property einreichen und die wichtigsten URLs prüfen

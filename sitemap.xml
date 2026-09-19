@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  sitemap.xml
-  Die Datei ist aktuell, wird aber bewusst NICHT in robots.txt beworben
-  und nicht in der Search Console eingereicht, solange die Seite auf
-  noindex steht. Siehe robots.txt.
-
-  Bei Aenderungen: <lastmod> nachziehen, neue Unterseiten ergaenzen.
-  Die Rechtsseiten stehen bewusst nicht drin (noindex).
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://studio.saveroq.com/</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url><loc>https://studio.saveroq.com/websites/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://studio.saveroq.com/web-apps-saas/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://studio.saveroq.com/ai-automatisierung/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://studio.saveroq.com/api-integrationen/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://studio.saveroq.com/hosting-betrieb/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://studio.saveroq.com/wartung-support/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://studio.saveroq.com/virtuelle-assistenz/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

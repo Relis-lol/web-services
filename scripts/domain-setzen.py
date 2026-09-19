@@ -7,8 +7,8 @@ HTML-Seiten, in den OpenGraph- und Twitter-Angaben, in robots.txt,
 in sitemap.xml und in js/config.js. Dieses Skript ändert alle auf einmal,
 damit nichts vergessen wird.
 
-Nur nötig, wenn eine EIGENE DOMAIN dazukommt. Für den Betrieb unter
-GitHub Pages ist bereits alles korrekt eingetragen.
+Nur nötig, wenn die bestehende Studio-Domain geändert wird. Der produktive
+Betrieb erfolgt über den eigenen Docker-Stack und Cloudflare Tunnel.
 
 Aufruf aus dem Projektstamm:
 
@@ -28,8 +28,8 @@ Entscheidung und soll nicht als Nebenwirkung passieren.
 
 Nach dem Umstellen zusätzlich erledigen:
   - <lastmod> in sitemap.xml auf das heutige Datum setzen
-  - in GitHub unter Settings -> Pages die Custom Domain eintragen
-  - "Enforce HTTPS" aktivieren, sobald das Zertifikat da ist
+  - Cloudflare-Tunnel und DNS auf die neue Domain umstellen
+  - TLS und alle kanonischen URLs nach dem Deployment pruefen
 """
 
 import io
@@ -39,29 +39,36 @@ import sys
 
 DATEIEN = [
     'index.html', 'impressum.html', 'datenschutz.html',
+    'websites/index.html', 'web-apps-saas/index.html',
+    'ai-automatisierung/index.html', 'api-integrationen/index.html',
+    'hosting-betrieb/index.html', 'wartung-support/index.html',
+    'virtuelle-assistenz/index.html',
     'robots.txt', 'sitemap.xml', 'js/config.js', 'README.md',
 ]
+
+INDEX_SEITEN = [datei for datei in DATEIEN if datei.endswith('.html')]
 
 MUSTER = re.compile(r'https://[a-z0-9.-]+\.[a-z]{2,}(?:/[a-z0-9._-]*)*/')
 
 
 def indexierung_setzen(stamm, an, nur_zeigen):
-    """Schaltet <meta name="robots"> in index.html um."""
-    pfad = os.path.join(stamm, 'index.html')
-    inhalt = io.open(pfad, encoding='utf-8').read()
+    """Schaltet <meta name="robots"> auf allen oeffentlichen Seiten um."""
     soll = 'index, follow' if an else 'noindex, follow'
-    ist = 'index, follow' if 'content="index, follow"' in inhalt else 'noindex, follow'
-
-    if ist == soll:
-        print('Indexierung steht bereits auf: %s' % soll)
-        return 0
-
-    print('Indexierung: %s -> %s' % (ist, soll))
-    if not nur_zeigen:
-        io.open(pfad, 'w', encoding='utf-8', newline=chr(10)).write(
-            inhalt.replace('content="%s"' % ist, 'content="%s"' % soll))
-        print('index.html angepasst.')
-    else:
+    geaendert = 0
+    for rel in INDEX_SEITEN:
+        pfad = os.path.join(stamm, rel)
+        inhalt = io.open(pfad, encoding='utf-8').read()
+        ist = 'index, follow' if 'content="index, follow"' in inhalt else 'noindex, follow'
+        if ist == soll:
+            continue
+        geaendert += 1
+        print('  %s: %s -> %s' % (rel, ist, soll))
+        if not nur_zeigen:
+            io.open(pfad, 'w', encoding='utf-8', newline=chr(10)).write(
+                inhalt.replace('content="%s"' % ist, 'content="%s"' % soll))
+    if not geaendert:
+        print('Indexierung steht auf allen Seiten bereits auf: %s' % soll)
+    elif nur_zeigen:
         print('Probelauf - es wurde nichts geschrieben.')
     return 0
 
@@ -131,7 +138,7 @@ def main():
         print()
         print('Nicht vergessen:')
         print('  - <lastmod> in sitemap.xml aktualisieren')
-        print('  - CNAME-Datei pruefen (muss die Domain ohne https:// enthalten)')
+        print('  - Cloudflare-Tunnel und DNS pruefen')
         print('  - Indexierung separat schalten: --index an')
     return 0
 

@@ -61,14 +61,19 @@
   function setTheme(theme) {
     doc.documentElement.setAttribute('data-theme', theme);
     store('set', THEME_KEY, theme);
-    const meta = doc.querySelector('meta[name="theme-color"]:not([media])');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0e1116' : '#ffffff');
+    const metas = doc.querySelectorAll('meta[name="theme-color"]');
+    if (metas.length) {
+      metas[0].removeAttribute('media');
+      metas[0].setAttribute('content', theme === 'dark' ? '#0e1116' : '#ffffff');
+      for (let i = 1; i < metas.length; i++) metas[i].remove();
+    }
   }
 
   function initTheme() {
     const stored = store('get', THEME_KEY);
     // Ohne gespeicherte Auswahl bleibt "auto" -> Systemeinstellung entscheidet.
-    doc.documentElement.setAttribute('data-theme', stored === 'light' || stored === 'dark' ? stored : 'auto');
+    if (stored === 'light' || stored === 'dark') setTheme(stored);
+    else doc.documentElement.setAttribute('data-theme', 'auto');
 
     const toggle = doc.getElementById('theme-toggle');
     if (!toggle) return;
@@ -539,8 +544,7 @@
     const media = el('div', 'project-media');
     const img = el('img');
     img.src = project.image;
-    img.alt = '';                       // rein dekorativ: Titel steht daneben
-    img.setAttribute('role', 'presentation');
+    img.alt = 'Screenshot: ' + pick(project, 'title');
     img.loading = 'lazy';
     img.decoding = 'async';
     if (project.imageWidth) img.width = project.imageWidth;
@@ -836,9 +840,10 @@
             // Serverseitige Beanstandungen an den Feldern anzeigen.
             let erstes = null;
             Object.keys(result.body.fields).forEach(function (key) {
-              if (!fields[key]) return;
-              setError(fields[key], t('errServerField'));
-              if (!erstes) erstes = fields[key];
+              const clientKey = key === 'existing_website' ? 'website' : key;
+              if (!fields[clientKey]) return;
+              setError(fields[clientKey], t('errServerField'));
+              if (!erstes) erstes = fields[clientKey];
             });
             setStatus(t('errSummary'), 'error');
             if (erstes) erstes.focus();

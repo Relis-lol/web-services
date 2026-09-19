@@ -12,14 +12,7 @@
      ============================================================ -->
 <title>Saveroq Studio — Websites &amp; digitale Systeme</title>
 <meta name="description" content="Saveroq Studio entwickelt Websites, kleinere Web-Anwendungen und digitale Systeme für kleine Unternehmen – von der Landingpage über APIs, Datenbanken und Hosting bis zu laufender Betreuung und virtueller Assistenz.">
-<!-- Bewusst NICHT indexieren.
-     Das Studio soll oeffentlich erreichbar, aber vorerst nicht in den
-     Suchergebnissen sein. Wichtig dabei: In robots.txt steht KEIN Disallow —
-     sonst duerfte der Crawler die Seite nicht abrufen und wuerde dieses
-     noindex nie sehen.
-     Freigeben mit:  python scripts/domain-setzen.py --index an
-     Danach zusaetzlich die Sitemap-Zeile in robots.txt einkommentieren. -->
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio.saveroq.com/">
 
 <meta property="og:type" content="website">
@@ -45,7 +38,7 @@
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32"><!-- Fallback für ältere Browser -->
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-<link rel="stylesheet" href="css/styles.css?v=c7a659b7">
+<link rel="stylesheet" href="css/styles.css?v=0173b820">
 
 <!-- Strukturierte Daten. Bewusst knapp und ausschliesslich mit Angaben, die
      auch im Impressum stehen. Kein Bezug auf saveroq.com: Die beiden Sites
@@ -53,9 +46,11 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": ["ProfessionalService", "Organization"],
+  "@id": "https://studio.saveroq.com/#business",
   "name": "Saveroq Studio",
   "url": "https://studio.saveroq.com/",
+  "email": "kontakt@saveroq.com",
   "description": "Websites, digitale Systeme und laufende Unterstützung für kleine Unternehmen.",
   "address": {
     "@type": "PostalAddress",
@@ -66,6 +61,7 @@
   },
   "areaServed": "DE",
   "availableLanguage": ["de", "en"],
+  "founder": {"@type": "Person", "name": "Björn Boldt"},
   "contactPoint": [
     {
       "@type": "ContactPoint",
@@ -77,9 +73,18 @@
     {
       "@type": "ContactPoint",
       "contactType": "legal",
-      "email": "kontakt@saveroq.com",
+      "email": "relislol@yahoo.com",
       "availableLanguage": ["de", "en"]
     }
+  ],
+  "makesOffer": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Websites und Landingpages", "url": "https://studio.saveroq.com/websites/"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web-Anwendungen und kleinere SaaS-Systeme", "url": "https://studio.saveroq.com/web-apps-saas/"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI und Automatisierung", "url": "https://studio.saveroq.com/ai-automatisierung/"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "APIs, Daten und Integrationen", "url": "https://studio.saveroq.com/api-integrationen/"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hosting, Deployment und technischer Betrieb", "url": "https://studio.saveroq.com/hosting-betrieb/"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Wartung und technische Betreuung", "url": "https://studio.saveroq.com/wartung-support/"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Virtuelle Assistenz", "url": "https://studio.saveroq.com/virtuelle-assistenz/"}}
   ]
 }
 </script>
@@ -335,7 +340,7 @@
 <header class="site-header" id="site-header">
   <div class="container header-inner">
 
-    <a class="brand" href="#top" aria-label="Startseite">
+    <a class="brand" href="#top" aria-label="SQ Saveroq Studio">
       <span class="brand-mark" aria-hidden="true" data-site="initials">SQ</span>
       <span class="brand-name" data-site="name">Saveroq Studio</span>
     </a>
@@ -539,6 +544,16 @@
         </article>
 
       </div>
+
+      <div class="service-directory" aria-label="Leistungen im Detail">
+        <a href="websites/"><strong>Websites &amp; Landingpages</strong><span>Firmenauftritte, Produktseiten und Modernisierungen</span></a>
+        <a href="web-apps-saas/"><strong>Web-Apps &amp; kleine SaaS-Systeme</strong><span>Individuelle Funktionen, Portale und interne Werkzeuge</span></a>
+        <a href="ai-automatisierung/"><strong>AI &amp; Automatisierung</strong><span>Assistenten und Abläufe auf Basis vorhandener Informationen</span></a>
+        <a href="api-integrationen/"><strong>APIs, Daten &amp; Integrationen</strong><span>Schnittstellen, Datenhaltung und verbundene Systeme</span></a>
+        <a href="hosting-betrieb/"><strong>Hosting &amp; technischer Betrieb</strong><span>Docker, Deployment und nachvollziehbarer Betrieb</span></a>
+        <a href="wartung-support/"><strong>Wartung &amp; Support</strong><span>Updates, Fehlerbehebung und laufende technische Betreuung</span></a>
+        <a href="virtuelle-assistenz/"><strong>Virtuelle Assistenz</strong><span>Kommunikation, Datenpflege und wiederkehrende Büroaufgaben</span></a>
+      </div>
     </div>
   </section>
 
@@ -724,20 +739,31 @@
         <p class="section-kicker" data-i18n="projects.kicker">Projekte</p>
         <h2 id="projekte-h" data-i18n="projects.title">Ausgewählte Arbeiten</h2>
         <p class="section-lead" data-i18n="projects.lead">
-          Eine kleine Auswahl statt einer langen Liste. Der dritte Eintrag ist
-          kein Kundenprojekt, sondern belegt die technische Grundlage dahinter.
+          Eigene Projekte und technische Nachweise statt erfundener Kundenlisten.
+          Die Einordnung jeder Arbeit steht direkt an der jeweiligen Karte.
         </p>
       </header>
 
-      <!-- Karten werden aus js/projects.js erzeugt. -->
-      <div class="grid grid-3 projects-grid" id="projects-grid"></div>
-
-      <noscript>
-        <p class="notice">
-          Die Projektübersicht benötigt JavaScript. Schreiben Sie uns gern direkt
-          über das Kontaktformular – wir schicken Ihnen Referenzen zu.
-        </p>
-      </noscript>
+      <!-- Statische Fassung fuer Menschen und Suchmaschinen ohne JavaScript.
+           main.js baut dieselben Karten bei aktiver Sprache dynamisch neu auf. -->
+      <div class="grid grid-3 projects-grid" id="projects-grid">
+        <article class="project-card">
+          <div class="project-media"><img src="assets/projects/wivoko.webp?v=35f273b5" alt="Ansicht der WIVOKO-Website" width="1600" height="1000" loading="lazy"></div>
+          <div class="project-body"><p class="project-category">Eigenes Markenprojekt</p><h3 class="project-title">WIVOKO — Fashion-Charm-Marke</h3><p class="project-desc">Mehrsprachiger Markenauftritt für ein modulares Fashion-Charm-System, vorgerendert und mit komprimierten Produktbildern ausgeliefert.</p><ul class="tag-list"><li>Next.js</li><li>Vier Sprachen</li><li>WebP</li><li>Cloudflare</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://wivoko.com/" target="_blank" rel="noopener noreferrer">Projekt ansehen</a></div></div>
+        </article>
+        <article class="project-card">
+          <div class="project-media"><img src="assets/projects/eve.webp?v=4c47af57" alt="Ansicht der EVE Market Tools" width="1600" height="1000" loading="lazy"></div>
+          <div class="project-body"><p class="project-category">Eigene Plattform</p><h3 class="project-title">EVE Market Tools</h3><p class="project-desc">Werkzeugsammlung mit eigener Datenbank und API. Rund 7,5 Millionen neue Datensätze pro Tag versorgen Handels-, Industrie- und Analysefunktionen.</p><ul class="tag-list"><li>Eigene API</li><li>Datenbank</li><li>Automatischer Import</li><li>Acht Sprachen</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://eve-tradelooper.com/" target="_blank" rel="noopener noreferrer">Projekt ansehen</a></div></div>
+        </article>
+        <article class="project-card">
+          <div class="project-media"><img src="assets/projects/alice.webp?v=08d1a825" alt="Ansicht des ALICE SYNDROME Archive" width="1600" height="1000" loading="lazy"></div>
+          <div class="project-body"><p class="project-category">Eigenes redaktionelles Projekt</p><h3 class="project-title">ALICE SYNDROME Archive</h3><p class="project-desc">Inoffizielles, zweisprachiges Fan-Archiv mit datierten und verlinkten Quellen sowie einem Hintergrunddienst zur laufenden Pflege.</p><ul class="tag-list"><li>Next.js</li><li>Koreanisch &amp; Englisch</li><li>Hintergrunddienst</li><li>Docker</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://alicesyndromearchive.com/" target="_blank" rel="noopener noreferrer">Projekt ansehen</a></div></div>
+        </article>
+        <article class="project-card">
+          <div class="project-media"><img src="assets/projects/portfolio.webp?v=b00af706" alt="Ansicht des technischen Profils" width="1600" height="1000" loading="lazy"></div>
+          <div class="project-body"><p class="project-category">Technischer Kompetenznachweis</p><h3 class="project-title">Cloud &amp; Plattformbetrieb</h3><p class="project-desc">Persönliches technisches Profil mit selbst betriebenen Systemen, Kennzahlen, Technologiestacks und Verweisen auf den jeweiligen Quellcode.</p><ul class="tag-list"><li>Linux</li><li>Docker</li><li>Python</li><li>PostgreSQL</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://relis-lol.github.io/" target="_blank" rel="noopener noreferrer">Profil ansehen</a></div></div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -839,7 +865,12 @@
 
         <!-- Kontaktdaten: werden aus js/config.js gefüllt.
              Nicht konfigurierte Angaben werden gar nicht angezeigt. -->
-        <ul class="contact-details" id="contact-details"></ul>
+        <ul class="contact-details" id="contact-details">
+          <li><span class="label">E-Mail</span><!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
+          <li><span class="label">Ansprechpartnerin</span>Girly Boldt</li>
+          <li><span class="label">Rechtliche Anfragen</span><!--email_off--><a href="mailto:relislol@yahoo.com">relislol@yahoo.com</a><!--/email_off--></li>
+          <li><span class="label">Standort</span>Nürnberg, Deutschland</li>
+        </ul>
       </div>
 
       <div class="contact-form-wrap reveal">
@@ -925,7 +956,7 @@
           <div class="field field-check">
             <input type="checkbox" id="f-privacy" name="privacy" required aria-describedby="err-privacy">
             <label for="f-privacy">
-              <span data-i18n="form.privacy">Ich habe die Datenschutzhinweise gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.</span>
+              <span data-i18n="form.privacy">Ich habe die Datenschutzhinweise zur Verarbeitung meiner Angaben gelesen.</span>
               <a href="datenschutz.html" data-i18n="form.privacyLink">Datenschutzhinweise</a>
             </label>
             <p class="field-error" id="err-privacy" role="alert" hidden></p>
@@ -976,7 +1007,7 @@
 
     <div class="footer-col">
       <h2 data-i18n="footer.contactTitle">Kontakt</h2>
-      <ul class="footer-contact" id="footer-contact"></ul>
+      <ul class="footer-contact" id="footer-contact"><li><!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li><li>Girly Boldt</li><li>Nürnberg, Deutschland</li></ul>
     </div>
 
     <div class="footer-col">
@@ -993,9 +1024,9 @@
   </div>
 </footer>
 
-<script src="js/config.js?v=4c7de9c0"></script>
-<script src="js/i18n.js?v=8fb1037e"></script>
-<script src="js/projects.js?v=82a5335f"></script>
-<script src="js/main.js?v=d8581f44"></script>
+<script src="js/config.js?v=e80d62ec"></script>
+<script src="js/i18n.js?v=bf4cf735"></script>
+<script src="js/projects.js?v=55081619"></script>
+<script src="js/main.js?v=31bb2fb2"></script>
 </body>
 </html>
