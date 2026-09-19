@@ -3,7 +3,7 @@
 **Stand:** 2026-09-19
 **Projekt:** Produktionswebsite unter `https://studio.saveroq.com`
 
-Dieses Dokument beschreibt den aktuellen Releasekandidaten. Maßgeblich bleiben
+Dieses Dokument beschreibt den aktuellen Produktionsstand. Maßgeblich bleiben
 Repository, `git status` und der letzte Commit.
 
 ## Zweck und Grenzen
@@ -28,11 +28,10 @@ werden.
 - Geheimnisse: ausschließlich `deploy/.env` auf dem Server; nie ins Repository
 - Aktuellen Commit immer mit `git log -1 --oneline` prüfen.
 
-Der Server-Checkout enthielt vor diesem Release zwei lokale Commits für die
-Kontaktadresse und Wirtschafts-Identifikationsnummer. Deren Änderungen wurden
-in den lokalen Hauptzweig übernommen. Vor einem Deployment muss der Server auf
-den veröffentlichten `origin/main`-Stand gebracht werden; eine Sicherheitsbranch
-des vorherigen Serverstands ist dabei sinnvoll.
+Die zwei früher nur auf dem Server vorhandenen Änderungen an Kontaktadresse und
+Wirtschafts-Identifikationsnummer sind in `main` übernommen. Der frühere
+Serverstand bleibt in einer Sicherheitsbranch erhalten; der produktive Checkout
+ist wieder sauber und folgt `origin/main`.
 
 ## Öffentliche Geschäftsdaten
 
@@ -90,7 +89,7 @@ Die eingestellte EU-OS-Plattform wird nicht mehr genannt. Eine Aussage nach
 Beschäftigtenzahl nicht belegt ist. Die Rechtstexte sind technisch und
 redaktionell geprüft, ersetzen aber keine anwaltliche Prüfung.
 
-## Validierter Releasekandidat
+## Validierter Produktionsstand
 
 Am 2026-09-19 lokal geprüft:
 
@@ -106,6 +105,14 @@ Am 2026-09-19 lokal geprüft:
 - Lighthouse lokal: Performance 98, Accessibility 100,
   Best Practices 100, SEO 100
 - `git diff --check`: PASS
+- Produktionsbuild und Compose-Start: PASS
+- Web- und API-Container: healthy; Tunnel: running
+- alle acht öffentlichen Ziel-URLs: HTTP 200
+- Live-Canonicals und `index, follow`: PASS
+- Live-Sicherheitsheader, `robots.txt` und Sitemap: PASS
+- unbekannte Live-URL: HTTP 404
+- ungültiger JSON-POST an `/api/contact`: HTTP 400 `invalid_json`
+- SMTP-Konfiguration im API-Container: vollständig
 
 Lighthouse auf dem lokalen Entwicklungsserver bewertet Browser-Caching und
 Produktionslatenz nur eingeschränkt. Der Produktionsstand muss nach jedem
@@ -144,5 +151,5 @@ Nach dem Deployment prüfen:
 - Dort anschließend die Startseite und die sieben Leistungsseiten prüfen.
 - Social-Media-Profile nur ergänzen, wenn bestätigte URLs vorliegen.
 
-Der lokale Releasekandidat ist vorbereitet; der endgültige Live-Status ist
-nach dem Deployment in Git und auf der Produktionsseite zu verifizieren.
+Der Produktionsstand ist ausgerollt und verifiziert. Vor jeder weiteren
+Änderung erneut Git-Status, Live-Zustand und dieses Dokument abgleichen.
