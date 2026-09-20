@@ -29,6 +29,7 @@ COPY --chown=101:101 api-integrationen/     /usr/share/nginx/html/api-integratio
 COPY --chown=101:101 hosting-betrieb/       /usr/share/nginx/html/hosting-betrieb/
 COPY --chown=101:101 wartung-support/       /usr/share/nginx/html/wartung-support/
 COPY --chown=101:101 virtuelle-assistenz/   /usr/share/nginx/html/virtuelle-assistenz/
+COPY --chown=101:101 shopify-apps-privacy/  /usr/share/nginx/html/shopify-apps-privacy/
 
 EXPOSE 8080
 
