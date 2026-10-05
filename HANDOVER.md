@@ -39,7 +39,7 @@ ist wieder sauber und folgt `origin/main`.
 - Geschäftsbezeichnung: Saveroq Studio
 - Anschrift: Siemensstraße 32, 90459 Nürnberg, Deutschland
 - Kundenkontakt: Girly Boldt, `kontakt@saveroq.com`
-- Recht und Datenschutz: `relislol@yahoo.com`
+- Recht und Datenschutz: `kontakt@saveroq.com`
 - Wirtschafts-Identifikationsnummer: `DE442938959-00001`
 - Technischer Formular-Absender: `Saveroq Studio <studio@saveroq.com>`
 

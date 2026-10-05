@@ -33,6 +33,7 @@ SEITEN = [
     'ai-automatisierung/index.html', 'api-integrationen/index.html',
     'hosting-betrieb/index.html', 'wartung-support/index.html',
     'virtuelle-assistenz/index.html',
+    'apps-privacy/index.html',
 ]
 MUSTER = re.compile(
     r'(href|src)="((?:\.\./|/)?((?:css|js)/[a-z0-9-]+\.(?:css|js)'
