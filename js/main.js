@@ -544,7 +544,9 @@
     const media = el('div', 'project-media');
     const img = el('img');
     img.src = project.image;
-    img.alt = 'Screenshot: ' + pick(project, 'title');
+    const eigenerAlternativtext = pick(project, 'imageAlt');
+    img.alt = isFilled(eigenerAlternativtext)
+      ? eigenerAlternativtext : 'Screenshot: ' + pick(project, 'title');
     img.loading = 'lazy';
     img.decoding = 'async';
     if (project.imageWidth) img.width = project.imageWidth;
@@ -590,7 +592,12 @@
       }
 
       if (isFilled(project.detailUrl)) {
-        const detail = el('a', 'btn btn-ghost btn-sm', t('projectDetails'));
+        const eigenesDetailLabel = pick(project, 'detailLabel');
+        const detail = el(
+          'a',
+          'btn btn-ghost btn-sm',
+          isFilled(eigenesDetailLabel) ? eigenesDetailLabel : t('projectDetails')
+        );
         detail.href = project.detailUrl;
         if (/^https?:\/\//i.test(project.detailUrl)) {
           detail.target = '_blank';

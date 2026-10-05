@@ -18,11 +18,15 @@
                  Sprachfassung stehen — genau das war ein Fehler, den ein
                  Besucher der englischen Seite sofort sieht.
      image       Pfad zum Screenshot, relativ zum Projektstamm.
+     imageAlt    Optional: Alternativtext, wenn das Bild kein Screenshot ist.
+     imageAlt_en Optional: englischer Alternativtext.
      imageWidth  Natürliche Bildbreite in Pixeln  ┐ verhindert Layout-Shift
      imageHeight Natürliche Bildhöhe in Pixeln    ┘ (CLS)
      url         Öffentliche Projekt-URL oder `null` (Button wird dann
                  deaktiviert dargestellt statt ins Leere zu verlinken).
      detailUrl   Optional: Link zu einer ausführlichen Case Study oder `null`.
+     detailLabel Optional: eigener Text für den Detail-Link.
+     detailLabel_en Optional: englischer Text für den Detail-Link.
      placeholder true = Karte wird sichtbar als Platzhalter markiert.
                  Bei echten Projekten auf `false` setzen oder entfernen.
 
@@ -124,34 +128,34 @@ const PROJECTS = [
     placeholder: false
   },
   {
-    id: 'portfolio',
-    title: 'Technisches Profil — Cloud & Plattformbetrieb',
-    title_en: 'Technical profile — cloud & platform operations',
-    category: 'Technischer Kompetenznachweis',
-    category_en: 'Technical proof of competence',
+    id: 'studio-infrastruktur',
+    title: 'Studio-Infrastruktur — Deployment & Betrieb',
+    title_en: 'Studio infrastructure — deployment & operations',
+    category: 'Eigene Infrastruktur',
+    category_en: 'Own infrastructure',
     description:
-      'Kein Kundenprojekt, sondern der Nachweis der technischen Grundlage ' +
-      'hinter diesen Leistungen: ein eigenes Profil für Cloud- und ' +
-      'Plattformbetrieb mit Linux, Docker, Python, PostgreSQL und ' +
-      'Azure-Grundlagen. Dort sind drei selbst betriebene Systeme mit ' +
-      'Kennzahl, Technologiestack und Verweis auf den Quellcode ' +
-      'dokumentiert — darunter die Plattform aus Projekt 02.',
+      'Die technische Grundlage hinter unseren Websites und Web-Anwendungen: ' +
+      'getrennte Docker-Dienste auf Linux, reproduzierbare Deployments, ' +
+      'verschlüsselter Zugriff über Cloudflare Tunnel, Healthchecks und eine ' +
+      'abgesicherte Kontakt-API. Die Infrastruktur betreiben und warten wir selbst.',
     description_en:
-      'Not a client project but evidence of the technical grounding behind ' +
-      'these services: a personal profile for cloud and platform operations ' +
-      'covering Linux, Docker, Python, PostgreSQL and Azure fundamentals. It ' +
-      'documents three self-operated systems with a headline metric, ' +
-      'technology stack and links to the source code — including the ' +
-      'platform from project 02.',
-    tech: ['Linux', 'Docker', 'Python', 'PostgreSQL',
-           'Azure-Grundlagen (AZ-900)', 'Statische Auslieferung'],
-    tech_en: ['Linux', 'Docker', 'Python', 'PostgreSQL',
-              'Azure fundamentals (AZ-900)', 'Static delivery'],
-    image: 'assets/projects/portfolio.webp?v=b00af706',
+      'The technical foundation behind our websites and web applications: ' +
+      'separate Docker services on Linux, reproducible deployments, encrypted ' +
+      'access through Cloudflare Tunnel, health checks and a secured contact ' +
+      'API. We operate and maintain the infrastructure ourselves.',
+    tech: ['Linux', 'Docker', 'Cloudflare Tunnel', 'Python / FastAPI',
+           'Healthchecks', 'Sicherheitsheader'],
+    tech_en: ['Linux', 'Docker', 'Cloudflare Tunnel', 'Python / FastAPI',
+              'Health checks', 'Security headers'],
+    image: 'assets/projects/studio-infrastruktur.webp?v=f9bc94aa',
+    imageAlt: 'Visualisierung der Studio-Infrastruktur',
+    imageAlt_en: 'Illustration of the studio infrastructure',
     imageWidth: 1600,
     imageHeight: 1000,
-    url: 'https://relis-lol.github.io/',
-    detailUrl: null,
+    url: null,
+    detailUrl: 'hosting-betrieb/',
+    detailLabel: 'Hosting & Betrieb',
+    detailLabel_en: 'Hosting & operations',
     placeholder: false
   }
 

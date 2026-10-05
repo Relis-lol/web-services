@@ -222,8 +222,8 @@ const I18N = (function () {
     'projects.kicker': 'Projects',
     'projects.title': 'Selected work',
     'projects.lead':
-      'A small selection rather than a long list. The third entry is not a ' +
-      'client project — it evidences the technical grounding behind the work.',
+      'Our own projects and technical evidence instead of invented client ' +
+      'lists. Each piece is clearly classified on its card.',
 
     /* --- Ablauf -------------------------------------------------------- */
     'process.kicker': 'Process',
