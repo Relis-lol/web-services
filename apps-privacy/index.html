@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shopify Apps Privacy Policy | Saveroq Studio</title>
-<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps: common information plus a dedicated, verified data-practices section for each app, starting with CartLink Lite.">
+<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite and EU E-Invoice.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio.saveroq.com/apps-privacy">
 <meta property="og:type" content="website">
@@ -36,13 +36,14 @@
       read as implying that every Saveroq app requests the same permissions or handles data the same
       way. Only the section for a specific app describes that app's actual practices.
     </p>
-    <p><strong>Last updated:</strong> September 20, 2026</p>
+    <p><strong>Last updated:</strong> October 11, 2026</p>
 
     <h2 id="toc-heading">Contents</h2>
     <nav aria-label="Page contents">
       <ul>
         <li><a href="#general">General information</a></li>
         <li><a href="#cartlink-lite">CartLink Lite</a></li>
+        <li><a href="#eu-e-invoice">EU E-Invoice</a></li>
         <li><a href="#contact">Contact and privacy requests</a></li>
         <li><a href="#general-privacy-policy">General Studio privacy policy</a></li>
         <li><a href="#imprint">Legal notice / imprint</a></li>
@@ -67,9 +68,10 @@
     <p>
       Each Saveroq Shopify app is installed by a merchant into their own Shopify store to perform one
       specific, narrowly scoped task inside Shopify Admin or the merchant's storefront theme.
-      Processing exists only to make that app's own feature work. No Saveroq Shopify app sells, rents,
-      or shares merchant or customer data with third parties, and none is used to build advertising
-      profiles.
+      Processing exists only to make that app's own feature work. Saveroq does not sell or rent merchant
+      or customer data, share it for advertising or marketing, or use it to build advertising profiles.
+      Processors or service providers that are necessary to provide an app's service may process data
+      only for that purpose on Saveroq's behalf. Details are stated in the app-specific section below.
     </p>
 
     <h3>Legal basis</h3>
@@ -86,10 +88,11 @@
     <p>
       Data described on this page is processed within Shopify's platform — Shopify itself acts as a
       data processor under the merchant's own agreement with Shopify — and, where an app's own section
-      below says it stores data, on Saveroq-operated server infrastructure. Saveroq does not sell or
-      pass this data to advertising, marketing, or analytics providers. Each app's section states
-      whether that app uses any analytics, advertising, or error-tracking service; where it says it
-      uses none, no such recipient exists for that app.
+      below says it stores data, on infrastructure controlled by Saveroq. Necessary technical
+      processors or service providers may be involved only to provide the app service; they are
+      identified in the relevant app-specific section. Saveroq does not sell or pass this data to
+      advertising or marketing providers. Each app's section states whether that app uses any
+      analytics, advertising, or error-tracking service.
     </p>
 
     <h3>Shopify authentication and session handling</h3>
@@ -118,10 +121,9 @@
     <p>
       Shopify operates its platform globally; processing that Shopify itself performs as platform
       operator may involve transfers outside the EU/EEA under Shopify's own privacy policy and
-      safeguards, which are outside Saveroq's control. Beyond that platform-level processing, Saveroq
-      does not itself transfer the data described on this page to any further third country: data that
-      an app's own section says it stores stays on Saveroq-operated infrastructure, and no other
-      recipient is involved (see "Recipients" above).
+      safeguards, which are outside Saveroq's control. Any processors or service providers used by
+      Saveroq, along with the relevant hosting location and processing details, are identified in the
+      app-specific section below where applicable (see "Recipients" above).
     </p>
 
     <h3>Merchant privacy requests</h3>
@@ -194,6 +196,60 @@
       <li><strong>Protected customer data:</strong> CartLink Lite does not request or use Shopify
         protected customer data.</li>
       <li><strong>Production app URL:</strong> <a href="https://cartlink.saveroq.com">https://cartlink.saveroq.com</a></li>
+      <li><strong>Contact for privacy requests:</strong>
+        <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
+    </ul>
+
+    <h2 id="eu-e-invoice">EU E-Invoice</h2>
+    <ul>
+      <li><strong>Purpose:</strong> EU E-Invoice converts eligible Shopify orders into structured
+        electronic invoices and related correction documents. Depending on merchant configuration,
+        output is XRechnung XML, ZUGFeRD / Factur-X PDF/A-3, or both. Unsupported or inconsistent cases
+        are blocked instead of being issued automatically.</li>
+      <li><strong>Shopify access scopes:</strong> <code>read_companies</code>,
+        <code>read_customers</code>, <code>read_orders</code>, and <code>read_returns</code>.</li>
+      <li><strong>Protected customer data:</strong> Name and address only. Customer email and phone are
+        not requested for current functionality.</li>
+      <li><strong>Data accessed:</strong> Buyer or company name; billing address; Shopify order
+        identifiers; line items; quantities; prices; discounts; shipping charges; tax information;
+        payment status; company and company-location information; tax-registration information where
+        available; order changes relevant to invoicing; and refund or return information relevant to
+        supported correction documents.</li>
+      <li><strong>Data not used:</strong> No customer email, no customer phone, no advertising, no
+        profiling, no behavioral analytics, and no sale of personal data.</li>
+      <li><strong>Data stored:</strong> Invoice source snapshots; normalized invoice data; issued
+        invoice and correction records; validation results; hashes; XRechnung and ZUGFeRD artifacts;
+        evidence records; webhook and job metadata; and pseudonymized security and access logs.</li>
+      <li><strong>Purpose of processing:</strong> To generate, validate, issue, store, retrieve,
+        reconcile, and, where supported, correct electronic invoices on behalf of the merchant.</li>
+      <li><strong>Validation:</strong> XRechnung documents are validated using KoSIT. ZUGFeRD / Factur-X
+        documents are validated using pinned Mustangproject and veraPDF tooling. Validation runs on
+        Saveroq-controlled infrastructure; customer data is not sent to an external validation SaaS.</li>
+      <li><strong>Hosting and processor:</strong> Production is hosted on Saveroq-controlled Hetzner
+        infrastructure in Germany. Hetzner acts as the technical hosting and infrastructure processor
+        for provision of the service. HTTPS/TLS protects data in transit, protected production data is
+        encrypted at rest, and production and development are separated.</li>
+      <li><strong>Backups:</strong> Protected data is included only in the encrypted backup and recovery
+        process.</li>
+      <li><strong>Access:</strong> Administrative access follows least-privilege principles. Access to
+        protected data is pseudonymously logged. Saveroq does not routinely inspect merchant customer
+        data manually.</li>
+      <li><strong>Retention:</strong> Issued invoice and correction data is retained on behalf of the
+        merchant for applicable statutory or contractual retention periods. For German invoices, the
+        confirmed invoice-retention period is eight years, beginning at the end of the calendar year
+        in which the invoice was issued. Operational data is retained only as long as necessary for
+        operation, security, troubleshooting, or legal obligations.</li>
+      <li><strong>Privacy webhooks:</strong> Shopify's mandatory compliance webhooks
+        (<code>customers/data_request</code>, <code>customers/redact</code>, and
+        <code>shop/redact</code>) are implemented. Privacy requests are handled according to applicable
+        retention requirements; data that must still be retained for statutory invoice obligations is
+        not deleted automatically.</li>
+      <li><strong>Uninstall behavior:</strong> Shopify API and session access stops, session credentials
+        are removed, and operational data is removed according to the retention policy. Issued fiscal
+        documents and evidence may remain solely for required retention.</li>
+      <li><strong>Analytics/tracking:</strong> No advertising or behavioral tracking.</li>
+      <li><strong>Production app URL:</strong>
+        <a href="https://einvoice.saveroq.com">https://einvoice.saveroq.com</a></li>
       <li><strong>Contact for privacy requests:</strong>
         <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
     </ul>
