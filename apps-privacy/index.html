@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shopify Apps Privacy Policy | Saveroq Studio</title>
-<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite and EU E-Invoice.">
+<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite, Metafield Cleaner Lite, and EU E-Invoice.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio.saveroq.com/apps-privacy">
 <meta property="og:type" content="website">
@@ -36,13 +36,14 @@
       read as implying that every Saveroq app requests the same permissions or handles data the same
       way. Only the section for a specific app describes that app's actual practices.
     </p>
-    <p><strong>Last updated:</strong> October 11, 2026</p>
+    <p><strong>Last updated:</strong> October 13, 2026</p>
 
     <h2 id="toc-heading">Contents</h2>
     <nav aria-label="Page contents">
       <ul>
         <li><a href="#general">General information</a></li>
         <li><a href="#cartlink-lite">CartLink Lite</a></li>
+        <li><a href="#metafield-cleaner-lite">Metafield Cleaner Lite</a></li>
         <li><a href="#eu-e-invoice">EU E-Invoice</a></li>
         <li><a href="#contact">Contact and privacy requests</a></li>
         <li><a href="#general-privacy-policy">General Studio privacy policy</a></li>
@@ -196,6 +197,53 @@
       <li><strong>Protected customer data:</strong> CartLink Lite does not request or use Shopify
         protected customer data.</li>
       <li><strong>Production app URL:</strong> <a href="https://cartlink.saveroq.com">https://cartlink.saveroq.com</a></li>
+      <li><strong>Contact for privacy requests:</strong>
+        <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
+    </ul>
+
+    <h2 id="metafield-cleaner-lite">Metafield Cleaner Lite</h2>
+    <ul>
+      <li><strong>Purpose:</strong> Lets merchants scan Product and Product Variant metafields, inspect
+        values that have no current metafield definition, export those values as CSV or JSON, and
+        selectively delete eligible values after explicit review and confirmation. The app does not
+        claim that a value without a definition is unused or was left by an uninstalled app.</li>
+      <li><strong>Shopify access scopes:</strong> <code>write_products</code> only. Shopify includes the
+        corresponding product read capability in this write scope. No customer, order, company,
+        checkout, theme, file, or discount scope is requested.</li>
+      <li><strong>Data accessed:</strong> Product and Product Variant identifiers and titles; metafield
+        namespace, key, type, and current value; and Product/Product Variant metafield-definition
+        metadata. The app uses Shopify's Admin GraphQL API only.</li>
+      <li><strong>Data stored:</strong> Standard Shopify session data; shop-scoped scan status and
+        summary counts; a small set of example Shopify owner identifiers for each scan group; and
+        deletion audit metadata containing namespace, key, owner type, requested/deleted/failed
+        counts, status, error text where applicable, and timestamp.</li>
+      <li><strong>Data not stored:</strong> Metafield values and product or variant titles are fetched
+        live for review, export, or deletion and are not persisted in Saveroq's database. Export files
+        are generated on request and are not retained by Saveroq. The app stores no customer, order,
+        checkout, payment, theme, or storefront visitor data.</li>
+      <li><strong>Authentication/session data:</strong> Standard Shopify session data, including the
+        shop domain and access token, is stored in the app's Prisma/SQLite session table so the
+        embedded app can make authorized Shopify API calls.</li>
+      <li><strong>Hosting and processor:</strong> Production is hosted on Saveroq-controlled Hetzner
+        infrastructure in Germany. Hetzner acts as the technical hosting and infrastructure processor.
+        HTTPS/TLS protects data in transit, and the app's persistent database and backups remain
+        isolated from other applications on the server.</li>
+      <li><strong>Analytics/tracking:</strong> None. Metafield Cleaner Lite does not load or call any
+        analytics, advertising, or behavioral tracking service.</li>
+      <li><strong>Retention/deletion:</strong> Session, scan-summary, and deletion-audit data is kept
+        only while needed to operate the installed app. The <code>shop/redact</code> compliance webhook
+        deletes all rows stored for the shop. Operational SQLite backups use short rolling retention
+        and expire with the same infrastructure policy.</li>
+      <li><strong>Uninstall behavior:</strong> The <code>app/uninstalled</code> webhook removes active
+        session credentials. Shopify's mandatory compliance webhooks
+        (<code>customers/data_request</code>, <code>customers/redact</code>, and
+        <code>shop/redact</code>) are authenticated and implemented; the customer-specific hooks have
+        no customer data to return or erase, and <code>shop/redact</code> removes remaining session,
+        scan, and deletion-audit rows.</li>
+      <li><strong>Protected customer data:</strong> Metafield Cleaner Lite does not request or use
+        Shopify protected customer data.</li>
+      <li><strong>Production app URL:</strong>
+        <a href="https://metafield-cleaner.saveroq.com">https://metafield-cleaner.saveroq.com</a></li>
       <li><strong>Contact for privacy requests:</strong>
         <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
     </ul>
