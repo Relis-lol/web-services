@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shopify Apps Privacy Policy | Saveroq Studio</title>
-<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite, Metafield Cleaner Lite, and EU E-Invoice.">
+<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite, Metafield Cleaner Lite, Variant Gallery Lite, and EU E-Invoice.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio.saveroq.com/apps-privacy">
 <meta property="og:type" content="website">
@@ -36,7 +36,7 @@
       read as implying that every Saveroq app requests the same permissions or handles data the same
       way. Only the section for a specific app describes that app's actual practices.
     </p>
-    <p><strong>Last updated:</strong> October 13, 2026</p>
+    <p><strong>Last updated:</strong> October 14, 2026</p>
 
     <h2 id="toc-heading">Contents</h2>
     <nav aria-label="Page contents">
@@ -44,6 +44,7 @@
         <li><a href="#general">General information</a></li>
         <li><a href="#cartlink-lite">CartLink Lite</a></li>
         <li><a href="#metafield-cleaner-lite">Metafield Cleaner Lite</a></li>
+        <li><a href="#variant-gallery-lite">Variant Gallery Lite</a></li>
         <li><a href="#eu-e-invoice">EU E-Invoice</a></li>
         <li><a href="#contact">Contact and privacy requests</a></li>
         <li><a href="#general-privacy-policy">General Studio privacy policy</a></li>
@@ -244,6 +245,85 @@
         Shopify protected customer data.</li>
       <li><strong>Production app URL:</strong>
         <a href="https://metafield-cleaner.saveroq.com">https://metafield-cleaner.saveroq.com</a></li>
+      <li><strong>Contact for privacy requests:</strong>
+        <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
+    </ul>
+
+    <h2 id="variant-gallery-lite">Variant Gallery Lite</h2>
+    <ul>
+      <li><strong>Purpose:</strong> Variant Gallery Lite lets merchants assign existing Shopify product
+        images to the values of one product option. Its Theme App Extension then shows the mapped
+        images for the option value selected on the storefront. The app does not generate or upload
+        images.</li>
+      <li><strong>Shopify access scope:</strong> The app requests only <code>write_products</code>.
+        Shopify includes the corresponding product read access in that scope so the app can display
+        and update the product data needed for image mappings. The app requests no customer, order,
+        company, checkout, payment, fulfillment, or marketing scopes.</li>
+      <li><strong>Product data accessed:</strong> The app accesses product identifiers, titles, handles,
+        status, options and option values, variants and selected options, product media/image
+        identifiers, image URLs and alt text, and its own app-owned mapping metafield. It also receives
+        Shopify product-deletion notifications so obsolete local quota records can be removed.</li>
+      <li><strong>Data stored in Shopify:</strong> The option-to-image mapping is stored as JSON in the
+        app-owned product metafield <code>app.variant_gallery_map</code>. The mapping contains the
+        selected option name, option values, and the ordered Shopify media identifiers assigned to
+        those values. Shopify stores this metafield with the product.</li>
+      <li><strong>Data stored by Saveroq:</strong> The app stores the shop identity and standard Shopify
+        session/authentication records needed to operate the installation, including the granted
+        scope, access credentials, and expiry information. Shopify's session format may also contain
+        authenticated merchant-account metadata supplied during authorization. For plan enforcement
+        and concurrency safety, the app stores configured product identifiers, quota status, temporary
+        reservation tokens, and reservation expiry timestamps. It does not persistently duplicate
+        product titles, variants, images, option values, or the mapping JSON outside Shopify.</li>
+      <li><strong>Data not requested:</strong> Variant Gallery Lite does not request or store Shopify
+        protected customer data such as customer names, email addresses, phone numbers, postal
+        addresses, order records, or payment details. It does not collect customer-uploaded
+        photographs.</li>
+      <li><strong>Authentication:</strong> Shopify OAuth/session credentials are used solely to
+        authenticate the shop and perform the authorized product and metafield operations. They are
+        not shared with merchants or storefront visitors.</li>
+      <li><strong>Billing:</strong> The Free plan supports up to three configured products. The Unlimited
+        plan is priced at USD 4.99 per 30 days. Subscription purchase and payment processing
+        are handled by Shopify; Saveroq does not receive or store card or bank-account credentials.
+        The app reads the shop's current Shopify app-subscription status to determine plan access.</li>
+      <li><strong>Storefront behavior, cookies, and tracking:</strong> The Theme App Extension uses
+        product, variant, media, and mapping data rendered by Shopify in the visitor's browser. It does
+        not send storefront-visitor data to Saveroq, set cookies, use local or session storage, run
+        advertising or profiling, or include Saveroq analytics or tracking pixels.</li>
+      <li><strong>Hosting and processor:</strong> Production is hosted on Saveroq-controlled Hetzner
+        infrastructure in Germany. Hetzner acts as the technical hosting/infrastructure processor.
+        HTTPS/TLS protects data in transit. The app uses its own isolated SQLite database volume,
+        separate from the databases and storage of other Saveroq apps.</li>
+      <li><strong>Retention and deletion:</strong> Local Shopify session/authentication records and
+        active configured-product/quota records have no separate fixed time-to-live and are retained
+        while the app is installed and they remain operationally required. A pending quota reservation
+        is valid for five minutes; its row is released or converted to an active record during the next
+        product reconciliation. A product-deletion webhook removes the corresponding configured-product
+        record. The app-uninstalled webhook removes the shop's local sessions and configured-product
+        records. The shop-redact webhook performs the same local cleanup. No separate accounting or tax
+        retention period is applied to these operational app records.</li>
+      <li><strong>Backups:</strong> A daily production job creates SQLite online backups, runs a
+        <code>PRAGMA quick_check</code> integrity check, verifies each compressed snapshot, and stores
+        it in an app-specific root-only backup directory. Production backups are retained for 30 days.
+        Backup creation, integrity verification, and restore into an isolated disposable volume have
+        been tested successfully.</li>
+      <li><strong>Uninstall and Shopify metafields:</strong> The app attempts a best-effort deletion of
+        its app-owned mapping metafields during Shopify's delayed shop-redact processing when usable
+        Shopify credentials are still available. This cannot be guaranteed after Shopify has revoked
+        the access token. Independently, Shopify deletes the app-owned metafield definition when the
+        app is uninstalled and may temporarily retain the metafield values without a definition while
+        asynchronous cleanup runs. Shopify does not document a guaranteed cleanup period. If the same
+        app is reinstalled during Shopify's retention window, Shopify may recreate the definition and
+        reassociate retained values under new definition identifiers.</li>
+      <li><strong>Privacy webhooks:</strong> The app handles Shopify's mandatory customer-data-request,
+        customer-redact, and shop-redact topics. Because the app does not hold customer data,
+        customer-specific requests are acknowledged without returning or deleting customer records.
+        Shop-redact removes the shop's local app records and performs the metafield cleanup attempt
+        described above.</li>
+      <li><strong>Protected customer data:</strong> The app does not request protected customer data
+        access, so Shopify Protected Customer Data approval is not required for its current
+        functionality.</li>
+      <li><strong>Production app URL:</strong>
+        <a href="https://variant-gallery.saveroq.com">https://variant-gallery.saveroq.com</a></li>
       <li><strong>Contact for privacy requests:</strong>
         <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
     </ul>
