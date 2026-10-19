@@ -282,10 +282,9 @@
       <li><strong>Authentication:</strong> Shopify OAuth/session credentials are used solely to
         authenticate the shop and perform the authorized product and metafield operations. They are
         not shared with merchants or storefront visitors.</li>
-      <li><strong>Billing:</strong> The Free plan supports up to three configured products. The Unlimited
-        plan is priced at USD 4.99 per 30 days. Subscription purchase and payment processing
-        are handled by Shopify; Saveroq does not receive or store card or bank-account credentials.
-        The app reads the shop's current Shopify app-subscription status to determine plan access.</li>
+      <li><strong>Billing:</strong> Subscription purchase and payment processing are handled by Shopify;
+        Saveroq does not receive or store card or bank-account credentials. The app reads the shop's
+        current Shopify app-subscription status to determine access.</li>
       <li><strong>Storefront behavior, cookies, and tracking:</strong> The Theme App Extension uses
         product, variant, media, and mapping data rendered by Shopify in the visitor's browser. It does
         not send storefront-visitor data to Saveroq, set cookies, use local or session storage, run
@@ -410,8 +409,8 @@
       <li><strong>Authentication and billing:</strong> Shopify OAuth sessions and access tokens are used
         to authenticate the merchant and call the Shopify Admin API. Partner API credentials are used
         only on the server for entitlement and subscription verification and are not delivered to the
-        merchant's browser. The Standard plan is USD 14.99 per 30 days with a 14-day trial through
-        Shopify App Pricing. Shopify processes the charge; the app does not receive card data.</li>
+        merchant's browser. Billing and subscription processing are handled by Shopify; the app does
+        not receive card data.</li>
       <li><strong>Evidence files:</strong> Merchants may upload PDF, PNG, or JPEG evidence files up to
         10 MiB. The app validates the file extension, media type, file signature, size, safe filename,
         opaque storage key, and SHA-256 hash. Production requires a successful ClamAV scan before a
