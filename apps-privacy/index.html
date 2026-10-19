@@ -44,7 +44,7 @@
         <li><a href="#general">General information</a></li>
         <li><a href="#cartlink-lite">CartLink Lite</a></li>
         <li><a href="#metafield-cleaner-lite">Saveroq Metafield Cleaner</a></li>
-        <li><a href="#variant-gallery-lite">Variant Gallery Lite</a></li>
+        <li><a href="#variant-gallery-lite">Saveroq Variant Gallery</a></li>
         <li><a href="#eu-e-invoice">EU E-Invoice</a></li>
         <li><a href="#saveroq-compliance-hub">Saveroq Compliance Hub</a></li>
         <li><a href="#contact">Contact and privacy requests</a></li>
@@ -250,12 +250,12 @@
         <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
     </ul>
 
-    <h2 id="variant-gallery-lite">Variant Gallery Lite</h2>
+    <h2 id="variant-gallery-lite">Saveroq Variant Gallery (Variant Gallery Lite)</h2>
     <ul>
-      <li><strong>Purpose:</strong> Variant Gallery Lite lets merchants assign existing Shopify product
-        images to the values of one product option. Its Theme App Extension then shows the mapped
-        images for the option value selected on the storefront. The app does not generate or upload
-        images.</li>
+      <li><strong>Purpose:</strong> Saveroq Variant Gallery, shown in Shopify Admin as
+        "Variant Gallery Lite", lets merchants assign existing Shopify product images to the values of
+        one product option. Its Theme App Extension then shows the mapped images for the option value
+        selected on the storefront. The app does not generate or upload images.</li>
       <li><strong>Shopify access scope:</strong> The app requests only <code>write_products</code>.
         Shopify includes the corresponding product read access in that scope so the app can display
         and update the product data needed for image mappings. The app requests no customer, order,
@@ -264,10 +264,10 @@
         status, options and option values, variants and selected options, product media/image
         identifiers, image URLs and alt text, and its own app-owned mapping metafield. It also receives
         Shopify product-deletion notifications so obsolete local quota records can be removed.</li>
-      <li><strong>Data stored in Shopify:</strong> The option-to-image mapping is stored as JSON in the
-        app-owned product metafield <code>app.variant_gallery_map</code>. The mapping contains the
-        selected option name, option values, and the ordered Shopify media identifiers assigned to
-        those values. Shopify stores this metafield with the product.</li>
+      <li><strong>Data stored in Shopify:</strong> The option-to-image mapping is stored as JSON in an
+        app-owned Shopify product metafield with the key <code>variant_gallery_map</code>. The mapping
+        contains the selected option name, option values, and the ordered Shopify media identifiers
+        assigned to those values. Shopify stores this metafield with the product.</li>
       <li><strong>Data stored by Saveroq:</strong> The app stores the shop identity and standard Shopify
         session/authentication records needed to operate the installation, including the granted
         scope, access credentials, and expiry information. Shopify's session format may also contain
