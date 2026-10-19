@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shopify Apps Privacy Policy | Saveroq Studio</title>
-<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite, Metafield Cleaner Lite, Variant Gallery Lite, and EU E-Invoice.">
+<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite, Metafield Cleaner Lite, Variant Gallery Lite, EU E-Invoice, and Saveroq Compliance Hub.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio.saveroq.com/apps-privacy">
 <meta property="og:type" content="website">
@@ -36,7 +36,7 @@
       read as implying that every Saveroq app requests the same permissions or handles data the same
       way. Only the section for a specific app describes that app's actual practices.
     </p>
-    <p><strong>Last updated:</strong> October 14, 2026</p>
+    <p><strong>Last updated:</strong> October 19, 2026</p>
 
     <h2 id="toc-heading">Contents</h2>
     <nav aria-label="Page contents">
@@ -46,6 +46,7 @@
         <li><a href="#metafield-cleaner-lite">Metafield Cleaner Lite</a></li>
         <li><a href="#variant-gallery-lite">Variant Gallery Lite</a></li>
         <li><a href="#eu-e-invoice">EU E-Invoice</a></li>
+        <li><a href="#saveroq-compliance-hub">Saveroq Compliance Hub</a></li>
         <li><a href="#contact">Contact and privacy requests</a></li>
         <li><a href="#general-privacy-policy">General Studio privacy policy</a></li>
         <li><a href="#imprint">Legal notice / imprint</a></li>
@@ -378,6 +379,85 @@
       <li><strong>Analytics/tracking:</strong> No advertising or behavioral tracking.</li>
       <li><strong>Production app URL:</strong>
         <a href="https://einvoice.saveroq.com">https://einvoice.saveroq.com</a></li>
+      <li><strong>Contact for privacy requests:</strong>
+        <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
+    </ul>
+
+    <h2 id="saveroq-compliance-hub">Saveroq Compliance Hub</h2>
+    <ul>
+      <li><strong>Purpose:</strong> Saveroq Compliance Hub helps merchants maintain product-compliance
+        information, assess whether configured information is complete, manage supporting evidence,
+        and publish selected product information. Readiness findings identify missing or inconsistent
+        information; they are not a certification, guarantee of legal compliance, or legal advice.</li>
+      <li><strong>Shopify access scopes:</strong> <code>read_products</code>,
+        <code>write_products</code>, <code>read_metaobjects</code>, and
+        <code>write_metaobjects</code>.</li>
+      <li><strong>Shopify data accessed:</strong> Product and variant identifiers, titles, handles,
+        product type, vendor, status, images, SKU, barcode, and update timestamps. The app reads and
+        writes its custom disclosure metaobjects and product disclosure references only through a
+        merchant-initiated preview and apply workflow. It also receives app-lifecycle, scope, product,
+        bulk-operation, and mandatory privacy webhooks.</li>
+      <li><strong>Data stored:</strong> Shop identifiers and domain; Shopify sessions and access tokens;
+        installation, retention, and subscription state; relevant product and variant catalog
+        attributes; synchronization, job, and webhook-deduplication records; manufacturer and
+        responsible-person records; profile assignments, applicability rules, product identifiers,
+        localized English and German safety information, evidence metadata, readiness findings,
+        disclosure projection identifiers and hashes, public-page state and opaque identifiers, and
+        redacted or hashed audit details.</li>
+      <li><strong>Data not requested:</strong> The app does not request Shopify customer, order,
+        payment, checkout, or theme data and does not request access to Shopify protected customer
+        data. Customer records are not intentionally stored.</li>
+      <li><strong>Authentication and billing:</strong> Shopify OAuth sessions and access tokens are used
+        to authenticate the merchant and call the Shopify Admin API. Partner API credentials are used
+        only on the server for entitlement and subscription verification and are not delivered to the
+        merchant's browser. The Standard plan is USD 14.99 per 30 days with a 14-day trial through
+        Shopify App Pricing. Shopify processes the charge; the app does not receive card data.</li>
+      <li><strong>Evidence files:</strong> Merchants may upload PDF, PNG, or JPEG evidence files up to
+        10 MiB. The app validates the file extension, media type, file signature, size, safe filename,
+        opaque storage key, and SHA-256 hash. Production requires a successful ClamAV scan before a
+        file can be approved. Files are stored in an app-owned persistent volume outside the public
+        web root, and private downloads require an authenticated, tenant-scoped request.</li>
+      <li><strong>Evidence visibility:</strong> Evidence is classified as <code>PUBLIC</code>,
+        <code>MERCHANT_INTERNAL</code>, or <code>AUTHORITY_ONLY</code>. Internal and authority-only
+        evidence and evidence quotations are excluded from public-page data. A clean file classified
+        as public can be offered through a controlled public download only while its related public
+        page is explicitly published. Superseded evidence no longer counts toward readiness.</li>
+      <li><strong>Public product pages:</strong> A merchant can explicitly publish an opaque
+        <code>/p/&lt;id&gt;</code> URL only after the configured readiness checks pass. Public output is
+        limited to the product name, image and identifier; applicable public manufacturer and
+        responsible-person contact details; approved English and German safety statements; and the
+        update time. It excludes sessions, internal notes, non-public evidence, evidence quotations,
+        audit and job details, and database identifiers. The merchant can revoke a page. Generated QR
+        codes contain only the public HTTPS URL.</li>
+      <li><strong>Hosting and service providers:</strong> The application, PostgreSQL database, worker,
+        ClamAV scanner, and evidence volume run in isolated containers on Saveroq-controlled Hetzner
+        infrastructure. HTTPS/TLS protects traffic. Shopify provides commerce-platform data,
+        authentication, Admin API, webhooks, and app-pricing services. Cloudflare provides
+        authoritative DNS for the production hostname; the record is DNS-only and Cloudflare does not
+        proxy the application's traffic.</li>
+      <li><strong>Security:</strong> Controls include tenant isolation, authenticated and scoped access,
+        server-side secrets, webhook HMAC verification and deduplication, restricted networks, an
+        application database that is not exposed to the public internet, audit hashing, and redaction
+        of common secret fields and token patterns from audit serialization.</li>
+      <li><strong>Analytics, cookies, and tracking:</strong> No separate analytics, advertising, or
+        behavioral-tracking service is integrated. The embedded app uses Shopify's authentication and
+        session infrastructure for essential operation.</li>
+      <li><strong>Retention:</strong> While the app is installed, configuration, catalog, evidence,
+        audit, and operational records are retained until the merchant deletes them or a lifecycle
+        event removes them. After uninstall, sessions are deleted immediately, access stops, public
+        pages are revoked, and tenant database and private-evidence deletion is scheduled after the
+        production default of 30 days. Reinstalling during that period cancels the scheduled deletion.
+        A valid Shopify <code>shop/redact</code> request deletes tenant database rows and private
+        evidence immediately and idempotently.</li>
+      <li><strong>Backups:</strong> PostgreSQL data and evidence files are backed up daily and retained
+        for 30 days with restricted permissions and SHA-256 integrity manifests. Deletion requests are
+        reapplied after a restore so restored data does not bypass a deletion obligation.</li>
+      <li><strong>Privacy webhooks:</strong> Shopify's mandatory privacy webhook topics are handled.
+        Because the app does not intentionally store customer records, customer-specific requests do
+        not return or delete customer records; shop-redact performs the tenant deletion described
+        above.</li>
+      <li><strong>Production app URL:</strong>
+        <a href="https://compliance.saveroq.com">https://compliance.saveroq.com</a></li>
       <li><strong>Contact for privacy requests:</strong>
         <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
     </ul>
