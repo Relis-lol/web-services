@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shopify Apps Privacy Policy | Saveroq Studio</title>
-<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite, Saveroq Metafield Cleaner, Saveroq Variant Gallery, Saveroq E-Invoice, and Saveroq Compliance Hub.">
+<meta name="description" content="Shared privacy policy for Saveroq Studio's Shopify apps, including dedicated data-practices sections for CartLink Lite, Saveroq Metafield Cleaner, Saveroq Variant Gallery, Saveroq VariantCheck, Saveroq E-Invoice, and Saveroq Compliance Hub.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio.saveroq.com/apps-privacy">
 <meta property="og:type" content="website">
@@ -36,7 +36,7 @@
       read as implying that every Saveroq app requests the same permissions or handles data the same
       way. Only the section for a specific app describes that app's actual practices.
     </p>
-    <p><strong>Last updated:</strong> October 19, 2026</p>
+    <p><strong>Last updated:</strong> October 22, 2026</p>
 
     <h2 id="toc-heading">Contents</h2>
     <nav aria-label="Page contents">
@@ -45,6 +45,7 @@
         <li><a href="#cartlink-lite">CartLink Lite</a></li>
         <li><a href="#metafield-cleaner-lite">Saveroq Metafield Cleaner</a></li>
         <li><a href="#variant-gallery-lite">Saveroq Variant Gallery</a></li>
+        <li><a href="#saveroq-variantcheck">Saveroq VariantCheck</a></li>
         <li><a href="#eu-e-invoice">Saveroq E-Invoice</a></li>
         <li><a href="#saveroq-compliance-hub">Saveroq Compliance Hub</a></li>
         <li><a href="#contact">Contact and privacy requests</a></li>
@@ -330,6 +331,72 @@
         functionality.</li>
       <li><strong>Production app URL:</strong>
         <a href="https://variant-gallery.saveroq.com">https://variant-gallery.saveroq.com</a></li>
+      <li><strong>Contact for privacy requests:</strong>
+        <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
+    </ul>
+
+    <h2 id="saveroq-variantcheck">Saveroq VariantCheck</h2>
+    <ul>
+      <li><strong>Purpose:</strong> Saveroq VariantCheck is a read-only catalog diagnostic tool that
+        compares sibling variants of the same Shopify product for differences in shipping
+        requirements, tax settings, inventory tracking, inventory policy, and weight. A finding
+        identifies a difference for merchant review; it does not determine that a setting is wrong.
+        Tax findings are not tax advice, and weight findings are presented only as possible
+        outliers.</li>
+      <li><strong>Shopify access scope:</strong> <code>read_products</code> only. The app requests no
+        write, customer, order, company, theme, checkout, payment, fulfillment, or marketing scope.</li>
+      <li><strong>Shopify data accessed:</strong> Product identifiers and titles; variant identifiers
+        and titles; each variant's taxable setting, inventory policy, inventory-item identifier,
+        inventory-tracking status, shipping requirement, and weight value and unit. For full-catalog
+        scans, the app also processes Shopify bulk-operation identifiers, status and result metadata.</li>
+      <li><strong>Data stored:</strong> The dedicated SQLite database stores standard Shopify
+        OAuth/session records needed to operate the embedded app. It also stores a minimal billing
+        entitlement cache consisting of the shop domain, Shopify one-time-purchase identifier,
+        purchase status, test flag, and verification and record timestamps.</li>
+      <li><strong>Data not stored or requested:</strong> Product and variant catalog data, bulk result
+        contents, scan findings, scan summaries, and CSV files are not persisted by Saveroq. Bulk
+        result data is downloaded over HTTPS, processed in application memory, and discarded after
+        the request. CSV files are generated on demand and returned directly to the authenticated
+        merchant. The app does not request, read, or store customer, order, storefront-visitor,
+        payment-card, bank-account, invoice, or billing-address data.</li>
+      <li><strong>Authentication/session data:</strong> The embedded app uses Shopify-managed
+        installation, App Bridge session tokens, token exchange, and server-side Shopify session
+        storage. Session records include the shop domain and access credentials, together with the
+        standard session state, scope, expiry, and optional authenticated-user metadata supplied by
+        Shopify's app framework.</li>
+      <li><strong>Billing:</strong> Optional paid access is unlocked through a one-time purchase using
+        Shopify's official Billing API; it is not a recurring subscription. Shopify processes and
+        collects the payment. Saveroq receives no payment-card or bank-account credentials and uses
+        no external payment provider. VariantCheck processes Shopify purchase identity, price,
+        currency, status, test, and timing information only to create, verify, and restore the
+        entitlement. Shopify's live purchase state remains authoritative.</li>
+      <li><strong>Hosting and processor:</strong> Production runs as an isolated Docker application on
+        Saveroq-controlled Hetzner infrastructure in Germany. Hetzner acts as the technical hosting
+        and infrastructure processor. Caddy terminates public HTTPS/TLS traffic. VariantCheck uses a
+        dedicated persistent SQLite database path that is separate from other applications.</li>
+      <li><strong>Analytics/tracking:</strong> None. The app integrates no analytics, advertising, or
+        behavioral-tracking service. Shopify OAuth, App Bridge, and essential session mechanisms are
+        used only for authentication and app operation.</li>
+      <li><strong>Retention/deletion:</strong> Shopify session records remain until uninstall,
+        <code>shop/redact</code>, or operational invalidation. The minimal billing entitlement cache
+        remains until <code>shop/redact</code> or replacement during reconciliation with Shopify. It
+        is retained after uninstall solely to support purchase recovery on reinstall and is never
+        trusted without fresh verification against Shopify. Catalog data, findings, summaries, bulk
+        result contents, and CSV files have no server-side retention. The replaceable VariantCheck
+        SQLite database is not included in a backup process.</li>
+      <li><strong>Uninstall behavior:</strong> The authenticated <code>app/uninstalled</code> webhook
+        deletes all local Shopify session records for the shop idempotently. The minimal one-time-
+        purchase cache remains for reinstall recovery; a reinstall queries Shopify's live purchase
+        state before restoring access.</li>
+      <li><strong>Privacy webhooks:</strong> The app authenticates and handles
+        <code>customers/data_request</code>, <code>customers/redact</code>, and
+        <code>shop/redact</code>. Because no customer records are stored, the customer-specific
+        webhooks have no customer data to return or erase. <code>shop/redact</code> deletes all local
+        session records and the minimal billing entitlement cache for the shop idempotently.</li>
+      <li><strong>Protected customer data:</strong> Saveroq VariantCheck does not request or use
+        Shopify protected customer data.</li>
+      <li><strong>Production app URL:</strong>
+        <a href="https://variantcheck.saveroq.com">https://variantcheck.saveroq.com</a></li>
       <li><strong>Contact for privacy requests:</strong>
         <!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
     </ul>
