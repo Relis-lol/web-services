@@ -10,8 +10,8 @@
      sind startklar. Nur bei einer eigenen Domain umstellen — dafür gibt es
      scripts/domain-setzen.py, das alle betroffenen Dateien auf einmal ändert.
      ============================================================ -->
-<title>Saveroq Studio — Websites &amp; digitale Systeme</title>
-<meta name="description" content="Saveroq Studio entwickelt Websites, kleinere Web-Anwendungen und digitale Systeme für kleine Unternehmen – von der Landingpage über APIs, Datenbanken und Hosting bis zu laufender Betreuung und virtueller Assistenz.">
+<title>Saveroq Studio — Engineering &amp; Operations</title>
+<meta name="description" content="Saveroq Studio entwickelt, betreibt und pflegt die technischen Systeme, Datenpipelines und digitalen Produkte hinter Saveroq.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio.saveroq.com/">
 
@@ -19,8 +19,8 @@
 <meta property="og:locale" content="de_DE">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://studio.saveroq.com/">
-<meta property="og:title" content="Saveroq Studio — Websites &amp; digitale Systeme">
-<meta property="og:description" content="Websites, kleinere Web-Anwendungen und digitale Systeme für kleine Unternehmen – inklusive Hosting, laufender Betreuung und virtueller Assistenz.">
+<meta property="og:title" content="Saveroq Studio — Engineering &amp; Operations">
+<meta property="og:description" content="Die technische Einheit hinter Saveroq: Produktentwicklung, Datenpipelines, Infrastruktur und Betrieb.">
 <!-- OpenGraph-Bild: derzeit eine schlichte Textgrafik. Kann jederzeit durch ein eigenes Motiv ersetzt werden, gleicher Dateiname. -->
 <meta property="og:image" content="https://studio.saveroq.com/assets/images/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -28,8 +28,8 @@
 <meta property="og:image:alt" content="Saveroq Studio">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Saveroq Studio — Websites &amp; digitale Systeme">
-<meta name="twitter:description" content="Websites, digitale Systeme und laufende Unterstützung für kleine Unternehmen.">
+<meta name="twitter:title" content="Saveroq Studio — Engineering &amp; Operations">
+<meta name="twitter:description" content="Produktentwicklung, Datenpipelines, Infrastruktur und Betrieb hinter Saveroq.">
 <meta name="twitter:image" content="https://studio.saveroq.com/assets/images/og-image.png">
 
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
@@ -38,53 +38,44 @@
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32"><!-- Fallback für ältere Browser -->
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-<link rel="stylesheet" href="css/styles.css?v=0173b820">
+<link rel="stylesheet" href="css/styles.css?v=7ca849f4">
 
-<!-- Strukturierte Daten. Bewusst knapp und ausschliesslich mit Angaben, die
-     auch im Impressum stehen. Kein Bezug auf saveroq.com: Die beiden Sites
-     bleiben technisch getrennt. -->
+<!-- Strukturierte Daten zur technischen Einheit und ihrem Hauptprodukt. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["ProfessionalService", "Organization"],
-  "@id": "https://studio.saveroq.com/#business",
-  "name": "Saveroq Studio",
-  "url": "https://studio.saveroq.com/",
-  "email": "kontakt@saveroq.com",
-  "description": "Websites, digitale Systeme und laufende Unterstützung für kleine Unternehmen.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Siemensstraße 32",
-    "postalCode": "90459",
-    "addressLocality": "Nürnberg",
-    "addressCountry": "DE"
-  },
-  "areaServed": "DE",
-  "availableLanguage": ["de", "en"],
-  "founder": {"@type": "Person", "name": "Björn Boldt"},
-  "contactPoint": [
+  "@graph": [
     {
-      "@type": "ContactPoint",
-      "contactType": "customer support",
-      "name": "Girly Boldt",
+      "@type": "Organization",
+      "@id": "https://studio.saveroq.com/#organization",
+      "name": "Saveroq Studio",
+      "url": "https://studio.saveroq.com/",
       "email": "kontakt@saveroq.com",
-      "availableLanguage": ["de", "en"]
+      "description": "Technische Einheit für Entwicklung und Betrieb der Saveroq-Produkte.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Siemensstraße 32",
+        "postalCode": "90459",
+        "addressLocality": "Nürnberg",
+        "addressCountry": "DE"
+      },
+      "founder": {"@type": "Person", "name": "Björn Boldt"},
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "general enquiries",
+        "name": "Girly Boldt",
+        "email": "kontakt@saveroq.com",
+        "availableLanguage": ["de", "en"]
+      }
     },
     {
-      "@type": "ContactPoint",
-      "contactType": "legal",
-      "email": "kontakt@saveroq.com",
-      "availableLanguage": ["de", "en"]
+      "@type": "WebApplication",
+      "@id": "https://saveroq.com/#product",
+      "name": "Saveroq",
+      "url": "https://saveroq.com/",
+      "description": "Produkt- und Preisvergleich mit strukturierten Produktdaten, Preisverlauf und Produktsuche.",
+      "creator": {"@id": "https://studio.saveroq.com/#organization"}
     }
-  ],
-  "makesOffer": [
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Websites und Landingpages", "url": "https://studio.saveroq.com/websites/"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web-Anwendungen und kleinere SaaS-Systeme", "url": "https://studio.saveroq.com/web-apps-saas/"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI und Automatisierung", "url": "https://studio.saveroq.com/ai-automatisierung/"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "APIs, Daten und Integrationen", "url": "https://studio.saveroq.com/api-integrationen/"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hosting, Deployment und technischer Betrieb", "url": "https://studio.saveroq.com/hosting-betrieb/"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Wartung und technische Betreuung", "url": "https://studio.saveroq.com/wartung-support/"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Virtuelle Assistenz", "url": "https://studio.saveroq.com/virtuelle-assistenz/"}}
   ]
 }
 </script>
@@ -339,694 +330,150 @@
      ================================================================== -->
 <header class="site-header" id="site-header">
   <div class="container header-inner">
-
-    <a class="brand" href="#top" aria-label="SQ Saveroq Studio">
-      <span class="brand-mark" aria-hidden="true" data-site="initials">SQ</span>
-      <span class="brand-name" data-site="name">Saveroq Studio</span>
-    </a>
-
-    <nav class="nav-desktop" aria-label="Hauptnavigation" data-i18n-attr="aria-label:a11y.mainNav">
-      <ul>
-        <li><a href="#top" data-i18n="nav.home">Start</a></li>
-        <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
-        <li><a href="#support" data-i18n="nav.support">Wartung</a></li>
-        <li><a href="#assistenz" data-i18n="nav.assist">Assistenz</a></li>
-        <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
-        <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
-        <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
-      </ul>
-    </nav>
-
+    <a class="brand" href="#top" aria-label="SQ Saveroq Studio"><span class="brand-mark" aria-hidden="true" data-site="initials">SQ</span><span class="brand-name" data-site="name">Saveroq Studio</span></a>
+    <nav class="nav-desktop" aria-label="Hauptnavigation" data-i18n-attr="aria-label:a11y.mainNav"><ul>
+      <li><a href="#saveroq" data-i18n="nav.saveroq">Saveroq</a></li><li><a href="#systeme" data-i18n="nav.systems">Systeme</a></li><li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li><li><a href="#betrieb" data-i18n="nav.operations">Betrieb</a></li><li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+    </ul></nav>
     <div class="header-tools">
-      <!-- Sprachumschalter -->
-      <div class="lang-switch" role="group" aria-label="Sprache wählen" data-i18n-attr="aria-label:a11y.langGroup">
-        <button type="button" class="lang-btn" data-lang="de" aria-pressed="true" lang="de">DE</button>
-        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
-      </div>
-
-      <!-- Farbschema -->
-      <button type="button" class="icon-btn" id="theme-toggle"
-              aria-label="Farbschema wechseln"
-              data-i18n-attr="aria-label:a11y.theme">
-        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <circle cx="12" cy="12" r="4.2"/>
-          <path d="M12 2v2.6M12 19.4V22M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2 12h2.6M19.4 12H22M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/>
-        </svg>
-        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/>
-        </svg>
-      </button>
-
-      <!-- Mobiles Menü -->
-      <button type="button" class="icon-btn nav-toggle" id="nav-toggle"
-              aria-expanded="false" aria-controls="nav-mobile"
-              aria-label="Menü öffnen"
-              data-i18n-attr="aria-label:a11y.menu">
-        <svg class="icon icon-burger" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M4 7h16M4 12h16M4 17h16"/>
-        </svg>
-        <svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M6 6l12 12M18 6L6 18"/>
-        </svg>
-      </button>
+      <div class="lang-switch" role="group" aria-label="Sprache wählen" data-i18n-attr="aria-label:a11y.langGroup"><button type="button" class="lang-btn" data-lang="de" aria-pressed="true" lang="de">DE</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false" lang="en">EN</button></div>
+      <button type="button" class="icon-btn" id="theme-toggle" aria-label="Farbschema wechseln" data-i18n-attr="aria-label:a11y.theme"><svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2 12h2.6M19.4 12H22M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg></button>
+      <button type="button" class="icon-btn nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Menü öffnen" data-i18n-attr="aria-label:a11y.menu"><svg class="icon icon-burger" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
   </div>
-
-  <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile Navigation" hidden
-       data-i18n-attr="aria-label:a11y.mobileNav">
-    <ul class="container">
-      <li><a href="#top" data-i18n="nav.home">Start</a></li>
-      <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
-      <li><a href="#support" data-i18n="nav.support">Wartung &amp; Support</a></li>
-      <li><a href="#assistenz" data-i18n="nav.assist">Virtuelle Assistenz</a></li>
-      <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
-      <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
-      <li><a href="#preise" data-i18n="nav.pricing">Kalkulation</a></li>
-      <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
-    </ul>
-  </nav>
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile Navigation" hidden data-i18n-attr="aria-label:a11y.mobileNav"><ul class="container"><li><a href="#saveroq" data-i18n="nav.saveroq">Saveroq</a></li><li><a href="#systeme" data-i18n="nav.systems">Systeme</a></li><li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li><li><a href="#betrieb" data-i18n="nav.operations">Betrieb</a></li><li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li></ul></nav>
 </header>
-
 <main id="main">
-
-  <!-- ================================================================
-       HERO
-       ================================================================ -->
   <section class="hero" id="top">
     <div class="container">
-      <p class="eyebrow reveal" data-i18n="hero.eyebrow">Kleines Team. Direkter Ansprechpartner.</p>
-
-      <h1 class="hero-title reveal" data-i18n="hero.title">
-        Websites und digitale Lösungen, die tatsächlich funktionieren.
-      </h1>
-
-      <p class="hero-sub reveal" data-i18n="hero.sub">
-        Websites, digitale Systeme und laufende Unterstützung für kleine
-        Unternehmen – von der ersten Landingpage über Web-Anwendungen, APIs,
-        Datenbanken und Hosting bis zur technischen Betreuung. Auf Wunsch
-        übernehmen wir auch die Büroorganisation dahinter.
-      </p>
-
+      <p class="eyebrow reveal" data-i18n="hero.eyebrow">Engineering &amp; Operations for Saveroq</p>
+      <h1 class="hero-title reveal" data-i18n="hero.title">Die technische Einheit hinter Saveroq.</h1>
+      <p class="hero-sub reveal" data-i18n="hero.sub">Wir entwickeln und betreiben die Infrastruktur, Datenpipelines und digitalen Produkte hinter Saveroq – von strukturierten Produktdaten bis zum laufenden technischen Betrieb.</p>
       <div class="hero-actions reveal">
-        <a class="btn btn-primary" href="#kontakt" data-i18n="hero.cta1">Projekt anfragen</a>
-        <a class="btn btn-ghost" href="#projekte" data-i18n="hero.cta2">Unsere Arbeiten</a>
+        <a class="btn btn-primary" href="https://saveroq.com/" target="_blank" rel="noopener" data-i18n="hero.cta1">Zu Saveroq</a>
+        <a class="btn btn-ghost" href="#systeme" data-i18n="hero.cta2">Technik ansehen</a>
       </div>
-
-      <ul class="trust-row reveal" aria-label="Arbeitsweise" data-i18n-attr="aria-label:a11y.trust">
-        <li data-i18n="hero.trust1">Responsive umgesetzt</li>
-        <li data-i18n="hero.trust2">Auf Performance optimiert</li>
-        <li data-i18n="hero.trust3">Individuell entwickelt</li>
-        <li data-i18n="hero.trust4">Direkter Ansprechpartner</li>
+      <ul class="trust-row reveal" aria-label="Technische Schwerpunkte" data-i18n-attr="aria-label:a11y.focus">
+        <li data-i18n="hero.trust1">Software Engineering</li><li data-i18n="hero.trust2">Data Pipelines</li><li data-i18n="hero.trust3">Infrastructure</li><li data-i18n="hero.trust4">Operations</li>
       </ul>
     </div>
   </section>
 
-  <!-- ================================================================
-       LEISTUNGEN
-       ================================================================ -->
-  <section class="section" id="leistungen" aria-labelledby="leistungen-h">
+  <section class="section section-alt" id="saveroq" aria-labelledby="saveroq-h">
+    <div class="container product-spotlight reveal">
+      <div class="product-copy">
+        <p class="section-kicker" data-i18n="saveroq.kicker">Hauptprodukt</p>
+        <h2 id="saveroq-h" data-i18n="saveroq.title">Saveroq macht Produkt- und Preisdaten vergleichbar.</h2>
+        <p class="section-lead" data-i18n="saveroq.lead">Saveroq verbindet strukturierte Produktdaten, Händlerfeeds, Preisverläufe und Suche zu einer nachvollziehbaren Entscheidungsgrundlage. Das Studio entwickelt und betreibt die technischen Systeme dahinter.</p>
+        <a class="btn btn-primary" href="https://saveroq.com/" target="_blank" rel="noopener" data-i18n="saveroq.cta">Saveroq öffnen</a>
+      </div>
+      <ul class="product-facts" aria-label="Saveroq Funktionen" data-i18n-attr="aria-label:a11y.productFacts">
+        <li><strong data-i18n="saveroq.fact1.title">Produktdaten</strong><span data-i18n="saveroq.fact1.text">Strukturierte Merkmale und belastbare Zuordnungen</span></li>
+        <li><strong data-i18n="saveroq.fact2.title">Händlerfeeds</strong><span data-i18n="saveroq.fact2.text">Import, Prüfung und laufende Aktualisierung</span></li>
+        <li><strong data-i18n="saveroq.fact3.title">Preisverlauf</strong><span data-i18n="saveroq.fact3.text">Historische Entwicklung statt isolierter Momentaufnahme</span></li>
+        <li><strong data-i18n="saveroq.fact4.title">Search Readiness</strong><span data-i18n="saveroq.fact4.text">Daten für klassische Suche und AI-gestützte Auffindbarkeit</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="systeme" aria-labelledby="systeme-h">
     <div class="container">
       <header class="section-head reveal">
-        <p class="section-kicker" data-i18n="services.kicker">Leistungen</p>
-        <h2 id="leistungen-h" data-i18n="services.title">Was wir umsetzen</h2>
-        <p class="section-lead" data-i18n="services.lead">
-          Drei Bereiche, die ineinandergreifen. Was davon sinnvoll ist, klären wir
-          vorher gemeinsam – nicht alles ergibt für jedes Projekt Sinn.
-        </p>
+        <p class="section-kicker" data-i18n="systems.kicker">Engineering</p>
+        <h2 id="systeme-h" data-i18n="systems.title">Systeme hinter den Produkten</h2>
+        <p class="section-lead" data-i18n="systems.lead">Die Arbeit reicht von Datenimporten und Backend-Logik bis zu Deployment und Beobachtbarkeit. Diese Bereiche sind Bestandteile der eigenen Saveroq-Systeme, keine extern angebotenen Leistungen.</p>
       </header>
-
-      <div class="grid grid-3">
-
-        <article class="card reveal">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <rect x="3" y="4" width="18" height="15" rx="2.5"/>
-              <path d="M3 8.5h18M6.5 6.2h.01M9 6.2h.01"/>
-            </svg>
-          </div>
-          <h3 data-i18n="services.web.title">Websites &amp; Landingpages</h3>
-          <p data-i18n="services.web.text">
-            Der Kern unserer Arbeit: Seiten, die schnell laden, auf jedem Gerät
-            funktionieren und die man später auch pflegen kann.
-          </p>
-          <ul class="check-list">
-            <li data-i18n="services.web.i1">Individuelle Firmenwebsites</li>
-            <li data-i18n="services.web.i2">Landingpages und Produktseiten</li>
-            <li data-i18n="services.web.i3">Portfolios und Projektseiten</li>
-            <li data-i18n="services.web.i4">Bestehende Websites modernisieren</li>
-            <li data-i18n="services.web.i5">Bilder, Videos und andere Medien einbinden</li>
-            <li data-i18n="services.web.i6">Kontaktformulare und Newsletter-Anbindung</li>
-            <li data-i18n="services.web.i7">Karten- und Standortintegration</li>
-            <li data-i18n="services.web.i8">Verknüpfung mit Social-Media-Profilen</li>
-            <li data-i18n="services.web.i9">Technische SEO-Grundlagen</li>
-            <li data-i18n="services.web.i10">Performanceoptimierung</li>
-          </ul>
-          <p class="card-note" data-i18n="services.web.note">
-            Hinweis: Wir legen die technischen SEO-Grundlagen. Laufende
-            SEO- oder Werbekampagnen betreuen wir nicht.
-          </p>
-        </article>
-
-        <article class="card reveal">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <path d="M8.5 8.5L5 12l3.5 3.5M15.5 8.5L19 12l-3.5 3.5M13.5 5.5l-3 13"/>
-            </svg>
-          </div>
-          <h3 data-i18n="services.func.title">Web-Anwendungen &amp; individuelle Funktionen</h3>
-          <p data-i18n="services.func.text">
-            Wenn eine reine Website nicht ausreicht: kleinere SaaS- und
-            Web-Anwendungen sowie Funktionen, die zu Ihrem Ablauf passen statt
-            umgekehrt.
-          </p>
-          <ul class="check-list">
-            <li data-i18n="services.func.i1">Login-, Account- und Anmeldebereiche</li>
-            <li data-i18n="services.func.i2">Benutzerverwaltung und Rollen</li>
-            <li data-i18n="services.func.i3">Kleinere Datenbanken</li>
-            <li data-i18n="services.func.i4">Individuelle APIs</li>
-            <li data-i18n="services.func.i5">Anbindung externer APIs</li>
-            <li data-i18n="services.func.i6">Dashboards und Auswertungen</li>
-            <li data-i18n="services.func.i7">Kleine interne Tools</li>
-            <li data-i18n="services.func.i8">Formulare und Workflows</li>
-            <li data-i18n="services.func.i9">Datenverarbeitung und Automatisierungen</li>
-          </ul>
-          <p class="card-note" data-i18n="services.func.note">
-            Funktionsumfang und technische Architektur prüfen wir pro Projekt.
-            Große Unternehmenssysteme gehören ausdrücklich nicht dazu.
-          </p>
-        </article>
-
-        <article class="card card-accent reveal">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <rect x="4" y="7" width="16" height="12" rx="3"/>
-              <path d="M12 7V4M8.5 12.5h.01M15.5 12.5h.01M9.5 15.8h5"/>
-            </svg>
-          </div>
-          <p class="card-tag" data-i18n="services.ai.tag">Individualleistung</p>
-          <h3 data-i18n="services.ai.title">AI &amp; Automation</h3>
-          <p data-i18n="services.ai.text">
-            AI-gestützte Unterstützung im Support – aufgebaut auf Ihren eigenen
-            FAQs, Dokumentationen oder internen Informationen.
-          </p>
-          <ul class="check-list">
-            <li data-i18n="services.ai.i1">Chat-Assistent auf der Website</li>
-            <li data-i18n="services.ai.i2">FAQ-Assistent</li>
-            <li data-i18n="services.ai.i3">Vorsortierung eingehender Anfragen</li>
-            <li data-i18n="services.ai.i4">Interne Wissensassistenten</li>
-            <li data-i18n="services.ai.i5">AI-Integrationen über APIs</li>
-          </ul>
-          <p class="card-note" data-i18n="services.ai.note">
-            Solche Lösungen kalkulieren wir immer einzeln – abhängig von
-            Datenmenge, Anforderungen, Modell- bzw. API-Kosten und Infrastruktur.
-            Ein Assistent unterstützt Ihren Support, er ersetzt ihn nicht.
-          </p>
-        </article>
-
-      </div>
-
-      <div class="service-directory" aria-label="Leistungen im Detail">
-        <a href="websites/"><strong>Websites &amp; Landingpages</strong><span>Firmenauftritte, Produktseiten und Modernisierungen</span></a>
-        <a href="web-apps-saas/"><strong>Web-Apps &amp; kleine SaaS-Systeme</strong><span>Individuelle Funktionen, Portale und interne Werkzeuge</span></a>
-        <a href="ai-automatisierung/"><strong>AI &amp; Automatisierung</strong><span>Assistenten und Abläufe auf Basis vorhandener Informationen</span></a>
-        <a href="api-integrationen/"><strong>APIs, Daten &amp; Integrationen</strong><span>Schnittstellen, Datenhaltung und verbundene Systeme</span></a>
-        <a href="hosting-betrieb/"><strong>Hosting &amp; technischer Betrieb</strong><span>Docker, Deployment und nachvollziehbarer Betrieb</span></a>
-        <a href="wartung-support/"><strong>Wartung &amp; Support</strong><span>Updates, Fehlerbehebung und laufende technische Betreuung</span></a>
-        <a href="virtuelle-assistenz/"><strong>Virtuelle Assistenz</strong><span>Kommunikation, Datenpflege und wiederkehrende Büroaufgaben</span></a>
+      <div class="grid grid-4">
+        <article class="card card-compact reveal"><p class="card-tag" data-i18n="systems.software.tag">Build</p><h3 data-i18n="systems.software.title">Software Engineering</h3><p data-i18n="systems.software.text">Web-Anwendungen, APIs und Backend-Komponenten für die Saveroq-Produkte.</p></article>
+        <article class="card card-compact reveal"><p class="card-tag" data-i18n="systems.data.tag">Data</p><h3 data-i18n="systems.data.title">Product Data &amp; Pipelines</h3><p data-i18n="systems.data.text">Import, Normalisierung, Speicherung und Aktualisierung strukturierter Produkt- und Preisdaten.</p></article>
+        <article class="card card-compact reveal"><p class="card-tag" data-i18n="systems.infra.tag">Run</p><h3 data-i18n="systems.infra.title">Infrastructure</h3><p data-i18n="systems.infra.text">Linux- und Docker-basierte Umgebungen, Domains, Zugriffswege und reproduzierbare Deployments.</p></article>
+        <article class="card card-compact reveal"><p class="card-tag" data-i18n="systems.ops.tag">Maintain</p><h3 data-i18n="systems.ops.title">Automation &amp; Operations</h3><p data-i18n="systems.ops.text">Automatisierte Abläufe, Healthchecks, Backups, Monitoring und laufende Wartung.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- ================================================================
-       WARTUNG & SUPPORT
-       ================================================================ -->
-  <section class="section section-alt" id="support" aria-labelledby="support-h">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="section-kicker" data-i18n="support.kicker">Wartung &amp; technischer Support</p>
-        <h2 id="support-h" data-i18n="support.title">Laufende Betreuung, klar abgegrenzt</h2>
-        <p class="section-lead" data-i18n="support.lead">
-          Auch nach der Übergabe bleibt jemand erreichbar. Umfang und
-          Verantwortlichkeiten legen wir vorher schriftlich fest – damit klar
-          ist, was wir übernehmen und was nicht.
-        </p>
-      </header>
-
-      <div class="grid grid-3">
-
-        <article class="card card-compact reveal">
-          <h3 data-i18n="support.site.title">Websitepflege</h3>
-          <ul class="dash-list">
-            <li data-i18n="support.site.i1">Texte und Bilder aktualisieren</li>
-            <li data-i18n="support.site.i2">Kleinere Designänderungen</li>
-            <li data-i18n="support.site.i3">Neue Inhalte einpflegen</li>
-            <li data-i18n="support.site.i4">Technische Updates</li>
-            <li data-i18n="support.site.i5">Fehlerbehebung</li>
-          </ul>
-        </article>
-
-        <article class="card card-compact reveal">
-          <h3 data-i18n="support.acc.title">Account- &amp; Systempflege</h3>
-          <ul class="dash-list">
-            <li data-i18n="support.acc.i1">Benutzeraccounts anlegen und pflegen</li>
-            <li data-i18n="support.acc.i2">Berechtigungen anpassen</li>
-            <li data-i18n="support.acc.i3">Kleinere administrative Aufgaben</li>
-            <li data-i18n="support.acc.i4">Technische Konfigurationen</li>
-          </ul>
-        </article>
-
-        <article class="card card-compact reveal">
-          <h3 data-i18n="support.db.title">Datenbankpflege</h3>
-          <ul class="dash-list">
-            <li data-i18n="support.db.i1">Kleinere Datenbankarbeiten</li>
-            <li data-i18n="support.db.i2">Backups einrichten und prüfen</li>
-            <li data-i18n="support.db.i3">Datenbereinigung</li>
-            <li data-i18n="support.db.i4">Einfache Migrationen</li>
-            <li data-i18n="support.db.i5">Überwachung</li>
-          </ul>
-        </article>
-
-        <article class="card card-compact reveal">
-          <h3 data-i18n="support.srv.title">Serverpflege</h3>
-          <ul class="dash-list">
-            <li data-i18n="support.srv.i1">Grundlegende Linux-Serverpflege</li>
-            <li data-i18n="support.srv.i2">Updates einspielen</li>
-            <li data-i18n="support.srv.i3">Hosting einrichten, Deployment betreuen</li>
-            <li data-i18n="support.srv.i4">Dienste prüfen, Backups, Basis-Monitoring</li>
-            <li data-i18n="support.srv.i5">Kleinere Docker-Umgebungen</li>
-          </ul>
-          <p class="card-note" data-i18n="support.srv.note">
-            Wir bieten kein rund um die Uhr betreutes Hosting an. Reaktionszeiten
-            vereinbaren wir individuell.
-          </p>
-        </article>
-
-        <article class="card card-compact reveal">
-          <h3 data-i18n="support.mail.title">E-Mail &amp; DNS</h3>
-          <ul class="dash-list">
-            <li data-i18n="support.mail.i1">Business-Mail einrichten</li>
-            <li data-i18n="support.mail.i2">DNS-Konfiguration</li>
-            <li data-i18n="support.mail.i3">Weiterleitungen und Mailboxen</li>
-            <li data-i18n="support.mail.i4">Unterstützung bei SPF, DKIM und DMARC</li>
-            <li data-i18n="support.mail.i5">Technische Fehleranalyse</li>
-          </ul>
-        </article>
-
-        <article class="card card-compact reveal">
-          <h3 data-i18n="support.social.title">Social-Media-Support</h3>
-          <ul class="dash-list">
-            <li data-i18n="support.social.i1">Technische Einrichtung und Verknüpfung</li>
-            <li data-i18n="support.social.i2">Content-Einbindung auf der Website</li>
-            <li data-i18n="support.social.i3">Profil- und Linkstruktur</li>
-            <li data-i18n="support.social.i4">Veröffentlichung vorbereiteter Inhalte</li>
-            <li data-i18n="support.social.i5">Kleinere Unterstützung bei Inhalten</li>
-          </ul>
-          <p class="card-note" data-i18n="support.social.note">
-            Das ist technische Unterstützung, keine Marketingbetreuung. Wir
-            versprechen keine Reichweiten oder Wachstumszahlen.
-          </p>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================================================
-       VIRTUELLE ASSISTENZ
-       ================================================================ -->
-  <section class="section" id="assistenz" aria-labelledby="assistenz-h">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="section-kicker" data-i18n="assist.kicker">Virtuelle Assistenz</p>
-        <h2 id="assistenz-h" data-i18n="assist.title">Büroarbeit, die liegen bleibt</h2>
-        <p class="section-lead" data-i18n="assist.lead">
-          Wiederkehrende Organisationsaufgaben kosten Zeit, rechtfertigen aber
-          selten eine eigene Anstellung. Genau dafür gibt es diesen Bereich —
-          betreut von Girly Boldt.
-        </p>
-      </header>
-
-      <div class="grid grid-3">
-
-        <article class="card reveal">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <rect x="3" y="5" width="18" height="14" rx="2.5"/>
-              <path d="M3.5 7l8.5 6 8.5-6"/>
-            </svg>
-          </div>
-          <h3 data-i18n="assist.comm.title">Kommunikation &amp; Termine</h3>
-          <ul class="check-list">
-            <li data-i18n="assist.comm.i1">Postfach sichten und vorsortieren</li>
-            <li data-i18n="assist.comm.i2">Wiederkehrende Anfragen beantworten</li>
-            <li data-i18n="assist.comm.i3">Termine abstimmen, Kalender pflegen</li>
-            <li data-i18n="assist.comm.i4">Bei offenen Vorgängen nachfassen</li>
-            <li data-i18n="assist.comm.i5">Anfragen vorqualifizieren und weiterleiten</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 3v5h5M8.5 13h7M8.5 16.5h4.5"/>
-            </svg>
-          </div>
-          <h3 data-i18n="assist.data.title">Daten &amp; Dokumente</h3>
-          <ul class="check-list">
-            <li data-i18n="assist.data.i1">Daten erfassen und pflegen</li>
-            <li data-i18n="assist.data.i2">Listen und Tabellen aktuell halten</li>
-            <li data-i18n="assist.data.i3">Dokumente und Vorlagen aufbereiten</li>
-            <li data-i18n="assist.data.i4">Belege sortieren und ablegen</li>
-            <li data-i18n="assist.data.i5">Recherchen zu klar umrissenen Fragen</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <path d="M4 6.5h9M4 12h13M4 17.5h7"/>
-              <circle cx="18" cy="6.5" r="2.2"/>
-              <circle cx="15" cy="17.5" r="2.2"/>
-            </svg>
-          </div>
-          <h3 data-i18n="assist.flow.title">Abläufe &amp; laufende Aufgaben</h3>
-          <ul class="check-list">
-            <li data-i18n="assist.flow.i1">Wiederkehrende Aufgaben übernehmen</li>
-            <li data-i18n="assist.flow.i2">Bestellungen und Termine koordinieren</li>
-            <li data-i18n="assist.flow.i3">Inhalte vorbereiten und einstellen</li>
-            <li data-i18n="assist.flow.i4">Einfache Auswertungen zusammenstellen</li>
-            <li data-i18n="assist.flow.i5">Übergaben und Ablage strukturieren</li>
-          </ul>
-        </article>
-
-      </div>
-
-      <p class="notice notice-spaced reveal" data-i18n="assist.note">
-        Umfang, Zugriffsrechte und Vertraulichkeit legen wir vorher schriftlich
-        fest. Buchhaltung, Steuer- und Rechtsberatung gehören ausdrücklich
-        nicht dazu — dafür braucht es die jeweilige Zulassung.
-      </p>
-    </div>
-  </section>
-
-  <!-- ================================================================
-       PROJEKTE
-       ================================================================ -->
   <section class="section section-alt" id="projekte" aria-labelledby="projekte-h">
     <div class="container">
       <header class="section-head reveal">
-        <p class="section-kicker" data-i18n="projects.kicker">Projekte</p>
-        <h2 id="projekte-h" data-i18n="projects.title">Ausgewählte Arbeiten</h2>
-        <p class="section-lead" data-i18n="projects.lead">
-          Eigene Projekte und technische Nachweise statt erfundener Kundenlisten.
-          Die Einordnung jeder Arbeit steht direkt an der jeweiligen Karte.
-        </p>
+        <p class="section-kicker" data-i18n="projects.kicker">Products &amp; internal projects</p>
+        <h2 id="projekte-h" data-i18n="projects.title">Eigene Produkte, Plattformen und Experimente</h2>
+        <p class="section-lead" data-i18n="projects.lead">Eine Auswahl selbst entwickelter und betriebener Systeme. Jeder Eintrag ist klar als eigenes Produkt, Plattformprojekt oder Experiment eingeordnet.</p>
       </header>
-
-      <!-- Statische Fassung fuer Menschen und Suchmaschinen ohne JavaScript.
-           main.js baut dieselben Karten bei aktiver Sprache dynamisch neu auf. -->
-      <div class="grid grid-3 projects-grid" id="projects-grid">
-        <article class="project-card">
-          <div class="project-media"><img src="assets/projects/wivoko.webp?v=35f273b5" alt="Ansicht der WIVOKO-Website" width="1600" height="1000" loading="lazy"></div>
-          <div class="project-body"><p class="project-category">Eigenes Markenprojekt</p><h3 class="project-title">WIVOKO — Fashion-Charm-Marke</h3><p class="project-desc">Mehrsprachiger Markenauftritt für ein modulares Fashion-Charm-System, vorgerendert und mit komprimierten Produktbildern ausgeliefert.</p><ul class="tag-list"><li>Next.js</li><li>Vier Sprachen</li><li>WebP</li><li>Cloudflare</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://wivoko.com/" target="_blank" rel="noopener noreferrer">Projekt ansehen</a></div></div>
-        </article>
-        <article class="project-card">
-          <div class="project-media"><img src="assets/projects/eve.webp?v=4c47af57" alt="Ansicht der EVE Market Tools" width="1600" height="1000" loading="lazy"></div>
-          <div class="project-body"><p class="project-category">Eigene Plattform</p><h3 class="project-title">EVE Market Tools</h3><p class="project-desc">Werkzeugsammlung mit eigener Datenbank und API. Rund 7,5 Millionen neue Datensätze pro Tag versorgen Handels-, Industrie- und Analysefunktionen.</p><ul class="tag-list"><li>Eigene API</li><li>Datenbank</li><li>Automatischer Import</li><li>Acht Sprachen</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://eve-tradelooper.com/" target="_blank" rel="noopener noreferrer">Projekt ansehen</a></div></div>
-        </article>
-        <article class="project-card">
-          <div class="project-media"><img src="assets/projects/alice.webp?v=08d1a825" alt="Ansicht des ALICE SYNDROME Archive" width="1600" height="1000" loading="lazy"></div>
-          <div class="project-body"><p class="project-category">Eigenes redaktionelles Projekt</p><h3 class="project-title">ALICE SYNDROME Archive</h3><p class="project-desc">Inoffizielles, zweisprachiges Fan-Archiv mit datierten und verlinkten Quellen sowie einem Hintergrunddienst zur laufenden Pflege.</p><ul class="tag-list"><li>Next.js</li><li>Koreanisch &amp; Englisch</li><li>Hintergrunddienst</li><li>Docker</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://alicesyndromearchive.com/" target="_blank" rel="noopener noreferrer">Projekt ansehen</a></div></div>
-        </article>
-        <article class="project-card">
-          <div class="project-media"><img src="assets/projects/studio-infrastruktur.webp?v=f9bc94aa" alt="Visualisierung der Studio-Infrastruktur" width="1600" height="1000" loading="lazy"></div>
-          <div class="project-body"><p class="project-category">Eigene Infrastruktur</p><h3 class="project-title">Studio-Infrastruktur — Deployment &amp; Betrieb</h3><p class="project-desc">Getrennte Docker-Dienste auf Linux, reproduzierbare Deployments, verschlüsselter Zugriff, Healthchecks und eine abgesicherte Kontakt-API — von uns selbst betrieben und gewartet.</p><ul class="tag-list"><li>Linux</li><li>Docker</li><li>Cloudflare Tunnel</li><li>Healthchecks</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="hosting-betrieb/">Hosting &amp; Betrieb ansehen</a></div></div>
-        </article>
+      <div class="projects-grid" id="projects-grid">
+        <article class="project-card"><div class="project-media"><img src="assets/projects/wivoko.webp?v=35f273b5" alt="Screenshot: WIVOKO — Fashion-Charm-Marke" width="1600" height="1000" loading="lazy"></div><div class="project-body"><p class="project-category">Eigenes Markenprojekt</p><h3 class="project-title">WIVOKO — Fashion-Charm-Marke</h3><p class="project-desc">Mehrsprachiger Markenauftritt für ein modulares Fashion-Charm-System, vorgerendert und für internationale Märkte aufgebaut.</p><ul class="tag-list"><li>Next.js</li><li>SSG</li><li>Vier Sprachen</li><li>Cloudflare</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://wivoko.com/" target="_blank" rel="noopener">Projekt ansehen</a></div></div></article>
+        <article class="project-card"><div class="project-media"><img src="assets/projects/eve.webp?v=4c47af57" alt="Screenshot: EVE Market Tools" width="1600" height="1000" loading="lazy"></div><div class="project-body"><p class="project-category">Eigene Plattform</p><h3 class="project-title">EVE Market Tools</h3><p class="project-desc">Datengetriebene Werkzeugsammlung mit eigener Datenbank, API und automatisierten Importen.</p><ul class="tag-list"><li>Eigene API</li><li>Datenbank</li><li>Automatischer Import</li><li>Linux</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://eve-tradelooper.com/" target="_blank" rel="noopener">Projekt ansehen</a></div></div></article>
+        <article class="project-card"><div class="project-media"><img src="assets/projects/alice.webp?v=08d1a825" alt="Screenshot: ALICE SYNDROME Archive" width="1600" height="1000" loading="lazy"></div><div class="project-body"><p class="project-category">Eigenes redaktionelles Projekt</p><h3 class="project-title">ALICE SYNDROME Archive</h3><p class="project-desc">Zweisprachiges, quellenbasiertes Fan-Archiv mit Hintergrunddienst und laufend gepflegten Inhalten.</p><ul class="tag-list"><li>Next.js</li><li>Hintergrunddienst</li><li>Datenhaltung</li><li>Docker</li></ul><div class="project-actions"><a class="btn btn-primary btn-sm" href="https://alicesyndromearchive.com/" target="_blank" rel="noopener">Projekt ansehen</a></div></div></article>
+        <article class="project-card"><div class="project-media"><img src="assets/projects/studio-infrastruktur.webp?v=f9bc94aa" alt="Visualisierung der Studio-Infrastruktur" width="1600" height="1000" loading="lazy"></div><div class="project-body"><p class="project-category">Eigene Infrastruktur</p><h3 class="project-title">Studio-Infrastruktur</h3><p class="project-desc">Docker-Dienste auf Linux, reproduzierbare Deployments, verschlüsselter Zugriff, Healthchecks und eine abgesicherte Kontakt-API.</p><ul class="tag-list"><li>Linux</li><li>Docker</li><li>Cloudflare Tunnel</li><li>FastAPI</li></ul></div></article>
       </div>
     </div>
   </section>
 
-  <!-- ================================================================
-       ABLAUF
-       ================================================================ -->
-  <section class="section" id="ablauf" aria-labelledby="ablauf-h">
+  <section class="section" id="betrieb" aria-labelledby="betrieb-h">
     <div class="container">
       <header class="section-head reveal">
-        <p class="section-kicker" data-i18n="process.kicker">Ablauf</p>
-        <h2 id="ablauf-h" data-i18n="process.title">In vier Schritten zum Ergebnis</h2>
+        <p class="section-kicker" data-i18n="operations.kicker">Operations</p>
+        <h2 id="betrieb-h" data-i18n="operations.title">Gebaut heißt auch betrieben.</h2>
+        <p class="section-lead" data-i18n="operations.lead">Eigene Produkte brauchen verlässliche Routinen nach dem ersten Deployment. Der Betrieb ist deshalb Teil der Produktarbeit – mit dokumentierten Abläufen und ohne öffentliche Infrastrukturdetails.</p>
       </header>
-
-      <ol class="steps">
-        <li class="step reveal">
-          <span class="step-num" aria-hidden="true">01</span>
-          <h3 data-i18n="process.s1.title">Anfrage</h3>
-          <p data-i18n="process.s1.text">
-            Sie beschreiben Ihr Vorhaben in ein paar Stichpunkten. Unverbindlich.
-          </p>
-        </li>
-        <li class="step reveal">
-          <span class="step-num" aria-hidden="true">02</span>
-          <h3 data-i18n="process.s2.title">Abstimmung</h3>
-          <p data-i18n="process.s2.text">
-            Wir klären Umfang, technische Anforderungen und offene Fragen.
-          </p>
-        </li>
-        <li class="step reveal">
-          <span class="step-num" aria-hidden="true">03</span>
-          <h3 data-i18n="process.s3.title">Angebot &amp; Umsetzung</h3>
-          <p data-i18n="process.s3.text">
-            Nach klarer Definition erhalten Sie ein Angebot. Danach setzen wir um.
-          </p>
-        </li>
-        <li class="step reveal">
-          <span class="step-num" aria-hidden="true">04</span>
-          <h3 data-i18n="process.s4.title">Übergabe &amp; Support</h3>
-          <p data-i18n="process.s4.text">
-            Nach Fertigstellung übergeben wir. Auf Wunsch betreuen wir weiter.
-          </p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ================================================================
-       KALKULATION
-       ================================================================ -->
-  <section class="section section-alt" id="preise" aria-labelledby="preise-h">
-    <div class="container">
-      <div class="pricing-panel reveal">
-        <div class="pricing-main">
-          <p class="section-kicker" data-i18n="pricing.kicker">Preise</p>
-          <h2 id="preise-h" data-i18n="pricing.title">Individuelle Projektkalkulation</h2>
-          <p data-i18n="pricing.text">
-            Jedes Projekt hat andere Anforderungen. Deshalb kalkulieren wir
-            Leistungen nach Umfang, Funktionen und technischem Aufwand. Eine
-            Anfrage ist unverbindlich und kostet nichts.
-          </p>
-          <div class="pricing-actions">
-            <a class="btn btn-primary" href="#kontakt" data-i18n="pricing.cta1">Projekt beschreiben</a>
-            <a class="btn btn-ghost" href="#kontakt" data-i18n="pricing.cta2">Kurze Anfrage senden</a>
-          </div>
-          <p class="card-note" data-i18n="pricing.note">
-            Der zweite Weg eignet sich für kleinere Wartungs- oder
-            Änderungsarbeiten.
-          </p>
-        </div>
-
-        <div class="pricing-aside">
-          <h3 data-i18n="pricing.needTitle">Für ein Angebot hilft uns</h3>
-          <ul class="check-list">
-            <li data-i18n="pricing.n1">Art des Projekts</li>
-            <li data-i18n="pricing.n2">Gewünschte Funktionen</li>
-            <li data-i18n="pricing.n3">Bestehende Website, falls vorhanden</li>
-            <li data-i18n="pricing.n4">Ungefährer Umfang</li>
-            <li data-i18n="pricing.n5">Besondere Anforderungen</li>
-            <li data-i18n="pricing.n6">Gewünschter Zeitraum</li>
-          </ul>
-        </div>
+      <div class="operations-grid">
+        <article class="operation-item reveal"><span aria-hidden="true">01</span><div><h3 data-i18n="operations.monitor.title">Production Monitoring</h3><p data-i18n="operations.monitor.text">Erreichbarkeit und Dienstzustände beobachten.</p></div></article>
+        <article class="operation-item reveal"><span aria-hidden="true">02</span><div><h3 data-i18n="operations.feeds.title">Automated Feed Imports</h3><p data-i18n="operations.feeds.text">Datenimporte planbar ausführen und Fehler sichtbar machen.</p></div></article>
+        <article class="operation-item reveal"><span aria-hidden="true">03</span><div><h3 data-i18n="operations.backups.title">Database Backups</h3><p data-i18n="operations.backups.text">Sicherungen und Wiederherstellungswege pflegen.</p></div></article>
+        <article class="operation-item reveal"><span aria-hidden="true">04</span><div><h3 data-i18n="operations.health.title">Health Checks</h3><p data-i18n="operations.health.text">Kritische Komponenten automatisch prüfen.</p></div></article>
+        <article class="operation-item reveal"><span aria-hidden="true">05</span><div><h3 data-i18n="operations.deploy.title">Deployment</h3><p data-i18n="operations.deploy.text">Änderungen reproduzierbar ausrollen und prüfen.</p></div></article>
+        <article class="operation-item reveal"><span aria-hidden="true">06</span><div><h3 data-i18n="operations.security.title">Security Controls</h3><p data-i18n="operations.security.text">Zugriffe begrenzen, Geheimnisse trennen und Abhängigkeiten aktuell halten.</p></div></article>
       </div>
     </div>
   </section>
 
-  <!-- ================================================================
-       KONTAKT
-       ================================================================ -->
-  <section class="section" id="kontakt" aria-labelledby="kontakt-h">
-    <div class="container contact-layout">
+  <section class="section section-alt" id="technologie" aria-labelledby="technologie-h">
+    <div class="container">
+      <header class="section-head reveal"><p class="section-kicker" data-i18n="technology.kicker">Technology</p><h2 id="technologie-h" data-i18n="technology.title">Technologien in den Saveroq-Systemen</h2><p class="section-lead" data-i18n="technology.lead">Werkzeuge werden nach Aufgabe gewählt. Sie unterstützen die Produkte; sie sind nicht das Produktversprechen.</p></header>
+      <div class="tech-groups reveal"><div><h3 data-i18n="technology.backend">Backend &amp; Data</h3><p>Python · FastAPI · PostgreSQL</p></div><div><h3 data-i18n="technology.infrastructure">Infrastructure</h3><p>Linux · Docker · Cloudflare</p></div><div><h3 data-i18n="technology.delivery">Delivery &amp; Operations</h3><p>Git · GitHub · Monitoring · Automation</p></div></div>
+    </div>
+  </section>
 
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="container about-panel reveal"><div><p class="section-kicker" data-i18n="about.kicker">About</p><h2 id="about-h" data-i18n="about.title">Entwicklung und Betrieb an einem Ort</h2></div><p class="section-lead" data-i18n="about.text">Saveroq Studio betreut Entwicklung und technischen Betrieb der Saveroq-Produkte. Der Fokus liegt auf langlebigen Systemen: Daten verarbeiten, Funktionen weiterentwickeln, Deployments nachvollziehbar halten und den laufenden Betrieb absichern.</p></div>
+  </section>
+
+  <section class="section section-alt" id="kontakt" aria-labelledby="kontakt-h">
+    <div class="container contact-layout">
       <div class="contact-intro reveal">
         <p class="section-kicker" data-i18n="contact.kicker">Kontakt</p>
-        <h2 id="kontakt-h" data-i18n="contact.title">Erzählen Sie uns kurz von Ihrem Projekt</h2>
-        <p data-i18n="contact.text">
-          Ein paar Stichpunkte reichen für den Anfang. Wir melden uns mit
-          Rückfragen oder einer ersten Einschätzung.
-        </p>
-
-        <!-- Kontaktdaten: werden aus js/config.js gefüllt.
-             Nicht konfigurierte Angaben werden gar nicht angezeigt. -->
-        <ul class="contact-details" id="contact-details">
-          <li><span class="label">E-Mail</span><!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
-          <li><span class="label">Ansprechpartnerin</span>Girly Boldt</li>
-          <li><span class="label">Rechtliche Anfragen</span><!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li>
-          <li><span class="label">Standort</span>Nürnberg, Deutschland</li>
-        </ul>
+        <h2 id="kontakt-h" data-i18n="contact.title">Kontakt zu Saveroq</h2>
+        <p data-i18n="contact.lead">Für Händler, Partnerschaften, technische Hinweise oder allgemeine Fragen ist Girly Boldt die erste Ansprechpartnerin.</p>
+        <ul class="contact-details" id="contact-details"><li><span class="label">E-Mail</span><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a></li><li><span class="label">Ansprechpartnerin</span>Girly Boldt</li><li><span class="label">Recht &amp; Datenschutz</span><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a></li><li><span class="label">Standort</span>Nürnberg, Deutschland</li></ul>
       </div>
-
       <div class="contact-form-wrap reveal">
-
         <form class="contact-form" id="contact-form" novalidate>
-
-          <!-- Honeypot: für Menschen unsichtbar, für einfache Bots attraktiv.
-               Kein Ersatz für serverseitigen Spamschutz. -->
-          <div class="hp-field" aria-hidden="true">
-            <label for="website-url">Bitte dieses Feld leer lassen</label>
-            <input type="text" id="website-url" name="website-url" tabindex="-1" autocomplete="off">
+          <div class="hp-field" aria-hidden="true"><label for="website-url">Website URL</label><input type="text" id="website-url" name="website_url" tabindex="-1" autocomplete="off"></div>
+          <div class="field-row">
+            <div class="field"><label for="f-name"><span data-i18n="form.name">Name</span> <span class="req" aria-hidden="true">*</span></label><input type="text" id="f-name" name="name" required maxlength="100" autocomplete="name" aria-describedby="err-name"><p class="field-error" id="err-name" role="alert" hidden></p></div>
+            <div class="field"><label for="f-email"><span data-i18n="form.email">E-Mail</span> <span class="req" aria-hidden="true">*</span></label><input type="email" id="f-email" name="email" required maxlength="150" autocomplete="email" aria-describedby="err-email"><p class="field-error" id="err-email" role="alert" hidden></p></div>
           </div>
-
-          <div class="field">
-            <label for="f-name"><span data-i18n="form.name">Name</span> <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="f-name" name="name" required maxlength="100"
-                   autocomplete="name" aria-describedby="err-name">
-            <p class="field-error" id="err-name" role="alert" hidden></p>
-          </div>
-
-          <div class="field">
-            <label for="f-email"><span data-i18n="form.email">E-Mail</span> <span class="req" aria-hidden="true">*</span></label>
-            <input type="email" id="f-email" name="email" required maxlength="150"
-                   autocomplete="email" aria-describedby="err-email">
-            <p class="field-error" id="err-email" role="alert" hidden></p>
-          </div>
-
-          <div class="field">
-            <label for="f-company"><span data-i18n="form.company">Unternehmen</span> <span class="opt" data-i18n="form.optional">(optional)</span></label>
-            <input type="text" id="f-company" name="company" maxlength="120"
-                   autocomplete="organization" aria-describedby="err-company">
-            <p class="field-error" id="err-company" role="alert" hidden></p>
-          </div>
-
-          <div class="field">
-            <label for="f-topic"><span data-i18n="form.topic">Was benötigen Sie?</span> <span class="req" aria-hidden="true">*</span></label>
-            <select id="f-topic" name="topic" required aria-describedby="err-topic">
-              <option value="" data-i18n="form.topic.placeholder">Bitte auswählen</option>
-              <option value="neue-website" data-i18n="form.topic.o1">Neue Website</option>
-              <option value="website-ueberarbeiten" data-i18n="form.topic.o2">Bestehende Website überarbeiten</option>
-              <option value="web-funktion" data-i18n="form.topic.o3">Individuelle Web-Funktion</option>
-              <option value="datenbank-api" data-i18n="form.topic.o4">Datenbank / API</option>
-              <option value="ai-support" data-i18n="form.topic.o5">AI Customer Support</option>
-              <option value="websitepflege" data-i18n="form.topic.o6">Websitepflege</option>
-              <option value="server" data-i18n="form.topic.o7">Server / technische Betreuung</option>
-              <option value="email-dns" data-i18n="form.topic.o8">E-Mail / DNS</option>
-              <option value="social" data-i18n="form.topic.o9">Social-Media-Support</option>
-              <option value="assistenz" data-i18n="form.topic.o11">Virtuelle Assistenz / Büroorganisation</option>
-              <option value="sonstiges" data-i18n="form.topic.o10">Sonstiges</option>
-            </select>
-            <p class="field-error" id="err-topic" role="alert" hidden></p>
-          </div>
-
-          <div class="field">
-            <label for="f-website"><span data-i18n="form.website">Bestehende Website</span> <span class="opt" data-i18n="form.optional">(optional)</span></label>
-            <input type="url" id="f-website" name="existing_website" maxlength="200"
-                   inputmode="url" placeholder="https://"
-                   aria-describedby="err-website">
-            <p class="field-error" id="err-website" role="alert" hidden></p>
-          </div>
-
-          <div class="field">
-            <label for="f-budget"><span data-i18n="form.budget">Budgetrahmen</span> <span class="opt" data-i18n="form.optional">(optional)</span></label>
-            <select id="f-budget" name="budget">
-              <option value="offen" data-i18n="form.budget.o1">Noch offen</option>
-              <option value="klein" data-i18n="form.budget.o2">Kleines Projekt</option>
-              <option value="mittel" data-i18n="form.budget.o3">Mittleres Projekt</option>
-              <option value="gross" data-i18n="form.budget.o4">Größeres individuelles Projekt</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="f-message"><span data-i18n="form.message">Projektbeschreibung</span> <span class="req" aria-hidden="true">*</span></label>
-            <textarea id="f-message" name="message" rows="6" required maxlength="2000"
-                      aria-describedby="hint-message err-message"></textarea>
-            <p class="field-hint" id="hint-message">
-              <span data-i18n="form.message.hint">Ein paar Stichpunkte reichen für die erste Anfrage.</span>
-              <span class="counter" id="message-counter" aria-hidden="true">0 / 2000</span>
-            </p>
-            <p class="field-error" id="err-message" role="alert" hidden></p>
-          </div>
-
-          <div class="field field-check">
-            <input type="checkbox" id="f-privacy" name="privacy" required aria-describedby="err-privacy">
-            <label for="f-privacy">
-              <span data-i18n="form.privacy">Ich habe die Datenschutzhinweise zur Verarbeitung meiner Angaben gelesen.</span>
-              <a href="datenschutz.html" data-i18n="form.privacyLink">Datenschutzhinweise</a>
-            </label>
-            <p class="field-error" id="err-privacy" role="alert" hidden></p>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block" id="form-submit" data-i18n="form.submit">
-            Anfrage senden
-          </button>
-
-          <!-- Statusmeldung, für Screenreader angekündigt -->
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <div class="field"><label for="f-company"><span data-i18n="form.company">Organisation</span> <span class="opt" data-i18n="form.optional">(optional)</span></label><input type="text" id="f-company" name="company" maxlength="120" autocomplete="organization" aria-describedby="err-company"><p class="field-error" id="err-company" role="alert" hidden></p></div>
+          <div class="field"><label for="f-topic"><span data-i18n="form.topic">Anliegen</span> <span class="req" aria-hidden="true">*</span></label><select id="f-topic" name="topic" required aria-describedby="err-topic"><option value="" data-i18n="form.topic.placeholder">Bitte auswählen</option><option value="datenbank-api" data-i18n="form.topic.o1">Händler- oder Produktdaten</option><option value="ai-support" data-i18n="form.topic.o2">Suche / AI-Readiness</option><option value="server" data-i18n="form.topic.o3">Technischer Hinweis</option><option value="assistenz" data-i18n="form.topic.o4">Partnerschaft</option><option value="sonstiges" data-i18n="form.topic.o5">Allgemeine Frage</option></select><p class="field-error" id="err-topic" role="alert" hidden></p></div>
+          <div class="field"><label for="f-website"><span data-i18n="form.website">Relevante URL</span> <span class="opt" data-i18n="form.optional">(optional)</span></label><input type="url" id="f-website" name="existing_website" maxlength="200" inputmode="url" placeholder="https://" aria-describedby="err-website"><p class="field-error" id="err-website" role="alert" hidden></p></div>
+          <div class="field"><label for="f-message"><span data-i18n="form.message">Nachricht</span> <span class="req" aria-hidden="true">*</span></label><textarea id="f-message" name="message" rows="6" required maxlength="2000" aria-describedby="hint-message err-message"></textarea><p class="field-hint" id="hint-message"><span data-i18n="form.message.hint">Bitte beschreiben Sie Ihr Anliegen kurz und konkret.</span><span class="counter" id="message-counter" aria-hidden="true">0 / 2000</span></p><p class="field-error" id="err-message" role="alert" hidden></p></div>
+          <div class="field field-check"><input type="checkbox" id="f-privacy" name="privacy" required aria-describedby="err-privacy"><label for="f-privacy"><span data-i18n="form.privacy">Ich habe die Datenschutzhinweise zur Verarbeitung meiner Angaben gelesen.</span> <a href="datenschutz.html" data-i18n="form.privacyLink">Datenschutzhinweise</a></label><p class="field-error" id="err-privacy" role="alert" hidden></p></div>
+          <button type="submit" class="btn btn-primary btn-block" id="form-submit" data-i18n="form.submit">Nachricht senden</button><p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
   </section>
-
 </main>
-
-<!-- ==================================================================
-     FOOTER
-     ================================================================== -->
 <footer class="site-footer">
   <div class="container footer-grid">
-
-    <div class="footer-brand">
-      <a class="brand" href="#top">
-        <span class="brand-mark" aria-hidden="true" data-site="initials">SQ</span>
-        <span class="brand-name" data-site="name">Saveroq Studio</span>
-      </a>
-      <p class="footer-desc" data-i18n="footer.desc">
-        Websites, digitale Systeme und laufende Unterstützung für kleine
-        Unternehmen.
-      </p>
-      <ul class="social-list" id="social-list"></ul>
-    </div>
-
-    <nav class="footer-nav" aria-label="Footer-Navigation" data-i18n-attr="aria-label:a11y.footerNav">
-      <h2 data-i18n="footer.navTitle">Navigation</h2>
-      <ul>
-        <li><a href="#leistungen" data-i18n="nav.services">Leistungen</a></li>
-        <li><a href="#support" data-i18n="nav.support">Wartung &amp; Support</a></li>
-        <li><a href="#assistenz" data-i18n="nav.assist">Virtuelle Assistenz</a></li>
-        <li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li>
-        <li><a href="#ablauf" data-i18n="nav.process">Ablauf</a></li>
-        <li><a href="#preise" data-i18n="nav.pricing">Kalkulation</a></li>
-      </ul>
-    </nav>
-
-    <div class="footer-col">
-      <h2 data-i18n="footer.contactTitle">Kontakt</h2>
-      <ul class="footer-contact" id="footer-contact"><li><!--email_off--><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a><!--/email_off--></li><li>Girly Boldt</li><li>Nürnberg, Deutschland</li></ul>
-    </div>
-
-    <div class="footer-col">
-      <h2 data-i18n="footer.legalTitle">Rechtliches</h2>
-      <ul>
-        <li><a href="impressum.html" data-i18n="footer.imprint">Impressum</a></li>
-        <li><a href="datenschutz.html" data-i18n="footer.privacy">Datenschutz</a></li>
-      </ul>
-    </div>
+    <div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true" data-site="initials">SQ</span><span class="brand-name" data-site="name">Saveroq Studio</span></a><p class="footer-desc" data-i18n="footer.desc">Engineering &amp; Operations für die Saveroq-Produkte.</p><ul class="social-list" id="social-list"></ul></div>
+    <nav class="footer-nav" aria-label="Footer-Navigation" data-i18n-attr="aria-label:a11y.footerNav"><h2 data-i18n="footer.navTitle">Navigation</h2><ul><li><a href="#saveroq" data-i18n="nav.saveroq">Saveroq</a></li><li><a href="#systeme" data-i18n="nav.systems">Systeme</a></li><li><a href="#projekte" data-i18n="nav.projects">Projekte</a></li><li><a href="#betrieb" data-i18n="nav.operations">Betrieb</a></li></ul></nav>
+    <div class="footer-col"><h2 data-i18n="footer.contactTitle">Kontakt</h2><ul class="footer-contact" id="footer-contact"><li><a href="mailto:kontakt@saveroq.com">kontakt@saveroq.com</a></li><li>Girly Boldt</li><li>Nürnberg, Deutschland</li></ul></div>
+    <div class="footer-col"><h2 data-i18n="footer.legalTitle">Rechtliches</h2><ul><li><a href="impressum.html" data-i18n="footer.imprint">Impressum</a></li><li><a href="datenschutz.html" data-i18n="footer.privacy">Datenschutz</a></li><li><a href="apps-privacy" data-i18n="footer.appsPrivacy">Apps-Datenschutz</a></li></ul></div>
   </div>
-
-  <div class="container footer-bottom">
-    <p><span data-site="name">Saveroq Studio</span> &middot; <span id="footer-year">2026</span></p>
-  </div>
+  <div class="container footer-bottom"><p><span data-site="name">Saveroq Studio</span> &middot; <span id="footer-year">2026</span></p></div>
 </footer>
-
-<script src="js/config.js?v=cccef4d1"></script>
-<script src="js/i18n.js?v=ce2c7ed4"></script>
-<script src="js/projects.js?v=3f629f3c"></script>
-<script src="js/main.js?v=c2b4f2f9"></script>
+<script src="js/config.js?v=0ee30781"></script>
+<script src="js/i18n.js?v=dc080f2d"></script>
+<script src="js/projects.js?v=b47023de"></script>
+<script src="js/main.js?v=4dbb1878"></script>
 </body>
 </html>

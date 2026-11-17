@@ -230,6 +230,7 @@ p:last-child { margin-bottom: 0; }
 
 .grid { display: grid; gap: var(--s-5); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
 .section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 
@@ -624,6 +625,72 @@ a:hover { color: var(--accent); }
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--accent);
+}
+
+/* Produkt- und Betriebsdarstellung der Saveroq-Systeme. */
+.product-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: center;
+}
+.product-copy .btn { margin-top: var(--s-3); }
+.product-facts { display: grid; gap: var(--s-3); }
+.product-facts li {
+  display: grid;
+  gap: .3rem;
+  padding: var(--s-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+.product-facts strong { color: var(--ink); }
+.product-facts span { color: var(--ink-soft); font-size: .94rem; }
+
+.operations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--border);
+}
+.operation-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-4);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+}
+.operation-item > span { color: var(--accent); font: 700 .8rem/1.5 var(--font-mono); }
+.operation-item h3 { font-size: 1.05rem; margin-bottom: .35rem; }
+.operation-item p { color: var(--ink-soft); margin: 0; font-size: .94rem; }
+
+.tech-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+.tech-groups > div {
+  padding: var(--s-5);
+  border-top: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+}
+.tech-groups h3 { font-size: 1rem; }
+.tech-groups p { color: var(--ink-soft); margin: 0; }
+
+.about-panel {
+  display: grid;
+  grid-template-columns: minmax(240px, .7fr) minmax(0, 1.3fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: start;
+}
+.about-panel .section-lead { margin: 0; }
+
+@media (max-width: 760px) {
+  .product-spotlight, .about-panel { grid-template-columns: 1fr; }
+  .operations-grid, .tech-groups { grid-template-columns: 1fr; }
 }
 
 /* ==========================================================================

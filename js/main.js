@@ -384,7 +384,7 @@
         list.appendChild(li);
       }
 
-      // Ansprechpartnerin für Kundenanfragen.
+      // Ansprechpartnerin für allgemeinen Kontakt.
       if (isFilled(cfg.BUSINESS_CONTACT_PERSON)) {
         list.appendChild(
           contactItem(isFooter ? '' : t('labelPerson'),
@@ -395,7 +395,7 @@
       // Rechtliche und datenschutzbezogene Anfragen gehen an den Betreiber.
       // Bewusst getrennt ausgewiesen: Wer eine Auskunft nach Art. 15 DSGVO
       // verlangt, soll nicht im Anfragepostfach landen.
-      if (isFilled(cfg.BUSINESS_LEGAL_EMAIL)) {
+      if (!isFooter && isFilled(cfg.BUSINESS_LEGAL_EMAIL)) {
         list.appendChild(
           contactItem(isFooter ? '' : t('labelLegal'),
                       cfg.BUSINESS_LEGAL_EMAIL, 'mailto:' + cfg.BUSINESS_LEGAL_EMAIL)
@@ -606,8 +606,8 @@
         actions.appendChild(detail);
       }
       body.appendChild(actions);
-    } else {
-      // Kein toter Button, wenn noch keine URL hinterlegt ist.
+    } else if (project.placeholder) {
+      // Nur ausdrücklich als Platzhalter markierte Projekte ankündigen.
       body.appendChild(el('p', 'project-hint', t('projectPendingHint')));
     }
 

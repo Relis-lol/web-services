@@ -25,8 +25,8 @@ const SITE_CONFIG = {
      deploy/.env konfiguriert. */
   BUSINESS_EMAIL: 'kontakt@saveroq.com',
 
-  /* Ansprechpartnerin fuer Kundenanfragen, Angebote, Termine und die
-     virtuelle Assistenz. */
+  /* Ansprechpartnerin fuer allgemeinen Kontakt, Haendler, Partnerschaften
+     und Termine. */
   BUSINESS_CONTACT_PERSON: 'Girly Boldt',
 
   /* Betreiber im Sinne des Impressums. Einzelunternehmen — bewusst keine

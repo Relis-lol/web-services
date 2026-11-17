@@ -1,16 +1,16 @@
 # Saveroq Studio — Website
 
-Statische Website für **Saveroq Studio**, den Dienstleistungsbereich neben
-der Saveroq-Plattform. Öffentliche Adresse: `https://studio.saveroq.com`.
+Statische Website für **Saveroq Studio**, die Engineering- und
+Operations-Einheit hinter Saveroq. Öffentliche Adresse:
+`https://studio.saveroq.com`.
 
 **Hosting:** eigener Docker-Container auf dem On-Prem-Server hinter
 Cloudflare Tunnel — nicht GitHub Pages. Dieses Repository ist Quelle und
 Sicherung. Siehe [Deployment](#deployment).
 
-> **Getrennt von saveroq.com.** Die Hauptplattform bleibt unangetastet: keine
-> gemeinsame Navigation, keine Weiterleitung, keine gegenseitige Verlinkung,
-> kein Eintrag in der Saveroq-Sitemap, keine Änderung an deren SEO-Daten.
-> Dieses Repository enthält ausschließlich die Studio-Seite.
+> **Eigenes Repository.** Die Hauptplattform `saveroq.com` wird hier nur als
+> Produkt verlinkt. Dieses Repository enthält ausschließlich die Studio-Seite
+> und verändert weder Code noch SEO-Daten der Hauptplattform.
 
 Aufbau: Kein Build-System, keine Frameworks, keine externen Abhängigkeiten
 im Frontend — reines HTML5, CSS und Vanilla JavaScript. Dazu ein kleiner
@@ -49,19 +49,13 @@ Brevo-Relay an die Ansprechpartnerin zustellt.
 ├── index.html            Startseite mit statischen Kerninhalten
 ├── impressum.html        Anbieterkennzeichnung und W-IdNr.
 ├── datenschutz.html      Datenschutzhinweise zum realen Betrieb
-├── websites/             Leistungsseite Websites und Landingpages
-├── web-apps-saas/        Leistungsseite Web-Anwendungen
-├── ai-automatisierung/   Leistungsseite AI und Automatisierung
-├── api-integrationen/    Leistungsseite APIs und Daten
-├── hosting-betrieb/      Leistungsseite Hosting und Deployment
-├── wartung-support/      Leistungsseite technische Betreuung
-├── virtuelle-assistenz/ Leistungsseite virtuelle Assistenz
+├── apps-privacy/         Datenschutzinformationen der Saveroq-Apps
 ├── css/
 │   └── styles.css        Gesamtes Design, in nummerierte Abschnitte gegliedert
 ├── api/                  Kontakt-Endpunkt (FastAPI) + Tests
 ├── js/
 │   ├── config.js         >> Firmendaten, Kontakt, Social, Endpunkt <<
-│   ├── projects.js       >> Die vier Referenzprojekte <<
+│   ├── projects.js       >> Eigene Produkte und interne Projekte <<
 │   ├── i18n.js           Englische Übersetzungen + Sprachlogik
 │   └── main.js           Verhalten (Menü, Projekte, Formular, Theme)
 ├── assets/
@@ -398,11 +392,11 @@ der Hintergrund die Geschichte, sondern die Seite selbst.
 | Abschnitt | Reifegrad `--e` | Karten-Ecken | Kartenfläche | Schaltflächen |
 |---|---|---|---|---|
 | Hero | 0,14 | — | — | 7 px, Kasten |
-| Leistungen | 0,28 | 6 px | 25 % | — |
-| Wartung & Support | 0,43 | 8 px | 38 % | — |
+| Saveroq | 0,28 | 6 px | 25 % | — |
+| Systeme | 0,43 | 8 px | 38 % | — |
 | Projekte | 0,57 | 10 px | 50 % | — |
-| Ablauf | 0,71 | — | — | — |
-| Kalkulation | 0,86 | 19 px | voll | 26 px |
+| Betrieb | 0,71 | — | — | — |
+| Technologie / About | 0,86 | 19 px | voll | 26 px |
 | Kontakt | 1,00 | 22 px | voll + Schatten | 30 px, Pille |
 
 Gesetzt wird `--e` von `initProgressiveStyling()` in `js/main.js`, ausgewertet
@@ -490,8 +484,8 @@ Cloudflares HTML-Umschreibung ohnehin nicht.
 
 | | |
 |---|---|
-| Björn Boldt | Betreiber, technische Leistungen, rechtliche und datenschutzbezogene Anfragen (`kontakt@saveroq.com`) |
-| Girly Boldt | Kundenkontakt, Angebote, Termine, virtuelle Assistenz (`kontakt@saveroq.com`) |
+| Björn Boldt | Betreiber, Produktentwicklung und technischer Betrieb, rechtliche und datenschutzbezogene Anfragen (`kontakt@saveroq.com`) |
+| Girly Boldt | Allgemeiner Kontakt, Händler, Partnerschaften und Termine (`kontakt@saveroq.com`) |
 
 Das technische Ziel des Kontaktformulars wird ausschließlich über
 `deploy/.env` konfiguriert und nicht öffentlich ausgegeben.

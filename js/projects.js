@@ -134,12 +134,12 @@ const PROJECTS = [
     category: 'Eigene Infrastruktur',
     category_en: 'Own infrastructure',
     description:
-      'Die technische Grundlage hinter unseren Websites und Web-Anwendungen: ' +
+      'Die technische Grundlage hinter den Saveroq-Systemen: ' +
       'getrennte Docker-Dienste auf Linux, reproduzierbare Deployments, ' +
       'verschlüsselter Zugriff über Cloudflare Tunnel, Healthchecks und eine ' +
       'abgesicherte Kontakt-API. Die Infrastruktur betreiben und warten wir selbst.',
     description_en:
-      'The technical foundation behind our websites and web applications: ' +
+      'The technical foundation behind Saveroq systems: ' +
       'separate Docker services on Linux, reproducible deployments, encrypted ' +
       'access through Cloudflare Tunnel, health checks and a secured contact ' +
       'API. We operate and maintain the infrastructure ourselves.',
@@ -153,9 +153,7 @@ const PROJECTS = [
     imageWidth: 1600,
     imageHeight: 1000,
     url: null,
-    detailUrl: 'hosting-betrieb/',
-    detailLabel: 'Hosting & Betrieb',
-    detailLabel_en: 'Hosting & operations',
+    detailUrl: null,
     placeholder: false
   }
 
