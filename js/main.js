@@ -384,35 +384,9 @@
         list.appendChild(li);
       }
 
-      // Ansprechpartnerin für allgemeinen Kontakt.
-      if (isFilled(cfg.BUSINESS_CONTACT_PERSON)) {
-        list.appendChild(
-          contactItem(isFooter ? '' : t('labelPerson'),
-                      cfg.BUSINESS_CONTACT_PERSON, null)
-        );
-      }
-
-      // Rechtliche und datenschutzbezogene Anfragen gehen an den Betreiber.
-      // Bewusst getrennt ausgewiesen: Wer eine Auskunft nach Art. 15 DSGVO
-      // verlangt, soll nicht im Anfragepostfach landen.
-      if (!isFooter && isFilled(cfg.BUSINESS_LEGAL_EMAIL)) {
-        list.appendChild(
-          contactItem(isFooter ? '' : t('labelLegal'),
-                      cfg.BUSINESS_LEGAL_EMAIL, 'mailto:' + cfg.BUSINESS_LEGAL_EMAIL)
-        );
-      }
-
-      if (isFilled(cfg.BUSINESS_PHONE)) {
-        const tel = 'tel:' + cfg.BUSINESS_PHONE.replace(/[^\d+]/g, '');
-        list.appendChild(
-          contactItem(isFooter ? '' : t('labelPhone'), cfg.BUSINESS_PHONE, tel)
-        );
-      }
-      if (isFilled(cfg.BUSINESS_LOCATION)) {
-        list.appendChild(
-          contactItem(isFooter ? '' : t('labelLocation'), cfg.BUSINESS_LOCATION, null)
-        );
-      }
+      // Im öffentlichen Kontaktblock wird bewusst nur die zentrale
+      // E-Mail-Adresse angezeigt. Weitere Rollen oder Personen sind dort
+      // nicht ausgewiesen.
     });
   }
 

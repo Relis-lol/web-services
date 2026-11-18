@@ -18,7 +18,7 @@ FastAPI-Dienst für das Kontaktformular (`api/`).
 
 Zweisprachig (Deutsch/Englisch) mit Browser-Spracherkennung und Umschalter,
 Dark Mode und einem **produktiven Kontaktformular**, das über den
-Brevo-Relay an die Ansprechpartnerin zustellt.
+Brevo-Relay an die zentrale Kontaktadresse zustellt.
 
 ---
 
@@ -196,8 +196,7 @@ Alles in **`js/config.js`**:
 BUSINESS_NAME:           'Saveroq Studio',        // Geschäftsbezeichnung
 BUSINESS_INITIALS:       'SQ',                    // 2–3 Zeichen fürs Logo
 BUSINESS_OWNER:          'Björn Boldt',           // Betreiber (Impressum)
-BUSINESS_EMAIL:          'kontakt@saveroq.com',   // Kundenkontakt
-BUSINESS_CONTACT_PERSON: 'Girly Boldt',           // Ansprechpartnerin
+BUSINESS_EMAIL:          'kontakt@saveroq.com',   // zentrale Kontaktadresse
 BUSINESS_LEGAL_EMAIL:    'kontakt@saveroq.com',   // Recht & Datenschutz
 BUSINESS_PHONE:          null,                    // null = wird nicht angezeigt
 BUSINESS_LOCATION:       'Nürnberg, Deutschland',
@@ -485,7 +484,6 @@ Cloudflares HTML-Umschreibung ohnehin nicht.
 | | |
 |---|---|
 | Björn Boldt | Betreiber, Produktentwicklung und technischer Betrieb, rechtliche und datenschutzbezogene Anfragen (`kontakt@saveroq.com`) |
-| Girly Boldt | Allgemeiner Kontakt, Händler, Partnerschaften und Termine (`kontakt@saveroq.com`) |
 
 Das technische Ziel des Kontaktformulars wird ausschließlich über
 `deploy/.env` konfiguriert und nicht öffentlich ausgegeben.
